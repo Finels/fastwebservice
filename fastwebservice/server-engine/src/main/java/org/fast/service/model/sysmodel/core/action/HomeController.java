@@ -5,9 +5,8 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.fast.service.domain.FastUser;
 import org.fast.service.domain.ResultBody;
 import org.fast.service.model.sysmodel.core.service.intf.UserServiceIntf;
-import org.fast.service.sys.exception.*;
 import org.fast.service.sys.config.SpringContextUtil;
-import org.fast.service.sys.exception.Bizexception;
+import org.fast.service.sys.exception.BizException;
 import org.fast.service.sys.exception.Error;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -80,7 +79,7 @@ public class HomeController {
             file.transferTo(realFile);
         } catch (IOException e) {
             e.printStackTrace();
-            throw new Bizexception("文件写入失败");
+            throw new BizException("文件写入失败");
         }
         Map resultMap = new HashMap<>();
         resultMap.put("signature", "test123");
@@ -97,13 +96,13 @@ public class HomeController {
             return;
         } catch (IOException e) {
             e.printStackTrace();
-            throw new Bizexception("未知错误");
+            throw new BizException("未知错误");
         }
     }
 
 
-    @ExceptionHandler({Bizexception.class})
-    public ResponseEntity exception(Bizexception e, HttpServletRequest request) {
+    @ExceptionHandler({BizException.class})
+    public ResponseEntity exception(BizException e, HttpServletRequest request) {
         return new ResponseEntity<Error>(new Error("warning", "用户校验失败，请重新登录", request.getContextPath()), HttpStatus.NON_AUTHORITATIVE_INFORMATION);
     }
 }

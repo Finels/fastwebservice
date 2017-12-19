@@ -1,6 +1,6 @@
 package org.fast.service.interceptor;
 
-import org.fast.service.sys.exception.Bizexception;
+import org.fast.service.sys.exception.BizException;
 import org.fast.service.util.StringUtil;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -27,11 +27,11 @@ public class UserTokenInterceptor implements HandlerInterceptor {
     }
 
     @Override
-    public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView) throws Bizexception {
+    public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView) throws BizException {
         Map postMap = httpServletRequest.getParameterMap();
         Object signature = postMap.get("signature");
         if (StringUtil.isEmpty(signature)) {
-            throw new Bizexception("warning", "用户信息校验失败，请重新登录");
+            throw new BizException("用户信息校验失败，请重新登录");
         }
     }
 
