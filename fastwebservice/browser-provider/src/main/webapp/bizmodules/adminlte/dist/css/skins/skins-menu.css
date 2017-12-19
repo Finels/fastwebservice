@@ -1,0 +1,551 @@
+/*白色菜单*/
+.skin-menu-light .sidebar-form {
+    border: 1px solid #d2d6de;
+}
+.skin-menu-light .sidebar-form input[type="text"],
+.skin-menu-light .sidebar-form .btn {
+    background-color: #fff;
+}
+.skin-menu-light .sidebar-form input[type="text"] {
+    color: #666;
+}
+
+.skin-menu-light .sidebar-form input[type="text"]:focus,
+.skin-menu-light .sidebar-form input[type="text"]:focus + .input-group-btn .btn {
+    background-color: #fff;
+    color: #666;
+}
+
+.skin-menu-light .sidebar-form input[type="text"]:focus + .input-group-btn .btn {
+    border-left-color: #fff;
+}
+
+.skin-menu-light .sidebar-form input[type="text"]:focus + .input-group-btn .btn {
+    border-left-color: #fff;
+}
+
+.skin-menu-light .sidebar-form .btn {
+    color: #999;
+}
+/*背景颜色*/
+.skin-menu-light .main-sidebar {
+    background-color: #fff;
+}
+/*字体颜色*/
+.skin-menu-light  .sidebar-menu > li > a  {
+    color: #444
+}
+/*选中后主菜单字体颜色*/
+.skin-menu-light .sidebar-menu>li:hover>a,.skin-menu-light .sidebar-menu>li.active>a{
+    color: #000;
+    background: #f4f4f5;
+}
+/*选中后子菜单字体颜色*/
+.skin-menu-light .treeview-menu li.active>a, .skin-menu-light .treeview-menu li>a:hover {
+    color: #000;
+}
+.skin-menu-light .treeview-menu>li.active>a, .skin-menu-light .treeview-menu>li>a:hover {
+    color: #000;
+}
+/*子菜单字体颜色背景颜色*/
+.skin-menu-light .sidebar-menu>li>.treeview-menu {
+    background: #f4f4f5;
+}
+/*子菜单字体颜色字体颜色*/
+.skin-menu-light .treeview-menu li a {
+    color: #777;
+}
+/*菜单边框*/
+.skin-menu-light .main-sidebar {
+    border-right: 1px solid lightgrey
+}
+
+/*黑色菜单*/
+/*菜单搜索框颜色*/
+.skin-menu-black .sidebar-form {/*边框*/
+    border: 1px solid #374850;
+}
+.skin-menu-black .sidebar-form input[type="text"],
+.skin-menu-black .sidebar-form .btn {/*背景*/
+    background-color: #374850;
+}
+.skin-menu-black .sidebar-form input[type="text"] {/*字体*/
+    color: #666;
+}
+
+.skin-menu-black .sidebar-form input[type="text"]:focus,
+.skin-menu-black .sidebar-form input[type="text"]:focus + .input-group-btn .btn {
+    background-color: #fff;
+    color: #666;
+}
+
+.skin-menu-black .sidebar-form input[type="text"]:focus + .input-group-btn .btn {
+    border-left-color: #fff;
+}
+
+.skin-menu-black .sidebar-form input[type="text"]:focus + .input-group-btn .btn {
+    border-left-color: #fff;
+}
+
+.skin-menu-black .sidebar-form .btn {
+    color: #999;
+}
+/*背景颜色*/
+.skin-menu-black .main-sidebar {
+    background-color: #191919;
+}
+/*字体颜色*/
+.skin-menu-black  .sidebar-menu > li > a  {
+    color: #ccc
+}
+/*选中后主菜单字体颜色*/
+.skin-menu-black .sidebar-menu>li:hover>a,.skin-menu-black .sidebar-menu>li.active>a{
+    color: #fff;
+    background: #1e282c;
+}
+/*选中后子菜单字体颜色*/
+.skin-menu-black .treeview-menu li.active>a, .skin-menu-black .treeview-menu li>a:hover {
+    color: #fff;
+}
+.skin-menu-black .treeview-menu>li.active>a, .skin-menu-black .treeview-menu>li>a:hover {
+    color: #fff;
+}
+/*子菜单字体颜色背景颜色*/
+.skin-menu-black .sidebar-menu>li>.treeview-menu {
+    background: #2c3b41;
+}
+/*子菜单字体颜色字体颜色*/
+.skin-menu-black .treeview-menu li a {
+    color: #ccc;
+}
+/*菜单边框*/
+.skin-menu-black  .main-sidebar {
+    border-right: 0px
+}
+
+/*蓝色菜单*/
+/*背景颜色*/
+.skin-menu-blue .main-sidebar {
+    background-color: #1f5474;
+}
+/*菜单搜索框颜色*/
+.skin-menu-blue.sidebar-form {/*边框*/
+    border: 1px solid rgba(255, 255, 255, 0.4)
+}
+.skin-menu-blue .sidebar-form input[type="text"],
+.skin-menu-blue .sidebar-form .btn {/*背景*/
+	background-color: #ccc;
+}
+.skin-menu-blue .sidebar-form input[type="text"] {/*字体*/
+    color: #333;
+}
+
+.skin-menu-blue .sidebar-form input[type="text"]::-webkit-input-placeholder {
+          /* placeholder颜色  */
+         color: #666;
+     }
+
+.skin-menu-blue .sidebar-form input[type="text"]:focus,
+.skin-menu-blue .sidebar-form input[type="text"]:focus + .input-group-btn .btn {
+    background-color: rgba(255, 255, 255, 1);
+    color: #333;
+}
+
+.skin-menu-blue .sidebar-form input[type="text"]:focus + .input-group-btn .btn {
+    border-left-color: rgba(255, 255, 255, 0.4);
+}
+
+.skin-menu-blue .sidebar-form input[type="text"]:focus + .input-group-btn .btn {
+    border-left-color: rgba(255, 255, 255, 0.4);
+}
+
+.skin-menu-blue .sidebar-form .btn {
+    color: #999;
+}
+/*字体颜色*/
+.skin-menu-blue  .sidebar-menu > li > a  {
+    color: #ccc
+}
+/*选中后主菜单字体颜色*/
+.skin-menu-blue .sidebar-menu>li:hover>a,.skin-menu-blue .sidebar-menu>li.active>a{
+    color: #fff;
+    background: rgba(0, 0, 0, 0.4);
+}
+.skin-menu-blue.sidebar-mini.sidebar-collapse .sidebar-menu>li:hover>a>span{
+	 background: rgba(0, 0, 0, 0);
+}
+/*选中后子菜单字体颜色*/
+.skin-menu-blue .treeview-menu li.active>a, .skin-menu-blue .treeview-menu li>a:hover {
+    color: #fff;
+}
+.skin-menu-blue .treeview-menu>li.active>a, .skin-menu-blue .treeview-menu>li>a:hover {
+    color: #fff;
+}
+/*子菜单字体颜色背景颜色*/
+.skin-menu-blue .sidebar-menu>li>.treeview-menu {
+    background: rgba(0, 0, 0, 0.2)
+}
+/*子菜单字体颜色字体颜色*/
+.skin-menu-blue .treeview-menu li a {
+    color: #ccc;
+}
+/*菜单边框*/
+.skin-menu-blue  .main-sidebar {
+    border-right: 0px
+}
+
+/*紫色菜单*/
+/*背景颜色*/
+.skin-menu-purple .main-sidebar {
+    background-color: #434474;
+}
+/*菜单搜索框颜色*/
+.skin-menu-purple.sidebar-form {/*边框*/
+    border: 1px solid rgba(255, 255, 255, 0.4)
+}
+.skin-menu-purple .sidebar-form input[type="text"],
+.skin-menu-purple .sidebar-form .btn {/*背景*/
+	background-color: #ccc;
+}
+.skin-menu-purple .sidebar-form input[type="text"] {/*字体*/
+    color: #333;
+}
+
+.skin-menu-purple .sidebar-form input[type="text"]::-webkit-input-placeholder {
+          /* placeholder颜色  */
+         color: #666;
+     }
+
+.skin-menu-purple .sidebar-form input[type="text"]:focus,
+.skin-menu-purple .sidebar-form input[type="text"]:focus + .input-group-btn .btn {
+    background-color: rgba(255, 255, 255, 1);
+    color: #333;
+}
+
+.skin-menu-purple .sidebar-form input[type="text"]:focus + .input-group-btn .btn {
+    border-left-color: rgba(255, 255, 255, 0.4);
+}
+
+.skin-menu-purple .sidebar-form input[type="text"]:focus + .input-group-btn .btn {
+    border-left-color: rgba(255, 255, 255, 0.4);
+}
+
+.skin-menu-purple .sidebar-form .btn {
+    color: #999;
+}
+/*字体颜色*/
+.skin-menu-purple  .sidebar-menu > li > a  {
+    color: #ccc
+}
+/*选中后主菜单字体颜色*/
+.skin-menu-purple .sidebar-menu>li:hover>a,.skin-menu-purple .sidebar-menu>li.active>a{
+    color: #fff;
+    background: rgba(0, 0, 0, 0.4);
+}
+.skin-menu-purple.sidebar-mini.sidebar-collapse .sidebar-menu>li:hover>a>span{
+	 background: rgba(0, 0, 0, 0);
+}
+/*选中后子菜单字体颜色*/
+.skin-menu-purple .treeview-menu li.active>a, .skin-menu-purple .treeview-menu li>a:hover {
+    color: #fff;
+}
+.skin-menu-purple .treeview-menu>li.active>a, .skin-menu-purple .treeview-menu>li>a:hover {
+    color: #fff;
+}
+/*子菜单字体颜色背景颜色*/
+.skin-menu-purple .sidebar-menu>li>.treeview-menu {
+    background: rgba(0, 0, 0, 0.2)
+}
+/*子菜单字体颜色字体颜色*/
+.skin-menu-purple .treeview-menu li a {
+    color: #ccc;
+}
+/*菜单边框*/
+.skin-menu-purple  .main-sidebar {
+    border-right: 0px
+}
+
+/*绿色菜单*/
+/*背景颜色*/
+.skin-menu-green .main-sidebar {
+    background-color: #276148;
+}
+/*菜单搜索框颜色*/
+.skin-menu-green.sidebar-form {/*边框*/
+    border: 1px solid rgba(255, 255, 255, 0.4)
+}
+.skin-menu-green .sidebar-form input[type="text"],
+.skin-menu-green .sidebar-form .btn {/*背景*/
+	background-color: #ccc;
+}
+.skin-menu-green .sidebar-form input[type="text"] {/*字体*/
+    color: #333;
+}
+
+.skin-menu-green .sidebar-form input[type="text"]::-webkit-input-placeholder {
+          /* placeholder颜色  */
+         color: #666;
+     }
+
+.skin-menu-green .sidebar-form input[type="text"]:focus,
+.skin-menu-green .sidebar-form input[type="text"]:focus + .input-group-btn .btn {
+    background-color: rgba(255, 255, 255, 1);
+    color: #333;
+}
+
+.skin-menu-green .sidebar-form input[type="text"]:focus + .input-group-btn .btn {
+    border-left-color: rgba(255, 255, 255, 0.4);
+}
+
+.skin-menu-green .sidebar-form input[type="text"]:focus + .input-group-btn .btn {
+    border-left-color: rgba(255, 255, 255, 0.4);
+}
+
+.skin-menu-green .sidebar-form .btn {
+    color: #999;
+}
+/*字体颜色*/
+.skin-menu-green  .sidebar-menu > li > a  {
+    color: #ccc
+}
+/*选中后主菜单字体颜色*/
+.skin-menu-green .sidebar-menu>li:hover>a,.skin-menu-green .sidebar-menu>li.active>a{
+    color: #fff;
+    background: rgba(0, 0, 0, 0.4);
+}
+.skin-menu-green.sidebar-mini.sidebar-collapse .sidebar-menu>li:hover>a>span{
+	 background: rgba(0, 0, 0, 0);
+}
+/*选中后子菜单字体颜色*/
+.skin-menu-green .treeview-menu li.active>a, .skin-menu-green .treeview-menu li>a:hover {
+    color: #fff;
+}
+.skin-menu-green .treeview-menu>li.active>a, .skin-menu-green .treeview-menu>li>a:hover {
+    color: #fff;
+}
+/*子菜单字体颜色背景颜色*/
+.skin-menu-green .sidebar-menu>li>.treeview-menu {
+    background: rgba(0, 0, 0, 0.2)
+}
+/*子菜单字体颜色字体颜色*/
+.skin-menu-green .treeview-menu li a {
+    color: #ccc;
+}
+/*菜单边框*/
+.skin-menu-green  .main-sidebar {
+    border-right: 0px
+}
+
+/*红色菜单*/
+/*背景颜色*/
+.skin-menu-red .main-sidebar {
+    background-color: #832320;
+}
+/*菜单搜索框颜色*/
+.skin-menu-red.sidebar-form {/*边框*/
+    border: 1px solid rgba(255, 255, 255, 0.4)
+}
+.skin-menu-red .sidebar-form input[type="text"],
+.skin-menu-red .sidebar-form .btn {/*背景*/
+	background-color: #ccc;
+}
+.skin-menu-red .sidebar-form input[type="text"] {/*字体*/
+    color: #333;
+}
+
+.skin-menu-red .sidebar-form input[type="text"]::-webkit-input-placeholder {
+          /* placeholder颜色  */
+         color: #666;
+     }
+
+.skin-menu-red .sidebar-form input[type="text"]:focus,
+.skin-menu-red .sidebar-form input[type="text"]:focus + .input-group-btn .btn {
+    background-color: rgba(255, 255, 255, 1);
+    color: #333;
+}
+
+.skin-menu-red .sidebar-form input[type="text"]:focus + .input-group-btn .btn {
+    border-left-color: rgba(255, 255, 255, 0.4);
+}
+
+.skin-menu-red .sidebar-form input[type="text"]:focus + .input-group-btn .btn {
+    border-left-color: rgba(255, 255, 255, 0.4);
+}
+
+.skin-menu-red .sidebar-form .btn {
+    color: #999;
+}
+/*字体颜色*/
+.skin-menu-red  .sidebar-menu > li > a  {
+    color: #ccc
+}
+/*选中后主菜单字体颜色*/
+.skin-menu-red .sidebar-menu>li:hover>a,.skin-menu-red .sidebar-menu>li.active>a{
+    color: #fff;
+    background: rgba(0, 0, 0, 0.4);
+}
+.skin-menu-red.sidebar-mini.sidebar-collapse .sidebar-menu>li:hover>a>span{
+	 background: rgba(0, 0, 0, 0);
+}
+/*选中后子菜单字体颜色*/
+.skin-menu-red .treeview-menu li.active>a, .skin-menu-red .treeview-menu li>a:hover {
+    color: #fff;
+}
+.skin-menu-red .treeview-menu>li.active>a, .skin-menu-red .treeview-menu>li>a:hover {
+    color: #fff;
+}
+/*子菜单字体颜色背景颜色*/
+.skin-menu-red .sidebar-menu>li>.treeview-menu {
+    background: rgba(0, 0, 0, 0.2)
+}
+/*子菜单字体颜色字体颜色*/
+.skin-menu-red .treeview-menu li a {
+    color: #ccc;
+}
+/*菜单边框*/
+.skin-menu-red  .main-sidebar {
+    border-right: 0px
+}
+
+/*黄色菜单*/
+/*背景颜色*/
+.skin-menu-yellow .main-sidebar {
+    background-color: #664b1e;
+}
+/*菜单搜索框颜色*/
+.skin-menu-yellow.sidebar-form {/*边框*/
+    border: 1px solid rgba(255, 255, 255, 0.4)
+}
+.skin-menu-yellow .sidebar-form input[type="text"],
+.skin-menu-yellow .sidebar-form .btn {/*背景*/
+	background-color: #ccc;
+}
+.skin-menu-yellow .sidebar-form input[type="text"] {/*字体*/
+    color: #333;
+}
+
+.skin-menu-yellow .sidebar-form input[type="text"]::-webkit-input-placeholder {
+          /* placeholder颜色  */
+         color: #666;
+     }
+
+.skin-menu-yellow .sidebar-form input[type="text"]:focus,
+.skin-menu-yellow .sidebar-form input[type="text"]:focus + .input-group-btn .btn {
+    background-color: rgba(255, 255, 255, 1);
+    color: #333;
+}
+
+.skin-menu-yellow .sidebar-form input[type="text"]:focus + .input-group-btn .btn {
+    border-left-color: rgba(255, 255, 255, 0.4);
+}
+
+.skin-menu-yellow .sidebar-form input[type="text"]:focus + .input-group-btn .btn {
+    border-left-color: rgba(255, 255, 255, 0.4);
+}
+
+.skin-menu-yellow .sidebar-form .btn {
+    color: #999;
+}
+/*字体颜色*/
+.skin-menu-yellow  .sidebar-menu > li > a  {
+    color: #ccc
+}
+/*选中后主菜单字体颜色*/
+.skin-menu-yellow .sidebar-menu>li:hover>a,.skin-menu-yellow .sidebar-menu>li.active>a{
+    color: #fff;
+    background: rgba(0, 0, 0, 0.4);
+}
+.skin-menu-yellow.sidebar-mini.sidebar-collapse .sidebar-menu>li:hover>a>span{
+	 background: rgba(0, 0, 0, 0);
+}
+/*选中后子菜单字体颜色*/
+.skin-menu-yellow .treeview-menu li.active>a, .skin-menu-yellow .treeview-menu li>a:hover {
+    color: #fff;
+}
+.skin-menu-yellow .treeview-menu>li.active>a, .skin-menu-yellow .treeview-menu>li>a:hover {
+    color: #fff;
+}
+/*子菜单字体颜色背景颜色*/
+.skin-menu-yellow .sidebar-menu>li>.treeview-menu {
+    background: rgba(0, 0, 0, 0.2)
+}
+/*子菜单字体颜色字体颜色*/
+.skin-menu-yellow .treeview-menu li a {
+    color: #ccc;
+}
+/*菜单边框*/
+.skin-menu-yellow  .main-sidebar {
+    border-right: 0px
+}
+
+/*道路图片菜单*/
+/*背景颜色*/
+.skin-menu-road .main-sidebar {
+    background: url("/bizmodules/adminlte/dist/img/skin-bg/road2.png");
+	background-size: auto 100%;
+}
+/*菜单搜索框颜色*/
+.skin-menu-road.sidebar-form {/*边框*/
+    border: 1px solid rgba(255, 255, 255, 0.4)
+}
+.skin-menu-road .sidebar-form input[type="text"],
+.skin-menu-road .sidebar-form .btn {/*背景*/
+	background-color: #ccc;
+}
+.skin-menu-road .sidebar-form input[type="text"] {/*字体*/
+    color: #333;
+}
+
+.skin-menu-road .sidebar-form input[type="text"]::-webkit-input-placeholder {
+          /* placeholder颜色  */
+         color: #666;
+     }
+
+.skin-menu-road .sidebar-form input[type="text"]:focus,
+.skin-menu-road .sidebar-form input[type="text"]:focus + .input-group-btn .btn {
+    background-color: rgba(255, 255, 255, 1);
+    color: #333;
+}
+
+.skin-menu-road .sidebar-form input[type="text"]:focus + .input-group-btn .btn {
+    border-left-color: rgba(255, 255, 255, 0.4);
+}
+
+.skin-menu-road .sidebar-form input[type="text"]:focus + .input-group-btn .btn {
+    border-left-color: rgba(255, 255, 255, 0.4);
+}
+
+.skin-menu-road .sidebar-form .btn {
+    color: #999;
+}
+/*字体颜色*/
+.skin-menu-road  .sidebar-menu > li > a  {
+    color: #ccc
+}
+/*选中后主菜单字体颜色*/
+.skin-menu-road .sidebar-menu>li:hover>a,.skin-menu-road .sidebar-menu>li.active>a{
+    color: #fff;
+    background: rgba(0, 0, 0, 0.4);
+}
+.skin-menu-road.sidebar-mini.sidebar-collapse .sidebar-menu>li:hover>a>span{
+	 background: rgba(0, 0, 0, 0);
+}
+/*选中后子菜单字体颜色*/
+.skin-menu-road .treeview-menu li.active>a, .skin-menu-road .treeview-menu li>a:hover {
+    color: #fff;
+}
+.skin-menu-road .treeview-menu>li.active>a, .skin-menu-road .treeview-menu>li>a:hover {
+    color: #fff;
+}
+/*子菜单字体颜色背景颜色*/
+.skin-menu-road .sidebar-menu>li>.treeview-menu {
+    background: rgba(0, 0, 0, 0.2)
+}
+/*子菜单字体颜色字体颜色*/
+.skin-menu-road .treeview-menu li a {
+    color: #ccc;
+}
+/*菜单边框*/
+.skin-menu-road  .main-sidebar {
+    border-right: 0px
+}

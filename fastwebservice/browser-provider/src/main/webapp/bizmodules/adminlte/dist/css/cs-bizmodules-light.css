@@ -1,0 +1,1754 @@
+.badge{
+    padding:5px 10px;
+}
+/*llf新滚动条对应菜单样式修改*/
+.sidebar-mini.sidebar-collapse #menubar .treeview-menu li {
+    margin: 0
+}
+
+ #menubar .treeview-menu li a {
+    padding: 5px 5px 5px 15px;
+    display: block;
+    font-size: 14px;
+}
+
+body.sidebar-mini:not(.sidebar-collapse) #menubar .mCustomScrollBox{
+    max-height: none !important;
+     height:auto;
+ }
+body.sidebar-mini:not(.sidebar-collapse) #menubar .mCustomScrollBox .mCSB_scrollTools {
+    display: none;!important;
+}
+.sidebar-mini.sidebar-collapse #menubar .treeview-menu li a {
+    position: relative;
+}
+
+.sidebar-menu .treeview-menu li>a>.fa, .sidebar-menu .treeview-menu li>a>.glyphicon, .sidebar-menu .treeview-menu li>a>.ion {
+    width: 20px;
+}
+/*llf主菜单隐藏滚动条*/
+#main_sidebar_menu_div{
+    width: 200px;
+    overflow: hidden;
+}
+.sidebar-menu{
+    width: 230px;
+}
+.sidebar-menu > li{
+    width: 200px;
+}
+
+
+.sidebar-mini.sidebar-collapse #main_sidebar_menu_div{
+    width: 89px;
+    overflow: hidden;
+}
+.sidebar-mini.sidebar-collapse .sidebar-menu{
+    width: 130px;
+}
+.sidebar-mini.sidebar-collapse .sidebar-menu > li{
+    width: 92px;
+}
+
+
+.sidebar-mini.sidebar-collapse #main_sidebar_menu_div{
+    width: 89px;
+    overflow: hidden;
+}
+.sidebar-mini.sidebar-collapse .sidebar-menu:hover,.sidebar-mini.sidebar-collapse .sidebar-menu{
+    width: 130px;
+}
+.sidebar-mini.sidebar-collapse .sidebar-menu > li{
+    width: 92px;
+}
+
+
+/*新增样式*/
+.nav-tabs-custom {
+    background: #f3f3f3 !important;
+}
+
+/*浅色版颜色调整*/
+
+/*.querybox{background: linear-gradient(to bottom, #ffffff, #f6f6f6,#f1f1f2);}*/
+/*.box-header{background: #f1f2f1;}*/
+.box-header {
+    background: #f1f2f1;
+}
+
+.box.box-primary {
+    border-top: 3px solid #3c8dbc !important;
+    border: 1px solid #ccc;
+}
+
+.box-header .box-title {
+    font-family: "微软雅黑";
+    font-weight: 300;
+    color: #000;
+}
+
+/*.box-body{background: yellow;}*/
+.box-body {
+    background: linear-gradient(to bottom, #ffffff, #f6f6f6, #f1f1f2);
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    padding: 5px !important;
+
+}
+
+.modal-dialog .box-body {
+    /*llf 添加  限制最大高度 多余部分出滚动条*/
+    max-height: 500px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.box-info {
+    border-top: 3px solid #3c8dbc !important;
+    border: 1px solid #ccc;
+}
+
+.box-footer {
+    background: #f1f1f2;
+}
+
+.modal-footer {
+    background: #f1f1f2;
+}
+
+/*label样式*/
+
+label {
+    font-weight: 500 !important;
+    min-width: 80px;
+}
+
+/*背景色*/
+.content-wrapper > .nav-tabs-custom > .tab-content {
+    background: linear-gradient(to bottom, #ffffff, #f6f6f6, #f1f1f2);
+    background: -webkit-linear-gradient(to bottom, #ffffff, #f6f6f6, #f1f1f2);
+    background: -moz-linear-gradient(to bottom, #ffffff, #f6f6f6, #f1f1f2);
+    padding: 0px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+.nav-tabs-custom > .tab-content {
+    background: #fff;
+    padding: 0px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+/*下拉框高度调整*/
+.navbar-nav > .open > .dropdown-menu {
+    margin-top: -12px;
+    border: none !important;
+}
+
+/*user-menu下拉框 边框*/
+.user-menu > .dropdown-menu {
+    border-left: 1px solid #ccc !important;
+    border-bottom: 1px solid #ccc !important;
+}
+
+/*导航栏下拉菜单样式*/
+.nav-tabs > .dropdown > .dropdown-menu {
+    background: none !important;
+    border-radius: 3px;
+    border-left: 2px solid #0D5096 !important;
+    border-bottom: 2px solid #0D5096 !important;
+    padding: 0;
+}
+
+.nav-tabs > .dropdown > .dropdown-menu > li {
+    background: #EFF5F5;
+}
+
+.nav-tabs > .dropdown > .dropdown-menu > li > a {
+    color: #000;
+}
+
+.navbar-nav > .open > .dropdown-menu > .menu {
+    border: none !important;
+}
+
+/*改变header类的背景、字体颜色；设置左上右上边框圆角*/
+.cs-header {
+    background-color: #2988ae !important;
+    color: #fff !important;
+    border: none !important;
+    height: 43px;
+    line-height: 43px;
+    padding: 0 10px !important;
+}
+
+.footer {
+    border: none !important;
+    border-bottom-left-radius: 5px !important;
+    border-bottom-right-radius: 5px !important;
+    height: 30px;
+    background-color: #A4D3EE !important;
+}
+
+.footer a {
+    display: block;
+    height: 30px;
+    border-bottom-left-radius: 8px !important;
+    border-bottom-right-radius: 8px !important;
+    background-color: rgba(12, 123, 194, 0.6) !important;
+    border-bottom: none !important;
+    /*border-top: solid 1px #7EB8F4 !important;*/
+
+}
+
+/*‘删除’图标颜色、位置*/
+.favoretRemove {
+    margin-top: 15px;
+    color: #000;
+    margin-right: 10px
+}
+
+/*下拉菜单字体颜色*/
+#favoritemenu > li > a {
+    color: #000;
+}
+
+/*header上面的尖角图标所在li的背景高度*/
+.mainbg {
+    background-color: #3c8dbc;
+    height: 12px;
+    border: none !important;
+}
+
+.mainbg img {
+    margin-left: 88%;
+    margin-top: -5px;
+}
+
+.taglink {
+    color: white;
+    border: none !important;
+}
+
+.skin-blue .sidebar-menu > li.header {
+    padding: 8px;
+}
+
+/*内容板块间距*/
+.col-md-3 {
+    padding-left: 10px !important;
+    padding-right: 5px !important;
+}
+
+.col-md-9 {
+    margin-left: -5px !important;
+    /*width: 75% !important;*/
+    padding-right: 15px !important;
+}
+
+/*!*菜单模块宽度*!*/
+/*.main-header .logo{*/
+/*width: 200px;*/
+/*}*/
+/*.main-header>.navbar{*/
+/*margin-left: 200px;*/
+/*}*/
+/*.main-sidebar{*/
+/*width: 200px;*/
+/*}*/
+/*.content-wrapper{*/
+/*margin-left: 200px;*/
+/*}*/
+/***************************************导航样式块**********************************/
+
+.active {
+    border-top-color: #04d7fd !important;
+    /*border-top-left-radius: 2px;*/
+    /*border-top-right-radius: 2px*/
+}
+
+.nav-tabs {
+    background-color: #f3f3f3;
+    /*background-color: #3c8dbc;*/
+    margin-top: -2px !important;
+}
+
+.nav-tabs-custom > .nav-tabs > li.active > a {
+    border-radius: 2px;
+    background-color: #fafafa !important;
+}
+
+.nav-tabs-custom > .nav-tabs > li {
+    background-color: #f1f1f3 !important;
+    /*background-color: #3c8dbc !important;*/
+    /*border-top: 3px solid transparent;*/
+    margin-bottom: 0px;
+    /*margin-right: 5px;*/
+}
+
+/***************************************导航样式块2**********************************/
+
+body {
+    font-family: "微软雅黑";
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #ecf0f5;
+}
+
+/*应用于输入项*/
+.form-group {
+    padding: 5px;
+    padding-right: 20px;
+    margin-bottom: 0px;
+}
+
+/* wl 应用于查询项*/
+.form-select-group {
+    padding: 4px;
+    padding-right: 0px;
+    margin-bottom: 0px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/*应用于选择项*/
+.cs-select-group {
+    padding: 3px;
+}
+
+/*查询按钮里面的文本框自适应*/
+.querybox span.textbox.combo,
+.querybox span.textbox {
+    width: 100% !important;
+    height: 30px !important;
+}
+
+/*文本框，combox边框*/
+span.textbox.combo, span.textbox {
+    width: 220px !important;
+    height: 30px !important;
+}
+
+/*查询按钮里面的文本框自适应*/
+.freestyle span.textbox.combo,
+.freestyle span.textbox {
+    width: 100% !important;
+    height: 30px !important;
+}
+
+/*textarea适应*/
+.freestyle-textarea span.textbox.combo,
+.freestyle-textarea span.textbox {
+    height: 100% !important;
+}
+
+td > .textbox.combo, td > .textbox, td > span > .textbox.combo, td > span > .textbox {
+    width: 100% !important;
+    height: 30px !important;
+}
+
+/*tabs 切换背景颜色*/
+.cs-nav-tabs {
+    border-bottom: 0px solid #ddd;
+    background-color: rgba(219, 239, 241, 0.37);
+}
+
+/*tabs对应模块的颜色*/
+.tabs-backcolor {
+    background-color: white;
+}
+
+/*textview的样式*/
+.cs-textview {
+    resize: none;
+    width: 100% !important;
+}
+
+/*定义radiolist样式*/
+.cs-radiolist {
+    float: left;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 0;
+    padding-right: 2px;
+}
+
+.nav-tabs-custom {
+    margin-bottom: 0px;
+    background: #fff;
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+}
+
+ul li {
+    list-style-type: none;
+}
+
+/*Tab 标签切换开始*/
+.tab-list {
+    width: 100%;
+    height: 35px;
+    background-color: #fff;
+    margin-bottom: 0;
+    padding-left: 10px;
+    margin-bottom: 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.tab-list li {
+    float: left;
+    width: auto;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    cursor: pointer;
+    /*margin-left: 10px;*/
+    padding-right: 10px;
+}
+
+.tab-list .on {
+    background-color: #fff;
+    border-bottom: 2px solid #5B5B5B;
+}
+
+.tab-list .on a {
+    color: #000;
+    font-weight: bolder;
+}
+
+.tab-list li a {
+    color: #7F7F7F;
+}
+
+.two, .three, .four, .five, .six, .seven, .eight, .nine, .ten {
+    display: none;
+}
+
+/*Tab标签切换结束*/
+
+.datagrid-mask {
+    z-index: 1050;
+}
+
+.datagrid-mask-msg {
+    z-index: 1050;
+}
+
+/*数据表格添加数据展示*/
+.tjsjzs ul li:nth-child(1) div {
+    background-color: rgba(0, 166, 110, 0.38)
+}
+
+.tjsjzs ul li:nth-child(2) div {
+    background-color: rgba(52, 179, 225, 0.48);
+}
+
+.tjsjzs ul li:nth-child(3) div {
+    background-color: #CCCCFF;
+}
+
+.tjsjzs ul li:nth-child(4) div {
+    background-color: rgba(218, 212, 72, 0.82);
+}
+
+.main-tr td {
+    width: 180px;
+    height: 40px;
+    text-align: center;
+    font-size: 14px;
+    color: white;
+    background-color: #7CB6EC;
+}
+
+.main-tb td {
+    width: 180px;
+    height: 40px;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 14px;
+    background-color: rgba(52, 142, 225, 0.17);
+}
+
+.main-tb tr:nth-of-type(3) {
+    background-color: rgba(52, 142, 225, 0.15) !important;
+}
+
+.main-tb tr:nth-of-type(5) {
+    background-color: rgba(52, 142, 225, 0.15) !important;
+}
+
+.main-tb tr:nth-of-type(1) {
+    background-color: rgba(52, 142, 225, 0.5) !important;
+}
+
+.main-tr2 td {
+    width: 200px;
+    height: 40px;
+    text-align: center;
+    font-size: 14px;
+    color: white;
+    background-color: rgba(52, 142, 225, 0.5);
+}
+
+.tr-2 td {
+    background-color: rgba(52, 142, 225, 0.17);
+    width: 200px;
+    height: 80px;
+}
+
+.mtb-border1 {
+    border-bottom: solid 1px white;
+    border-right: solid 1px white;
+}
+
+.mtb-border2 {
+    border-bottom: solid 1px white;
+}
+
+.mtb-border3 {
+    border-right: solid 1px white;
+}
+
+.cont-tit {
+    color: #777;
+    padding: 15px 0;
+    margin-top: 30px;
+}
+
+.tjsjzs ul li span strong {
+    display: block;
+    color: rgba(28, 28, 28, 0.61);
+    font-size: 16px;
+}
+
+.tjsjzs ul li span {
+    color: #777;
+    text-align: left;
+    font-size: 12px;
+}
+
+.fta {
+    position: absolute;
+    left: 40px;
+    color: rgba(52, 57, 84, 0.65);
+    text-align: left;
+    font-size: 12px
+}
+
+/*wl 更新图片上传的文件 样式*/
+.input-group-lg > .form-control, .input-group-lg > .input-group-addon, .input-group-lg > .input-group-btn > .btn {
+    height: 36px;
+    padding: 8px 14px;
+    font-size: 14px;
+    line-height: 1.3333333;
+    border-radius: 2px;
+}
+
+@media screen and (min-width: 1200px) {
+    .tjsjzs ul li {
+        width: 25%;
+    }
+}
+
+/*wl 图片上传定义*/
+.input-picture-base {
+    display: table;
+    /*border:1px solid #D2D6DE;*/
+    margin-left: 2%;
+    height: auto;
+}
+
+.input-picture-upload {
+    display: table;
+    width: 100%;
+    min-height: 250px;
+    padding: 0 15px;
+}
+
+/*wl 工具栏面板整理*/
+.mailbox-controls {
+    padding: 5px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.edui-scale {
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+}
+
+/*ltt 修改datagrid样式*/
+
+.datagrid-header {
+    background-color: #ffffff !important;
+    border-bottom: 1px solid #999 !important;
+}
+
+/*datagrid标题行单元格高度*/
+.datagrid-header-row {
+    height: 40px;
+    background-color: #ffffff !important;
+}
+
+/* datagrid 标题 title 样式 */
+.datagrid .panel-header .panel-title {
+    text-align: left;
+    font-size: 16px;
+    line-height: 30px;
+    height: 30px;
+    font-size: 17px;
+    font-family: "微软雅黑";
+    font-weight: 300;
+    color: #000;
+}
+
+.datagrid .panel-header .panel-tool {
+    display: none;
+}
+
+/*标题行字体设置*/
+.datagrid-header .datagrid-cell span, .datagrid-cell-group {
+    font-size: 13px;
+    font-weight: bold;
+    font-family: '微软雅黑';
+}
+
+/*datagrid内容行样式*/
+.datagrid-row {
+    height: 40px;
+}
+
+/*工具栏按钮*/
+.l-btn-text {
+    font-size: 14px;
+    /*font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;*/
+    font-family: '微软雅黑 Bold', '微软雅黑';
+}
+
+/*字体大小设置*/
+.datagrid-cell, .pagination-info, .pagination span, .pagination select, .pagination input {
+    font-size: 13px;
+    /*font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;*/
+    font-family: "微软雅黑";
+}
+
+/*去除多余线条*/
+.datagrid-body td, .datagrid-footer td {
+    border-width: 0 0 1px 0;
+    border-style: solid;
+    border-color: #ddd;
+}
+
+.datagrid-header td, .datagrid-toolbar {
+    border-width: 0 0 0 0;
+}
+
+/*easyUI的整体背景边框颜色*/
+.panel-header, .panel-body {
+    border-color: #D4D4D4;
+}
+
+.panel-header {
+    background-color: #F2F2F2;
+    background: #F2F2F2;
+    border-top: 3px solid #3c8dbc;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+.datagrid-header-inner {
+    background-color: #ffffff !important;
+}
+
+/*rownumber序号颜色*/
+.datagrid-td-rownumber {
+    background: #ffffff !important;
+}
+
+.datagrid-row-alt .datagrid-td-rownumber {
+    background-color: #f5f5f5 !important;
+    /*改成默认条纹颜色*/
+}
+
+/*rownumber序号hover颜色*/
+.datagrid-row-over .datagrid-td-rownumber {
+    background-color: #e6e6e6 !important;
+}
+
+.datagrid-toolbar {
+    height: auto;
+    padding-left: 5px;
+    border-bottom: 1px solid #999 !important;
+    background-color: #ffffff;
+}
+
+/*导航三角形*/
+.nav-tabs-custom > .nav-tabs > li em {
+    width: 0;
+    height: 0;
+    top: 0;
+    right: -20px;
+    border-top: 21px solid transparent;
+    border-bottom: 21px solid transparent;
+    border-left: 21px solid #f1f1f3;
+    /*border-left: 21px solid #3c8dbc;*/
+    display: inline-block;
+    position: absolute;
+    z-index: 5;
+}
+
+/*导航三角形分割线*/
+.nav-tabs-custom > .nav-tabs > li i.arrow-right {
+    width: 0;
+    height: 0;
+    top: 0;
+    right: -21px;
+    border-top: 21px solid transparent;
+    border-bottom: 21px solid transparent;
+    border-left: 21px solid #ccc;
+    display: inline-block;
+    position: absolute;
+    z-index: 3;
+}
+
+/*选中导航改变三角形颜色*/
+.nav-tabs-custom > .nav-tabs > li.active > em {
+    border-left: 21px solid rgb(250, 250, 250);
+}
+
+.nav-tabs-custom > .nav-tabs > li a {
+    padding-left: 28px;
+}
+
+.nav-tabs-custom > .nav-tabs > li.active > a {
+    border-right-width: 0;
+}
+
+/*用户信息下拉菜单样式*/
+.navbar-nav > .user-menu > .dropdown-menu {
+    border-radius: 8px;
+    box-shadow: 1px 2px 2px #ccc;
+    border: 1px solid #ccc !important;
+    overflow: hidden;
+    padding: 0;
+}
+
+/*带三角箭头的div底色三角*/
+s.menu_arrow {
+    position: absolute;
+    top: -20px;
+    right: 40px;
+    display: block;
+    height: 0;
+    width: 0;
+    font-size: 0;
+    line-height: 0;
+    border-color: transparent transparent #ccc transparent;
+    border-style: dashed dashed solid dashed;
+    border-width: 10px;
+}
+
+/*带三角箭头的div白色三角*/
+s.menu_arrow i {
+    position: relative;
+    top: -9px;
+    right: 10px;
+    display: block;
+    height: 0;
+    width: 0;
+    font-size: 0;
+    line-height: 0;
+    border-color: transparent transparent #fff transparent;
+    border-style: dashed dashed solid dashed;
+    border-width: 10px;
+}
+
+/*显示是晃动的动画*/
+.flipInX {
+    -webkit-backface-visibility: visible !important;
+    backface-visibility: visible !important;
+    -webkit-animation-name: flipInX;
+    animation-name: flipInX;
+}
+
+/*显示是晃动的动画*/
+.animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+/*关闭所有tab的按钮定位*/
+.closeAllTabs {
+    position: absolute;
+    right: 30px;
+    top: 15px;
+}
+
+.closeAllTabs a {
+    width: auto;
+    height: auto;
+    padding-left: 0;
+}
+
+/*兼容框架的边框*/
+.scdp-panel {
+    /*min-height: 250px;*/
+    padding: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.box #setshift_shift_ul > li {
+    border-bottom: 1px solid #ccc;
+    margin: 0;
+}
+
+.box .nav-stacked > li {
+    border-bottom: 1px solid #ccc;
+}
+
+/*设置easyui中的下拉样式为30px*/
+.combo-arrow {
+    height: 30px !important;
+}
+
+.textbox.textbox-text {
+    height: 30px !important;
+}
+
+/*卡票查询条件的切换按钮*/
+.changeDateType {
+    margin: 20px 10px 0 10px;
+    height: 35px;
+    line-height: 25px;
+    width: 120px;
+    text-align: center;
+    cursor: pointer;
+    background-color: coral;
+}
+
+/*王令  表格样式填写*/
+.cs_table_wl th {
+    padding-left: 8px;
+    padding-right: 0;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    line-height: 1.42857143;
+    vertical-align: middle;
+    font-size: 14px;
+}
+.cs_table_wl thead tr:last-child th{
+    font-weight:100;
+}
+.cs_table_wl td {
+    padding-left: 8px;
+    padding-right: 5px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    line-height: 1.52857143;
+    vertical-align: middle;
+    background: white;
+
+}
+
+.cs_table_wl {
+    border: 1px solid #ddd !important;
+    border-top: 2px solid #3c8dbc !important;
+    width: 100%;
+}
+
+.cs_table_wl tr {
+    border: 1px solid #cad9ea;
+    background-color: #ffffff !important;
+}
+
+/*王令  展示数据样式设置*/
+input[readonly], textarea[readonly] {
+    background-color: #fff;
+    line-height: 28px !important;
+    height: 30px !important;
+}
+
+.textbox .textbox-text {
+    line-height: 28px !important;
+    height: 30px !important;
+    width: 100% !important;
+}
+
+/*王令 时间边线设置*/
+.timeline-inverse > li > .timeline-item {
+    border: 0px solid #ddd;
+}
+
+.timeline-inverse > li > .timeline-item {
+    background: transparent;
+}
+
+.timeline > li {
+    margin-right: 0px;
+}
+
+.timeline > li > .timeline-item {
+    margin-left: 60px;
+    margin-right: 0px;
+    padding: 0;
+    position: relative;
+}
+
+/*马泽腾  复合表头的datagrid样式*/
+.complexGrid .datagrid-header td {
+    border: 1px solid #999;
+    border-width: 0 0 1px 1px;
+    text-align: center;
+}
+
+.complexGrid .datagrid-header-row {
+    height: 30px !important;
+}
+
+.complexGrid .datagrid-body td, .complexGrid .datagrid-footer td {
+    text-align: center;
+    border-width: 0 0 1px 1px;
+}
+
+/*马泽腾  复合表头的datagrid样式*/
+
+/*马泽腾  main-footer样式生效   有时候页面渲染不成功  */
+.main-footer_mainframePage {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding-right: 240px;
+}
+
+.sidebar-mini.sidebar-collapse .main-footer_mainframePage {
+    padding-right: 130px;
+}
+
+/*马泽腾  菜单样式修改*/
+@media (min-width: 768px) {
+    /*菜单宽度*/
+    .sidebar-mini.sidebar-collapse .main-header .navbar {
+        margin-left: 90px;
+    }
+
+    .sidebar-mini.sidebar-collapse .main-header .logo {
+        width: 90px;
+        text-align: center;
+        padding: 0;
+    }
+
+    .sidebar-mini.sidebar-collapse .content-wrapper,
+    .sidebar-mini.sidebar-collapse .right-side,
+    .sidebar-mini.sidebar-collapse .main-footer {
+        margin-left: 90px !important;
+    }
+
+    .sidebar-mini.sidebar-collapse .main-sidebar {
+        width: 90px !important;
+    }
+
+    .sidebar-mini.sidebar-collapse .main-sidebar .user-panel .pull-left.image {
+        padding-left: 13px;
+    }
+
+    .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > a > span:not(.pull-right), .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > .treeview-menu {
+        width: 180px;
+        left: 80px;
+    }
+
+    /*菜单宽度*/
+    /*菜单字体颜色*/
+    .sidebar-mini.sidebar-collapse .sidebar-menu .treeview-menu > li > a {
+        color: #444;
+        padding: 5px 5px 5px 20px;
+    }
+
+    .sidebar-mini.sidebar-collapse .sidebar-menu .treeview-menu > li > a:hover {
+        color: #8aa4af;
+    }
+
+    .sidebar-mini.sidebar-collapse .sidebar-menu .treeview-menu > li > ul > li.fullWidth > a {
+        color: #b2b2b2;
+    }
+
+    .sidebar-mini.sidebar-collapse .sidebar-menu .treeview-menu > li > ul > li.fullWidth > a:hover {
+        color: #b2b2b2 !important;
+    }
+
+    /*菜单字体颜色*/
+    /*c侧边菜单栏设置高度以及滚动*/
+    .sidebar-menu:hover, .sidebar-menu {
+        overflow-y: auto;
+    }
+    .sidebar-mini.sidebar-collapse .sidebar-menu{
+        margin-top: 20px;
+    }
+
+        /*c侧边菜单栏设置高度以及滚动*/
+    /*滑出菜单样式  外部整体样式*/
+    .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > .treeview-menu {
+        top: 90px;
+        margin-left: 0;
+    }
+
+    .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > .treeview-menu {
+        position: fixed;
+        width: 470px;
+        height: 85%;
+        left: 89px;
+        overflow-y: auto;
+        background-color: rgb(252, 252, 252);
+        border: 1px solid #ccc;
+        padding: 20px 0 40px 0;
+    }
+
+    /*!*滑出菜单样式  外部整体样式*! llf为了新版滚动条修改  li:hover > .treeview-menu  > li 添加 li:hover > .treeview-menu >div >div > li*/
+    .sidebar-mini.sidebar-collapse #menubar .treeview-menu li a {
+        color: #444;
+        padding: 5px 5px 5px 20px;
+    }
+    /*显示所有的目录*/
+    .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > .treeview-menu >div >div > li > .treeview-menu {
+        display: block;
+        clear: both;
+    }
+
+    .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > .treeview-menu  >div >div > li > .treeview-menu > li > .treeview-menu {
+        display: block;
+    }
+
+    /*显示所有的目录*/
+    /*多级菜单之间的间距*/
+    .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > .treeview-menu >div >div > li > .treeview-menu > li:last-child {
+        margin-bottom: 10px;
+    }
+
+    /*多级菜单之间的间距*/
+    /*菜单父节点元素样式*/
+    .sidebar-mini.sidebar-collapse #menubar > li:hover > .treeview-menu  li.fullWidth > a {
+        padding: 5px 5px 5px 0;
+        margin-left: 15px;
+        font-size: 16px;
+        cursor: default;
+        color: #999;
+    }
+
+    .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > .treeview-menu .treeview-menu  li.fullWidth > a {
+        font-size: 14px;
+        cursor: default;
+    }
+
+    .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > .treeview-menu >div >div > li > .treeview-menu  li.fullWidth > .treeview-menu a {
+        padding-left: 0;
+    }
+
+    /*菜单父节点元素样式*/
+    /*左侧栏 li的margin*/
+    .sidebar-mini.sidebar-collapse .sidebar-menu > li > a {
+        /*margin-bottom: 30px;*/
+    }
+
+    /*左侧栏 li下面的span定位*/
+    .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > a > span:not(.pull-right),
+    .sidebar-mini.sidebar-collapse .sidebar-menu > li > a > span {
+        left: 0;
+        top: 50px;
+        position: absolute;
+        display: block !important;
+        font-size: 13px;
+        width: 82px;
+        /*color: #444;*/
+        padding: 0;
+        margin: 0;
+    }
+
+    /*左侧栏 li下图标大小*/
+    .sidebar-mini.sidebar-collapse .sidebar-menu > li > a > i,
+    .sidebar-mini.sidebar-collapse .sidebar-menu > li > a > img {
+        width: 35px;
+        font-size: 30px;
+    }
+
+    /*菜单滑出栏 子菜单浮动排列*/
+    .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > .treeview-menu .treeview-menu > li {
+        float: left;
+    }
+
+    /*多级子菜单隐藏图标*/
+    .sidebar-mini.sidebar-collapse .sidebar-menu > li > a {
+        /*padding: 10px 0;*/
+        padding: 10px 0 24px;
+        text-align: center;
+    }
+
+    .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > .treeview-menu .treeview-menu > li > a > img,
+    .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > .treeview-menu .treeview-menu > li > a > i {
+        display: none;
+    }
+
+    .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover i.pull-right {
+        display: none
+    }
+
+    /*多级子菜单隐藏图标*/
+    /*多级菜单父元素 清除浮动效果*/
+    .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > .treeview-menu  >div >div > li {
+        clear: both;
+    }
+
+    /*多级菜单父元素 占一行*/
+    .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > .treeview-menu .treeview-menu > li.fullWidth {
+        width: 100%;
+    }
+
+    /*菜单栏滚动条样式*/
+    .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > .treeview-menu::-webkit-scrollbar,
+    .sidebar-menu::-webkit-scrollbar {
+        width: 0;
+    }
+
+    /*菜单栏滚动条样式*/
+
+    /*大图标菜单下三级菜单不收缩*/
+    .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover >.treeview-menu .treeview-menu.showAllTreeViewMenu{
+        display: block !important;
+    }
+    /*点击开开一个页面后关闭菜单*/
+    .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > .treeview-menu.closeMenu {
+        display: none !important;
+    }
+}
+
+/*马泽腾  菜单样式修改*/
+
+.imgCls_img, .sidebar-mini.sidebar-collapse .iconSmall_img,
+.sidebar-mini.sidebar-collapse .treeview-menu .imgCls_img {
+    display: none;
+}
+
+.sidebar-mini.sidebar-collapse .imgCls_img, .iconSmall_img,
+.sidebar-mini.sidebar-collapse .treeview-menu .iconSmall_img {
+    display: inline;
+    width: 18px;
+}
+
+/*罗婷婷 菜单样式修改*/
+/*/*切换主题色鼠标hover时*/
+/*.skin-blue .sidebar-menu > li:hover > a, .skin-blue .sidebar-menu > li.active > a,*/
+/*.skin-purple .sidebar-menu > li:hover > a, .skin-purple .sidebar-menu > li.active > a,*/
+/*.skin-green .sidebar-menu > li:hover > a, .skin-green .sidebar-menu > li.active > a,*/
+/*.skin-red .sidebar-menu > li:hover > a, .skin-red .sidebar-menu > li.active > a,*/
+/*.skin-yellow .sidebar-menu > li:hover > a, .skin-yellow .sidebar-menu > li.active > a {*/
+    /*background-color: inherit;*/
+/*}*/
+
+/*黑色主题样式*/
+.skin-black .sidebar-menu > li:hover > a, .skin-black .sidebar-menu > li.active > a {
+    background-color: inherit;
+    border-left-color: #1e282c;
+}
+
+/*黑色主题导航头部*/
+.skin-black .main-header > .navbar span,
+.skin-black-light .main-header > .navbar span {
+    color: #1e282c !important;
+}
+
+.skin-black .main-header > .navbar > .sidebar-toggle,
+.skin-black .main-header > .logo, .skin-black .main-header > .navbar .navbar-nav > li > a,
+.skin-black .main-header > .navbar .navbar-custom-menu .navbar-nav > li > a,
+.skin-black .main-header > .navbar .navbar-right > li > a,
+.skin-black-light .main-header > .navbar > .sidebar-toggle,
+.skin-black-light .main-header > .logo, .skin-black .main-header > .navbar .navbar-nav > li > a,
+.skin-black-light .main-header > .navbar .navbar-custom-menu .navbar-nav > li > a,
+.skin-black-light .main-header > .navbar .navbar-right > li > a {
+    border-right: none;
+    border-left: none;
+}
+
+/*浅色主题菜单文字去粗*/
+.skin-blue-light .sidebar-menu > li > a, .skin-black-light .sidebar-menu > li > a,
+.skin-purple-light .sidebar-menu > li > a, .skin-green-light .sidebar-menu > li > a,
+.skin-red-light .sidebar-menu > li > a, .skin-yellow-light .sidebar-menu > li > a {
+    font-weight: normal;
+}
+
+/*菜单区域背景色 边框*/
+/*.sidebar-mini.sidebar-collapse .main-sidebar {*/
+    /*background-color: white;*/
+    /*border-right: 1px solid lightgrey;*/
+/*}*/
+
+/*菜单文字颜色*/
+.sidebar-mini.sidebar-collapse .skin-blue .sidebar a {
+    color: #444;
+}
+
+/*隐藏当前机构信息*/
+.user-panel {
+    display: none;
+}
+
+/*罗婷婷 菜单样式修改end*/
+
+/*相册*/
+.albumArea .docs-pictures {
+    height: 321px;
+    overflow-y: auto;
+}
+
+/*bootstrap自带轮播图*/
+.carousel-indicators .active {
+    background-color: #000;
+}
+
+.carousel-indicators .active {
+    border: 1px solid #000;
+}
+
+.carousel-control:focus, .carousel-control:hover {
+    color: #000;
+}
+
+@media screen and (min-width: 768px) {
+    .carousel-indicators {
+        bottom: 30px;
+    }
+}
+
+.carousel-control {
+    top: 32%;
+    font-size: 60px;
+    color: rgba(0, 0, 0, 0);
+}
+
+.carousel-indicators li {
+    border: 1px solid #000;
+
+}
+
+/*bootstrap自带轮播图*/
+.noPadding {
+    padding: 0 !important;
+}
+
+/*轮播图片border样式*/
+.item.file-preview-frame.file-preview-initial.active {
+    border-top-color: rgb(211, 211, 211) !important;
+}
+
+/*轮播图片样式*/
+.albumArea .docs-pictures {
+    height: auto;
+}
+
+/*组织机构展示页面样式*/
+
+/*斜标题外层样式*/
+.ribbonWarp {
+    overflow: hidden;
+}
+
+/*斜标题样式*/
+.ribbon {
+    position: relative;
+    vertical-align: top;
+    width: 150px;
+    border: 0;
+    margin: 0;
+    padding: 5px 15px;
+    right: 55px;
+    top: 15px;
+    font-size: 14px;
+    text-align: center;
+    color: #fff;
+    background-color: #000;
+    z-index:1;
+    transform: rotate(-45deg);
+}
+
+.ribbonWarp.ribbon_float{
+    position: relative;
+    padding-top: 28px;
+}
+.ribbon.ribbon_float{
+    position: absolute;
+    left:-45px;
+}
+
+/*信息展示对样式*/
+.divInfo {
+    width: 260px;
+    word-wrap: break-word;
+    word-break: break-all;
+    margin-left: 20px;
+    padding: 0 5px;
+}
+
+/*信息展示对宽度1*/
+.minWidth .divInfo {
+    width: 230px;
+}
+
+/*信息展示对宽度2*/
+.min_minWidth .divInfo {
+    width: 169px;
+}
+
+/*超出内容省略*/
+.spanContent {
+    display: block;
+    /*white-space: nowrap;*/
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: absolute;
+}
+
+/*icon图标间距*/
+.icon_set {
+    display: inline-block;
+    float: left;
+    width: 23px;
+    text-align: center;
+    margin-right: 5px;
+}
+
+/*label、div内容浮动*/
+.labelContent {
+    color: rgba(51, 51, 51, 0.8);
+}
+
+.labelContent, .divContent, .divContentDiff {
+    display: block;
+    float: left;
+}
+
+.labelContent > img, .labelContent > i {
+    width: 22px;
+    font-size: 20px;
+    vertical-align: middle;
+}
+
+.labelContent > .icon_set > i {
+    font-size: 20px;
+    vertical-align: middle
+}
+
+/*partItem_orgmaint标题样式*/
+.part_title_orgmaint {
+    /*border-bottom: 2px solid #176b99;*/
+    padding: 5px 0 10px 0;
+    margin: 0;
+}
+
+/*partItem_orgmaint中多标题样式*/
+.noPadding .part_title_orgmaint {
+    display: inline-block;
+    vertical-align: top;
+    padding: 5px 15px 5px 0;
+    border-bottom: 0;
+    margin: 0;
+}
+
+.noPadding .part_title_orgmaint i {
+    font-size: 22px;
+    color: #2c60bb;
+}
+
+/*模块样式*/
+.partItem_orgmaint {
+    background-color: #fff;
+    margin: 0 0 15px 0;
+    border: 1px solid #cbcbcb;
+    box-shadow: 1px 1px #cbcbcb;
+    padding: 5px 15px;
+    min-height: 165px;
+}
+
+.partItem_orgmaint > div {
+    padding: 0;
+}
+
+/*卡片部分类型*/
+.part_cardItem {
+    display: inline-block;
+    vertical-align: top;
+    padding: 0 0 0 15px !important;
+    text-align: left;
+    margin: 0 0 15px !important;
+}
+
+/*图片样式*/
+.part_cardItem > img {
+    width: 100%;
+    height: 150px;
+}
+
+.part_cardItem .part_cardItemContent .itemBaseInfo > img {
+    width: 105px;
+    height: 105px;
+    border-radius: 50%;
+    border: 4px solid #ccc;
+    padding: 1px;
+    vertical-align: top;
+}
+
+/*文本外层样式*/
+.part_cardItem .part_cardItemContent {
+    border: 2px solid rgb(3, 188, 216);
+    background-color: #fff;
+    border-width: 0 2px 2px 2px;
+    min-height: 150px;
+    padding-top: 15px;
+}
+
+/*卡片类型文本样式*/
+.part_cardItemContent > div.text-left {
+    text-indent: 2em;
+    padding: 15px 5px 5px 5px;
+}
+
+/*卡片类型标题文本样式*/
+.part_cardItemContent > span.titleSpan {
+    color: rgb(3, 188, 216);
+    font-size: 15px;
+    font-weight: 600;
+    border-bottom: 4px solid;
+    padding: 5px;
+}
+
+.block {
+    width: 100% !important;
+}
+
+/*组织机构展示页面样式*/
+
+/*
+    Created by IntelliJ IDEA.
+    User: 黄磊
+    Date: 2017/04/20
+    机构信息展示下人员照片列表样式
+*/
+.photoLists {
+    /*text-align: center;*/
+}
+
+.photoLists .photoItem {
+    width: 180px;
+    height: 246px;
+    padding-top: 17px !important;
+    border: 1px solid #fff;
+    border-bottom: solid 1px #ccc;
+    margin: 5px 7px !important;
+    transition: border 0.5s;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+.photoLists h4 {
+    padding-bottom: 5px;
+}
+
+.photoLists .photoItem img {
+    width: 120px;
+    height: 175.43px;
+}
+
+.photoLists .photoItem span {
+    display: block;
+}
+
+.photoLists .photoItem span strong {
+    color: #689aff;
+}
+
+.photoLists .photoItem span i {
+    color: #777;
+}
+
+.photoLists .title-border {
+    width: 100%;
+    height: 1px;
+    background-color: #00acd6;
+    margin-bottom: 20px;
+}
+
+.photoLists .photoItem:hover {
+    border-bottom: solid 1px #fff;
+}
+
+.photoLists .photoItem span:before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 1px;
+    background-color: #1C7EBB;
+    transition: width 0.5s;
+}
+
+.photoLists .photoItem span:after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 1px;
+    background-color: #1C7EBB;
+    transition: width 0.5s;
+}
+
+.photoLists .photoItem:hover span:before {
+    width: 180px;
+}
+
+.photoLists .photoItem:hover span:after {
+    width: 180px;
+}
+
+.photoLists .photoItem i {
+    font-style: normal;
+}
+
+.photoLists .photoItem em:before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 0;
+    width: 1px;
+    background-color: #1C7EBB;
+    transition: height 0.5s;
+}
+
+.photoLists .photoItem em:after {
+    content: "";
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 0;
+    width: 1px;
+    background-color: #1C7EBB;
+    transition: height 0.5s;
+}
+
+.photoLists .photoItem:hover em:before {
+    height: 250px;
+}
+
+.photoLists .photoItem:hover em:after {
+    height: 250px;
+}
+
+.photoLists .photoItem i {
+    font-style: normal;
+}
+
+.photoLists .photoItem strong {
+    font-weight: normal;
+    padding: 5px 0;
+    cursor: pointer;
+    transiton: color ease-in 0.5s;
+}
+
+.photoLists .photoItem strong:hover {
+    text-decoration: underline;
+    color: #000;
+}
+
+.photoLists .photoItem i {
+    padding: 5px 0;
+}
+
+/*登陆超时样式*/
+#logintimeout-dialog {
+    width: 460px;
+}
+
+#logintimeout-content {
+    width: 460px;
+    height: 460px;
+    border-radius: 50%;
+    background: url("/bizmodules/images/logintimeout/logintimeout-bg.png");
+    background-size: 100%;
+    border-width: 0px;
+}
+
+#logintimeout-body {
+    margin-top: 100px;
+}
+
+#logintimeout-form {
+    padding-right: 30px;;
+
+}
+
+#logintimeout-footer {
+    width: 300px;
+    margin-left: 80px;
+    background: #fff;
+}
+
+#logintimeout-login-btn {
+    background-color: #3c8dbc;
+    border-color: #a7d3ec;
+    width: 200px;
+    margin-left: 30px;
+}
+
+#logintimeout-header {
+    border-width: 0px;
+    padding-top: 40px;
+    padding-right: 80px;
+
+}
+
+#logintimeout-closebtn {
+    width: 30px;
+    height: 30px;
+    background: url(/bizmodules/images/logintimeout/close.png);
+    opacity: 1;
+    background-size: 100%;
+}
+
+/*机构信息展示下人员照片列表样式*/
+
+/*================wangling  框架页面布局效果展示*/
+.scdp-view-left {
+    position: relative;
+    min-height: 1px;
+    padding-right: 5px;
+    padding-left: 0px;
+}
+
+@media (min-width: 992px) {
+    .scdp-view-left {
+        width: 25%;
+        float: left;
+    }
+
+    .scdp-view-right {
+        width: 75%;
+        float: left;
+    }
+}
+
+.scdp-view-right {
+    position: relative;
+    min-height: 1px;
+    padding-right: 0px;
+    padding-left: 5px;
+}
+
+/*================wangling  框架页面布局效果展示*/
+
+/*================llf  滚轮样式修改*/
+/*---滚动条默认显示样式--*/
+::-webkit-scrollbar-thumb {
+    background-color: #9c9c9c;
+    height: 50px;
+    outline-offset: -2px;
+    outline: 2px solid #fff;
+    -webkit-border-radius: 4px;
+    border: 2px solid #fff;
+}
+/*---鼠标点击滚动条显示样式--*/
+::-webkit-scrollbar-thumb:hover {
+    background-color: #5e5e5e;
+    height: 50px;
+    -webkit-border-radius: 4px;
+}
+
+/*---滚动条大小--*/
+::-webkit-scrollbar {
+    width: 9px;
+    height: 12px;
+}
+
+/*---滚动框背景样式--*/
+::-webkit-scrollbar-track-piece {
+    background-color: #fff;
+    -webkit-border-radius: 0;
+}
+
+/*================llf  滚轮样式修改*/
+
+/*设置贪心记录图片大小*/
+#chatContent img {
+    max-width: 100%;
+}
+/*tab内容显示*/
+.tab-content > div-content.active{
+    display:block !important;
+}
+/*显示隐藏查询条件 图片按钮样式*/
+.toggleConditionSpan {
+    cursor: pointer;
+    display: inline-block;
+    /*width: 18px;*/
+    /*height: 20px;*/
+    width: 10px;
+    height: 50px;
+    background: url(/bizmodules/images/icon/leftIn.png) no-repeat center;
+    position: absolute;
+    top: 193px;
+    /*left: -20px;*/
+    left: -16px;
+    border: 1px solid #ccc;
+    border-left: none;
+    border-radius: 0 8px 8px 0;
+    background-color: white !important;
+}
+
+/*必填选项的星号*/
+span.required_starIcon:after{
+    content: '*';
+    color: red;
+}
+
+.tab-content>.active{
+    display: block !important;
+}
+
+/*收入分析echarts饼图*/
+.echartsCountSpan{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 18px;
+    font-weight: bold;
+    /*width: 80px;*/
+    text-align: center;
+    margin: -10px 0 0 -60px;
+}
+
+/**************************************************资产经营各模块变动页面******************************************/
+.assetChangeDivInfo {
+    background-color: #fff;
+    padding: 10px;
+    box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
+    border-radius: 2px;
+}
+
+.assetChangePartTitle {
+    display: inline-block;
+    padding: 2px 10px 2px 5px;
+    margin: 0 0 10px 0;
+    font-size: 20px;
+}
+/**************************************************资产经营各模块变动页面******************************************/

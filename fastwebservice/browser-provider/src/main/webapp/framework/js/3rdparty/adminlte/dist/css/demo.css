@@ -1,0 +1,88 @@
+
+.theme-color-wrapper a {
+    height: 24px;
+    width: 24px;
+    display: block;
+    overflow: hidden;
+    text-indent: -999em;
+    float: left;
+    margin: 2px;
+    border-radius: 50px;
+    border: #fff solid 2px !important;
+    box-shadow: 1px 2px 3px rgba(0,0,0,0.1);
+    opacity: 0.8;
+    outline: none;
+    text-decoration: none;
+}
+.theme-color-wrapper a.active, .theme-color-wrapper a:hover {
+    opacity: 1;
+    border-color: red!important;
+}
+.bg-gradient-1, .bg-gradient-2, .bg-gradient-3, .bg-gradient-4, .bg-gradient-5, .bg-gradient-6, .bg-gradient-7, .bg-gradient-8, .bg-gradient-9 {
+    background-color: transparent !important;
+}
+.bg-gradient-1 .navbar, .bg-gradient-2 .navbar, .bg-gradient-3 .navbar, .bg-gradient-4 .navbar, .bg-gradient-5 .navbar, .bg-gradient-6 .navbar, .bg-gradient-7 .navbar, .bg-gradient-8 .navbar, .bg-gradient-9 .navbar {
+    background-color: transparent !important;
+}
+.bg-gradient-1.main-header .logo, .bg-gradient-2.main-header .logo, .bg-gradient-3.main-header .logo, .bg-gradient-4.main-header .logo, .bg-gradient-5.main-header .logo, .bg-gradient-6.main-header .logo, .bg-gradient-7.main-header .logo, .bg-gradient-8.main-header .logo, .bg-gradient-9.main-header .logo {
+    background-color: transparent !important;
+}
+
+.bg-gradient-1 {
+    background: radial-gradient(circle at 8.75% 8.45%, #003973, transparent 100%),radial-gradient(circle at 94.06% 82.83%, #E5E5BE, transparent 100%),radial-gradient(circle at 50% 50%, #668cc2, #668cc2 100%) !important;
+}
+.bg-gradient-2 {
+    background: radial-gradient(circle at 1.98% 3%,#348F50,transparent 100%),radial-gradient(circle at 98.02% 98%,#56B4D3,transparent 100%),radial-gradient(circle at 50% 50%,#668cc2,#668cc2 100%) !important;
+}
+.bg-gradient-3 {
+    background: radial-gradient(circle at 1.98% 74.02%,#E55D87,transparent 100%),radial-gradient(circle at 98.02% 35.97%,#5FC3E4,transparent 100%),radial-gradient(circle at 50% 50%,#0cc285,#0cc285 100%) !important;
+}
+.bg-gradient-4 {
+    background: radial-gradient(circle at 1.98% 2%,#B993D6,transparent 100%),radial-gradient(circle at 98.02% 92.01%,#8CA6DB,transparent 100%),radial-gradient(circle at 50% 50%,#0cc285,#0cc285 100%) !important;
+}
+.bg-gradient-5 {
+    background: radial-gradient(circle at 1.98% 89.01%,#7474BF,transparent 100%),radial-gradient(circle at 98.02% 21.98%,#348AC7,transparent 100%),radial-gradient(circle at 50% 50%,#0cc285,#0cc285 100%) !important;
+}
+.bg-gradient-6 {
+    background: radial-gradient(circle at 1.98% 40.96%,#00c6ff,transparent 100%),radial-gradient(circle at 98.02% 52.04%,#0072ff,transparent 100%),radial-gradient(circle at 50% 50%,#0cc285,#0cc285 100%) !important;
+}
+.bg-gradient-7 {
+    background: radial-gradient(circle at 1.98% 85.01%,#134E5E,transparent 100%),radial-gradient(circle at 98.02% 18.98%,#71B280,transparent 100%),radial-gradient(circle at 50% 50%,#0cc285,#0cc285 100%) !important;
+}
+.bg-gradient-8 {
+    background: radial-gradient(circle at 1.98% 20.98%,#4b6cb7,transparent 100%),radial-gradient(circle at 98.02% 20.98%,#182848,transparent 100%),radial-gradient(circle at 50% 50%,#0cc285,#0cc285 100%) !important;
+}
+
+.font-inverse .sidebar-menu li a {
+    color: rgba(255,255,255,.62) !important;
+}
+.font-inverse .sidebar-menu>li>a {
+    color: rgba(255,255,255,.62) !important;
+}
+.font-inverse .sidebar-menu>li.header {
+    color: rgba(255,255,255,.62) !important;
+}
+.bg-gradient-1 .sidebar-menu>li.header, .bg-gradient-2 .sidebar-menu>li.header, .bg-gradient-3 .sidebar-menu>li.header, .bg-gradient-4 .sidebar-menu>li.header, .bg-gradient-5 .sidebar-menu>li.header, .bg-gradient-6 .sidebar-menu>li.header, .bg-gradient-7 .sidebar-menu>li.header, .bg-gradient-8 .sidebar-menu>li.header, .bg-gradient-9 .sidebar-menu>li.header {
+     background-color: transparent !important;
+}
+.bg-gradient-1 .sidebar-menu>li:hover>a, .bg-gradient-2 .sidebar-menu>li:hover>a, .bg-gradient-3 .sidebar-menu>li:hover>a, .bg-gradient-4 .sidebar-menu>li:hover>a, .bg-gradient-5 .sidebar-menu>li:hover>a, .bg-gradient-6 .sidebar-menu>li:hover>a, .bg-gradient-7 .sidebar-menu>li:hover>a, .bg-gradient-8 .sidebar-menu>li:hover>a, .bg-gradient-9 .sidebar-menu>li:hover>a {
+    color: #fff !important;
+    background-color: transparent;
+    border-left-color: #605ca8;
+}
+.bg-gradient-1 .sidebar-menu>li.active>a, .bg-gradient-2 .sidebar-menu>li.active>a, .bg-gradient-3 .sidebar-menu>li.active>a, .bg-gradient-4 .sidebar-menu>li.active>a, .bg-gradient-5 .sidebar-menu>li.active>a, .bg-gradient-6 .sidebar-menu>li.active>a, .bg-gradient-7 .sidebar-menu>li.active>a, .bg-gradient-8 .sidebar-menu>li.active>a, .bg-gradient-9 .sidebar-menu>li.active>a {
+    color: #fff !important;
+    background-color: transparent;
+    border-left-color: #605ca8;
+}
+.bg-gradient-1 .sidebar-menu>li>.treeview-menu, .bg-gradient-2 .sidebar-menu>li>.treeview-menu, .bg-gradient-3 .sidebar-menu>li>.treeview-menu, .bg-gradient-4 .sidebar-menu>li>.treeview-menu, .bg-gradient-5 .sidebar-menu>li>.treeview-menu, .bg-gradient-6 .sidebar-menu>li>.treeview-menu, .bg-gradient-7 .sidebar-menu>li>.treeview-menu, .bg-gradient-8 .sidebar-menu>li>.treeview-menu, .bg-gradient-9 .sidebar-menu>li>.treeview-menu {
+    color: #fff !important;
+    background-color: transparent;
+    margin: 0 1px;
+}
+.font-inverse.main-header li.user-header {
+    background-color: #fafcfe;
+}
+.font-inverse.main-header li.user-header>p {
+    color: #00a7d0 !important;
+}

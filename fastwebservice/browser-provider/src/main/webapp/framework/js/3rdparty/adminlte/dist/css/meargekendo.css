@@ -1,0 +1,17 @@
+/*导航*/
+/*.k-item .k-state-default {*/
+    /*border-bottom-color-color: #428bca;*/
+/*}*/
+/*解决kendo和bootsharp的row冲突*/
+.k-block .k-header, .k-widget * {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+.k-tabstrip-items .k-item.k-state-active {
+    border-top-color: #428bca;
+}
+
+/*字体*/
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+    font-family: Microsoft YaHei !important;
+}

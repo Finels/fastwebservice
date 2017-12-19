@@ -1,0 +1,66 @@
+@media screen and (min-width: 320px) {
+    .box-header-content ul li{ width:32%; margin-right:1%;}
+    .box-header-content ul li.last_two{width:20%;}
+    .content-wrapper .content .box-body .top_header .right{text-align:left}
+    .foot_messa .right{text-align:left}
+}
+@media screen and (min-width: 360px) {
+
+}
+@media screen and (min-width: 480px) {
+
+}
+@media screen and (min-width: 540px) {
+
+}
+@media screen and (min-width: 640px) {
+
+}
+@media screen and (min-width: 720px) {
+
+}
+@media screen and (min-width: 1280px) {
+    .box-header-content ul li{ width:14%; margin-right:1%;}
+    .box-header-content ul li.last_two{width:9%;}
+    .content-wrapper .content .box-body .top_header .right{text-align: right}
+    .foot_messa .right{text-align: right}
+}
+body, ul, ol, li, table, tr, td, span, nav, dl, dt, dd, p, h1, h2, h3, h4, h5, h6, img, legend, form, fieldset, input, select, button, textarea {
+    margin: 0;
+    padding: 0;
+}
+body, input, select, textarea {
+    line-height: 1.5rem;
+    font-family: 'Helvetica Neue',Helvetica,"Microsoft Yahei","SimHei",sans-serif;
+    color: #000;
+}
+div {
+    margin: 0 auto;
+}
+ul {
+    list-style: none;
+}
+p{font-size:0.5rem; line-height:0.78rem;}
+img, input, button, select, textarea {
+    vertical-align: middle;
+    border: none;
+}
+input[type="button"], input[type="text"], input[type="password"], textarea {
+    border-radius: 0;
+    background: none;format("svg")
+border: none;
+    -webkit-appearance: none;
+}
+input[type="text"]:focus, input[type="password"]:focus, button:focus, input[type="button"]:focus, textarea {
+    border: 0;
+    outline: none;
+}
+a:hover,a:active{
+    text-decoration: none;
+}
+a, img {
+    -webkit-touch-callout: none;
+}
+img {
+    -ms-interpolation-mode: bicubic;
+}
