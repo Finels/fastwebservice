@@ -15,7 +15,7 @@ import javax.persistence.*;
  * @timestamp 2017/9/22
  */
 @Entity
-@Table(name = "FAST_USER")
+@Table(name = "fast_user")
 public class FastUser {
     private String uuid;
     private String username;

@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="<%=bizpath%>/bootstrap/css/bootstrap.min.css">
     <%--<link rel="stylesheet" href="<%=bizpath%>/dist/css/login.css">--%>
     <link rel="stylesheet" href="<%=bizpath%>/dist/css/basic.css">
+    <!-- toastr 提示框 -->
+    <link href="/bizmodules/adminlte/toastr/css/toastr.css" rel="stylesheet" type="text/css"/>
 
 </head>
 
@@ -41,13 +43,14 @@
         background-repeat: no-repeat;
         background-size: 100%;
     }
+
     /*.login-logo{*/
-        /*background: url("bizmodules/images/logo_white.png");*/
-        /*background-repeat: no-repeat;*/
-        /*background-size:auto 100%;*/
+    /*background: url("bizmodules/images/logo_white.png");*/
+    /*background-repeat: no-repeat;*/
+    /*background-size:auto 100%;*/
     /*}*/
 
-    #login-logo{
+    #login-logo {
         background: url("bizmodules/images/logo_white.png");
         background-repeat: no-repeat;
         width: 72px;
@@ -55,15 +58,16 @@
         display: inline-block;
         background-size: 100%;
     }
-    #loginHistoryName{
+
+    #loginHistoryName {
         display: none;
         width: 367px;
-        height:200px;
+        height: 200px;
         overflow-y: auto;
         position: absolute;
-        top:34px;
-        right:0;
-        z-index:5;
+        top: 34px;
+        right: 0;
+        z-index: 5;
         background-color: #fff;
         border: 1px solid #b2b2b2;
     }
@@ -143,7 +147,7 @@
         <div class="login-box">
             <div class="login-logo"
                  style="color: #ffffff;padding-top: 10px; border: 1px solid #ffffff;padding-bottom: 10px;  border-radius: 3px;text-align: center;font-size: 34px;line-height: initial;">
-               <i id="login-logo"></i> ASPI后台管理系统
+                <i id="login-logo"></i> ASPI后台管理系统
             </div>
             <!-- /.login-logo -->
             <div class="login-box-body">
@@ -157,9 +161,10 @@
                         <div class="input-group-addon" style="background: #4fc1e9;border: 0px">
                             <i class="fa fa-fw fa-user" style="color: #ffffff"></i>
                         </div>
-                        <input type="text" itemId="username" class="form-control"  placeholder="账号/手机号"
+                        <input type="text" itemId="username" class="form-control" placeholder="账号/手机号"
                                onfocus="if(placeholder=='username') {placeholder=''}"
                                onblur="if (placeholder=='') {placeholder='username'}">
+
                         <div id="loginHistoryName"></div>
                     </div>
                 </div>
@@ -179,12 +184,12 @@
                 <div class="form-group has-feedback">
 
                     <!-- /.col -->
-                        <button type="submit" itemId="loginOkBtn" class="btn btn-primary btn-block btn-flat"
-                                style="font-size: 16px;background: #4fc1e9;border-color:#4fc1e9">登 陆
-                        </button>
-                        <div id="foo" style="display: none;"></div>
-                        <br>
-                        <span itemId="msgSpan" style="color: red;"></span>
+                    <button type="submit" itemId="loginOkBtn" class="btn btn-primary btn-block btn-flat"
+                            style="font-size: 16px;background: #4fc1e9;border-color:#4fc1e9">登 陆
+                    </button>
+                    <div id="foo" style="display: none;"></div>
+                    <br>
+                    <span itemId="msgSpan" style="color: red;"></span>
                     <!-- /.col -->
                 </div>
 
@@ -203,8 +208,14 @@
 </div>
 
 
+<!-- toastr -->
+<script src="/bizmodules/adminlte/toastr/js/toastr.js" type="text/javascript"></script>
+<script src="<%=bizpath%>/dist/js/mp_common.js"></script>
 <script src="<%=bizpath%>/dist/js/spin.min.js"></script>
 <script src="<%=bizpath%>/bootstrap/js/bootstrap.js"></script>
 <script src="/bizmodules/js/login.js"></script>
+<script src="/bizmodules/js/browser_main.js"></script>
+<script src="/bizmodules/js/encrypt.js"></script>
+
 </body>
 </html>

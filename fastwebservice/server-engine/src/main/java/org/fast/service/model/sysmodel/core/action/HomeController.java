@@ -2,12 +2,16 @@ package org.fast.service.model.sysmodel.core.action;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.fast.service.domain.ActionBody;
 import org.fast.service.domain.FastUser;
 import org.fast.service.domain.ResultBody;
 import org.fast.service.model.sysmodel.core.service.intf.UserServiceIntf;
 import org.fast.service.sys.config.SpringContextUtil;
 import org.fast.service.sys.exception.BizException;
 import org.fast.service.sys.exception.Error;
+import org.fast.service.sys.exception.SysException;
+import org.fast.service.util.BeanUtil;
+import org.fast.service.util.StringUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,13 +19,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
@@ -33,7 +35,7 @@ import java.util.Map;
 
 
 /**
- * Description:  HomeController
+ * Description:  登录HomeController
  * Copyright: © 2017 CSNT. All rights reserved.
  * Company: CSNT
  *
@@ -41,7 +43,7 @@ import java.util.Map;
  * @version 1.0
  * @timestamp 2017/10/3
  */
-@Controller
+@ControllerAdvice
 @Transactional
 @RequestMapping("/home/")
 public class HomeController {
@@ -57,14 +59,34 @@ public class HomeController {
     @Autowired
     private SqlSessionFactory sessionFactory;
 
-//    @RequestMapping("/")
-//    public String home(HttpServletRequest request, HttpServletResponse response) {
-//        return "index";
-//    }
 
+    /**
+     * 登录请求处理器
+     *
+     * @param actionBody
+     * @param request
+     * @param response
+     * @return
+     */
     @RequestMapping(value = "login.action")
     @ResponseBody
-    public ResponseEntity<ResultBody> login(@RequestBody FastUser loginUser, HttpServletRequest request, HttpServletResponse response) {
+    public ResponseEntity<ResultBody> login(@RequestBody ActionBody actionBody, HttpServletRequest request, HttpServletResponse response) {
+        Map resultMap = new HashMap<>();
+        Map data = actionBody.getDataBody();
+        String userToken = userService.doLogin(data, request);
+        if (StringUtil.isNotEmpty(userToken)) {
+            //登录成功，返回跳转地址
+            Cookie cookie = new Cookie("signature", userToken);
+            String redirctUrl = "/bizmodules/jsp/mainframe_light.jsp";
+            return new ResponseEntity<ResultBody>(new ResultBody(redirctUrl, "success", resultMap, request.getContextPath()), HttpStatus.OK);
+        }
+        return new ResponseEntity<ResultBody>(new ResultBody("logined", "fail", resultMap, request.getContextPath()), HttpStatus.NON_AUTHORITATIVE_INFORMATION);
+
+    }
+
+    @RequestMapping(value = "loginExample.action")
+    @ResponseBody
+    public ResponseEntity<ResultBody> loginExample(@RequestBody FastUser loginUser, HttpServletRequest request, HttpServletResponse response) {
         request = (MultipartHttpServletRequest) request;
         MultiValueMap fileMap = ((MultipartHttpServletRequest) request).getMultiFileMap();
         SqlSession session = sessionFactory.openSession();
@@ -104,5 +126,10 @@ public class HomeController {
     @ExceptionHandler({BizException.class})
     public ResponseEntity exception(BizException e, HttpServletRequest request) {
         return new ResponseEntity<Error>(new Error("warning", "用户校验失败，请重新登录", request.getContextPath()), HttpStatus.NON_AUTHORITATIVE_INFORMATION);
+    }
+
+    @ExceptionHandler({SysException.class})
+    public ResponseEntity exception(SysException e, HttpServletRequest request) {
+        return new ResponseEntity<Error>(new Error("warning", "系统错误，请联系管理员", request.getContextPath()), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

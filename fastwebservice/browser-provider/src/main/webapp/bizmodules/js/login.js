@@ -10,6 +10,8 @@ $(function () {
     $(".light").animate({left: "29rem"}, 1500);
     //初始化控件
     //init();
+    //初始化密钥
+    getKey();
     //设置cookie，记住用户名
     //cookiePro();
 
@@ -28,7 +30,7 @@ $(function () {
 
         var html = "";
         for (var i = 0; i < loginName.length; i++) {
-            if(i>10){
+            if (i > 10) {
                 break;
             }
             html += "<p class='historyName' style='color:#b2b2b2;padding:10px 13px;font-size:14px;text-align:left;cursor: pointer;'>" + loginName[i] + "</p>";
@@ -68,6 +70,20 @@ $(function () {
         $(this).css('color', '#b2b2b2');
     });
 });
+//初始化获取密钥对，并保存在window中
+function getKey() {
+    BR.doAjax("/security/key.action", {}, true,
+        function (result) {
+            if (result.resultBody) {
+                var publicKey = result.resultBody.publicKey;
+                //sessionStorage.setItem('pulickKey', publicKey);
+                window.sessionStorage.publicKey = publicKey;
+            }
+        }, null,
+        function (ret) {
+            MP.Msg.warn("密钥请求失败，请刷新页面重试");
+        });
+}
 
 //初始化控件
 function init() {
@@ -75,7 +91,6 @@ function init() {
     $("[itemId=footer]").attr("value", Scdp.I18N.COPYRIGHT_TEXT);
     $("[itemId=title]").text(Scdp.I18N.SYSTEM_NAME);
 }
-
 //登录处理
 function doLogin(username, password) {
     $("[itemId=username]").attr("disabled", true);
@@ -84,7 +99,76 @@ function doLogin(username, password) {
     $("[itemId=loginOkBtn]").html("登录中... ...");
     $(".datagrid-mask").display = "none";
 
+    if (!window.sessionStorage.publicKey) {
+        MP.Msg.warn("获取密钥失败，请刷新页面重试");
+        dismissLoginDiv();
+        return;
+    }
+    //将输入密码用rsa加密
+    var encrypt = new JSEncrypt();
+    encrypt.setPublicKey(window.sessionStorage.publicKey);
+    var encryptPassword = encrypt.encrypt(password);
 
+    //封装参数
+    var a = {};
+    a.username = username;
+    a.password = encryptPassword;
+    BR.doAjax("/home/login.action", a, true, function (c) {
+        if (0 != c.resultCode) {
+            var info = $("[itemId=msgSpan]");
+            info.text(c.resultInfo),
+                //info.css({color: 'red'}),
+                1 == c.resultCode ? $("[itemId=username]").focus() : $("[itemId=password]").focus(),
+                dismissLoginDiv();
+            $("#foo").hide();
+        }
+        else {
+            afterLoginSuccess(c);
+
+            var loginName = localStorage.getItem('loginName');
+            // var loginPassword = localStorage.getItem('loginPassword');
+
+            // if (!loginName || !loginPassword) {
+            if (!loginName) {
+                loginName = [];
+                // loginPassword = [];
+                loginName.unshift(username);
+                // loginPassword.unshift(password);
+            } else {
+                loginName = loginName.split(",");
+                // loginPassword = loginPassword.split(",");
+                var indexOfName = loginName.indexOf(username);
+                // var indexOfPassword = loginPassword.indexOf(password);
+                // if (indexOfName == -1 && indexOfPassword == -1) {
+                if (indexOfName != -1) {
+                    loginName.splice(indexOfName, 1);
+                    // loginPassword.unshift(password);
+                }
+                loginName.unshift(username);
+
+            }
+
+            localStorage.setItem('loginName', loginName);
+            // localStorage.setItem('loginPassword', loginPassword);
+        }
+    }, function () {
+        dismissLoginDiv();
+    }, true, true);
+
+}
+function dismissLoginDiv() {
+    $("[itemId=username]").attr("disabled", false);
+    $("[itemId=password]").attr("disabled", false);
+    $("[itemId=loginOkBtn]").attr("disabled", false);
+    $("[itemId=loginOkBtn]").html("登录");
+}
+
+function doLogin_bak(username, password) {
+    $("[itemId=username]").attr("disabled", true);
+    $("[itemId=password]").attr("disabled", true);
+    $("[itemId=loginOkBtn]").attr("disabled", true);
+    $("[itemId=loginOkBtn]").html("登录中... ...");
+    $(".datagrid-mask").display = "none";
     Scdp.CryptUtil.encryptPass(password, function (d) {
         var a = {};
         a.userId = username;
@@ -153,7 +237,7 @@ function login() {
 //        $("[itemId=msgSpan]").html("请退出另一个账号后再登录系统！");
 //        return;
 //    }
-    window.sessionStorage.clear();
+//    window.sessionStorage.clear();
 
     //清除消息提示框内容
     $("[itemId=msgSpan]").html("");

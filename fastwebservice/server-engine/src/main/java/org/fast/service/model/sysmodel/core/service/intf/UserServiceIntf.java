@@ -1,5 +1,8 @@
 package org.fast.service.model.sysmodel.core.service.intf;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
+
 /**
  * Description:  BillcardinoutManager
  * Copyright: © 2017 CSNT. All rights reserved.
@@ -12,4 +15,6 @@ package org.fast.service.model.sysmodel.core.service.intf;
 public interface UserServiceIntf {
 
     public String getUserByUsername(String username);
+
+    public String doLogin(Map inMap, HttpServletRequest request);
 }

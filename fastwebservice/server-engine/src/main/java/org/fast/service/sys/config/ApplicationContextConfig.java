@@ -1,5 +1,7 @@
 package org.fast.service.sys.config;
 
+import bitronix.tm.BitronixTransactionManager;
+import bitronix.tm.TransactionManagerServices;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.annotation.*;
@@ -9,6 +11,7 @@ import org.springframework.dao.annotation.PersistenceExceptionTranslationPostPro
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.transaction.jta.JtaTransactionManager;
 
 import javax.sql.DataSource;
 import java.io.IOException;
@@ -69,37 +72,36 @@ public class ApplicationContextConfig {
     /**
      * 配置事务管理，
      * 当前使用的是jta事务管理器，支持多数据源即分布式事务管理
-     * @return
-     */
-//    @Bean(name = "transactionManager")
-//    public JtaTransactionManager transactionManager(BitronixTransactionManager btm) {
-//        JtaTransactionManager transactionManager = new JtaTransactionManager();
-//        transactionManager.setTransactionManager(btm);
-//        transactionManager.setUserTransaction(btm);
-//        return transactionManager;
-//    }
-//
-//    /**
-//     * 配置关系型数据源的事务管理器，采用bitronix
-//     */
-//    @Bean(destroyMethod = "shutdown")
-//    public BitronixTransactionManager setBitronixTransactionManager() {
-//        BitronixTransactionManager btm = TransactionManagerServices.getTransactionManager();
-//        return btm;
-//    }
-
-    /**
-     * 配置事务管理，
-     * 使用spring的DatasourceTM
      *
      * @return
      */
-    @Bean
-    public DataSourceTransactionManager transactionManager(@Qualifier("dataSourceJpa") DataSource dataSource) {
-        DataSourceTransactionManager transactionManager = new DataSourceTransactionManager();
-        transactionManager.setDataSource(dataSource);
+    @Bean(name = "transactionManager")
+    public JtaTransactionManager transactionManager(BitronixTransactionManager btm) {
+        JtaTransactionManager transactionManager = new JtaTransactionManager();
+        transactionManager.setTransactionManager(btm);
+        transactionManager.setUserTransaction(btm);
         return transactionManager;
     }
 
+    /**
+     * 配置关系型数据源的事务管理器，采用bitronix
+     */
+    @Bean(destroyMethod = "shutdown")
+    public BitronixTransactionManager setBitronixTransactionManager() {
+        BitronixTransactionManager btm = TransactionManagerServices.getTransactionManager();
+        return btm;
+    }
 
+//    /**
+//     * 配置事务管理，
+//     * 使用spring的DatasourceTM
+//     *
+//     * @return
+//     */
+//    @Bean
+//    public DataSourceTransactionManager transactionManager(@Qualifier("dataSourceJpa") DataSource dataSource) {
+//        DataSourceTransactionManager transactionManager = new DataSourceTransactionManager();
+//        transactionManager.setDataSource(dataSource);
+//        return transactionManager;
+//    }
 }
