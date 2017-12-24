@@ -114,43 +114,43 @@ function doLogin(username, password) {
     a.username = username;
     a.password = encryptPassword;
     BR.doAjax("/home/login.action", a, true, function (c) {
-        if (0 != c.resultCode) {
-            var info = $("[itemId=msgSpan]");
-            info.text(c.resultInfo),
-                //info.css({color: 'red'}),
-                1 == c.resultCode ? $("[itemId=username]").focus() : $("[itemId=password]").focus(),
-                dismissLoginDiv();
-            $("#foo").hide();
-        }
-        else {
-            afterLoginSuccess(c);
+        //if (0 != c.resultCode) {
+        //    var info = $("[itemId=msgSpan]");
+        //    info.text(c.resultInfo),
+        //        //info.css({color: 'red'}),
+        //        1 == c.resultCode ? $("[itemId=username]").focus() : $("[itemId=password]").focus(),
+        //        dismissLoginDiv();
+        //    $("#foo").hide();
+        //}
+        //else {
+        afterLoginSuccess(c);
 
-            var loginName = localStorage.getItem('loginName');
-            // var loginPassword = localStorage.getItem('loginPassword');
+        var loginName = localStorage.getItem('loginName');
+        // var loginPassword = localStorage.getItem('loginPassword');
 
-            // if (!loginName || !loginPassword) {
-            if (!loginName) {
-                loginName = [];
-                // loginPassword = [];
-                loginName.unshift(username);
+        // if (!loginName || !loginPassword) {
+        if (!loginName) {
+            loginName = [];
+            // loginPassword = [];
+            loginName.unshift(username);
+            // loginPassword.unshift(password);
+        } else {
+            loginName = loginName.split(",");
+            // loginPassword = loginPassword.split(",");
+            var indexOfName = loginName.indexOf(username);
+            // var indexOfPassword = loginPassword.indexOf(password);
+            // if (indexOfName == -1 && indexOfPassword == -1) {
+            if (indexOfName != -1) {
+                loginName.splice(indexOfName, 1);
                 // loginPassword.unshift(password);
-            } else {
-                loginName = loginName.split(",");
-                // loginPassword = loginPassword.split(",");
-                var indexOfName = loginName.indexOf(username);
-                // var indexOfPassword = loginPassword.indexOf(password);
-                // if (indexOfName == -1 && indexOfPassword == -1) {
-                if (indexOfName != -1) {
-                    loginName.splice(indexOfName, 1);
-                    // loginPassword.unshift(password);
-                }
-                loginName.unshift(username);
-
             }
+            loginName.unshift(username);
 
-            localStorage.setItem('loginName', loginName);
-            // localStorage.setItem('loginPassword', loginPassword);
         }
+
+        localStorage.setItem('loginName', loginName);
+        // localStorage.setItem('loginPassword', loginPassword);
+        //}
     }, function () {
         dismissLoginDiv();
     }, true, true);
@@ -278,22 +278,8 @@ function login() {
  * */
 function afterLoginSuccess(b) {
     //window.sessionStorage.setItem("isActiveTag", true);
-    var c = Scdp.getSysConfig("BASE_PATH") + "bizmodules/jsp/mainframe_light.jsp";
-    if ("1" == b.userToken.substr(0, 1)) {
-        var a = Scdp.StrUtil.decodeab(b.userToken.substr(2));
-        Scdp.CryptUtil.decryptRSA(a, Scdp.RSA.ClientKey, function (a) {
-            b.userToken = a;
-            saveLoginData(b);
-            //doSomething after login
-            afterLogin && afterLogin(b),
-                window.location.replace(c)
-        })
-    } else
-        b.userToken = b.userToken.substr(2),
-            saveLoginData(b),
-            //doSomething after login
-        afterLogin && afterLogin(b),
-            window.location.replace(c)
+    var c = b.redirectUrl;
+    window.location.replace(c);
 }
 
 function afterLogin() {

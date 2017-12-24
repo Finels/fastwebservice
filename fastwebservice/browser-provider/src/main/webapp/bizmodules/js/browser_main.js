@@ -50,8 +50,13 @@ BR.doAjax = function (url, param, maskid, success, complete, error) {
         //成功返回之后调用的函数
         success: success,//ret
         //调用执行后调用的函数
-        complete: function () {
+        complete: function (ret) {
             Scdp.ObjUtil.isNotEmpty(maskid) && Scdp.unmask();
+            if (ret.status == 500) {
+                MP.Msg.error(ret.status + "错误：" + (ret.responseJSON == null || ret.responseJSON.errorDescription == null ? "未知错误" : ret.responseJSON.errorDescription) + "<br>原因：" + (ret.responseJSON.errorStack == null || ret.responseJSON.errorStack == '' ? "未知原因" : ret.responseJSON.errorStack));
+            } else if (ret.status != 200) {
+                MP.Msg.warn(ret.status + "错误：" + (ret.responseJSON == null || ret.responseJSON.errorDescription == null ? "未知错误" : ret.responseJSON.errorDescription));
+            }
         },//XMLHttpRequest, textStatus
         //调用出错执行的函数
         error: error

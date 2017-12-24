@@ -13,6 +13,7 @@ import java.util.Map;
  * @timestamp 2017/12/19
  */
 public class SysException extends RuntimeException {
+    private String apiName;
     private String exceptionKey;
     private String exceptionMsg;
     private String stackMsg;
@@ -56,6 +57,22 @@ public class SysException extends RuntimeException {
         this.exceptionMsg = "";
         this.stackMsg = "";
         this.contextMap = contextMap;
+    }
+
+    public SysException(String apiName, String exceptionKey, String exceptionMsg, String stackMsg) {
+        super(new Exception());
+        this.apiName = apiName;
+        this.exceptionKey = exceptionKey;
+        this.exceptionMsg = exceptionMsg;
+        this.stackMsg = stackMsg;
+    }
+
+    public String getApiName() {
+        return apiName;
+    }
+
+    public void setApiName(String apiName) {
+        this.apiName = apiName;
     }
 
     public String getExceptionKey() {

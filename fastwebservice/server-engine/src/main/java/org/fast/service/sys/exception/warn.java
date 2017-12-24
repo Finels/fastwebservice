@@ -1,36 +1,25 @@
 package org.fast.service.sys.exception;
 
 /**
- * Description:  Error消息体
+ * Description:  Warn
  * Copyright: © 2017 CSNT. All rights reserved.
  * Company: CSNT
  *
  * @author 付尧
  * @version 1.0
- * @timestamp 2017/11/8
+ * @timestamp 2017/12/24
  */
-public class Error {
-
+public class Warn {
     private String apiName;
     private String errorCode;
     private String errorDescription;
-    private String errorStack;
     private String redirectUrl;
 
-    public Error(String apiName, String errorCode, String errorDescription, String errorStack, String redirectUrl) {
+    public Warn(String apiName,String errorCode, String errorDescription, String redirectUrl) {
         this.errorCode = errorCode;
         this.errorDescription = errorDescription;
         this.redirectUrl = redirectUrl;
         this.apiName = apiName;
-        this.errorStack = errorStack;
-    }
-
-    public String getErrorStack() {
-        return errorStack;
-    }
-
-    public void setErrorStack(String errorStack) {
-        this.errorStack = errorStack;
     }
 
     public String getApiName() {

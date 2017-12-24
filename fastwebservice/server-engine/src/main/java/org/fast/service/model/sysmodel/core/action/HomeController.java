@@ -10,6 +10,7 @@ import org.fast.service.sys.config.SpringContextUtil;
 import org.fast.service.sys.exception.BizException;
 import org.fast.service.sys.exception.Error;
 import org.fast.service.sys.exception.SysException;
+import org.fast.service.sys.exception.Warn;
 import org.fast.service.util.BeanUtil;
 import org.fast.service.util.StringUtil;
 import org.slf4j.Logger;
@@ -74,15 +75,14 @@ public class HomeController {
         Map resultMap = new HashMap<>();
         Map data = actionBody.getDataBody();
         String userToken = userService.doLogin(data, request);
-        if (StringUtil.isNotEmpty(userToken)) {
-            //登录成功，返回跳转地址
-            Cookie cookie = new Cookie("signature", userToken);
-            String redirctUrl = "/bizmodules/jsp/mainframe_light.jsp";
-            return new ResponseEntity<ResultBody>(new ResultBody(redirctUrl, "success", resultMap, request.getContextPath()), HttpStatus.OK);
-        }
-        return new ResponseEntity<ResultBody>(new ResultBody("logined", "fail", resultMap, request.getContextPath()), HttpStatus.NON_AUTHORITATIVE_INFORMATION);
-
+        //将token写入客户端浏览器的cookie中
+        Cookie cookie = new Cookie("signature", userToken);
+        cookie.setPath("/");
+//        response.addCookie(cookie);
+        String redirctUrl = "/bizmodules/jsp/mainframe_light.jsp";
+        return new ResponseEntity<ResultBody>(new ResultBody("login", "success", resultMap, redirctUrl), HttpStatus.OK);
     }
+
 
     @RequestMapping(value = "loginExample.action")
     @ResponseBody
@@ -125,11 +125,11 @@ public class HomeController {
 
     @ExceptionHandler({BizException.class})
     public ResponseEntity exception(BizException e, HttpServletRequest request) {
-        return new ResponseEntity<Error>(new Error("warning", "用户校验失败，请重新登录", request.getContextPath()), HttpStatus.NON_AUTHORITATIVE_INFORMATION);
+        return new ResponseEntity<Warn>(new Warn(e.getApiName(), e.getErrorCode(), e.getExceptionMsg(), request.getContextPath()), e.getHttpStatus());
     }
 
     @ExceptionHandler({SysException.class})
     public ResponseEntity exception(SysException e, HttpServletRequest request) {
-        return new ResponseEntity<Error>(new Error("warning", "系统错误，请联系管理员", request.getContextPath()), HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<Error>(new Error(e.getApiName(), e.getExceptionKey(), e.getExceptionMsg(), e.getStackMsg(), request.getContextPath()), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

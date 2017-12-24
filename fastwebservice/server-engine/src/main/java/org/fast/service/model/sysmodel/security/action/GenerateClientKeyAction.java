@@ -33,6 +33,6 @@ public class GenerateClientKeyAction {
     @ResponseBody
     public ResponseEntity<ResultBody> getKey(HttpServletRequest request, HttpServletResponse response) {
         Map out = manager.generateRsaKey(request);
-        return new ResponseEntity<ResultBody>(new ResultBody("getKey", "success", out, request.getContextPath()), HttpStatus.OK);
+        return new ResponseEntity<ResultBody>(new ResultBody("getKey","success", out, request.getContextPath()), HttpStatus.OK);
     }
 }
