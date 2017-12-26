@@ -277,7 +277,7 @@ function login() {
  * 登录成功后函数
  * */
 function afterLoginSuccess(b) {
-    //window.sessionStorage.setItem("isActiveTag", true);
+    window.sessionStorage.setItem("username", b.resultBody.username);
     var c = b.redirectUrl;
     window.location.replace(c);
 }

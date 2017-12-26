@@ -24,7 +24,7 @@
         <a href="javascript:void(0)" class="sidebar-toggle" data-toggle="offcanvas" role="button">
             <span class="sr-only">Toggle navigation</span>
         </a>
-        <span style="line-height: 50px;color: #fff;font-size: 18px;">川高系统高速公路收费综合管理平台</span>
+        <span style="line-height: 50px;color: #fff;font-size: 18px;">APSID 2018 后台管理系统</span>
 
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
@@ -65,7 +65,8 @@
                 <!-- Messages: style can be found in dropdown.less-->
 
                 <li class="dropdown user user-menu">
-                    <a href="javascript:showUserInfo()">
+                    <%--<a href="javascript:showUserInfo()">--%>
+                    <a href="javascript:void(0)">
                         <img src="/framework/images/userblue.png" class="user-image" alt="User Image">
                         <%--<span itemId="datetime" class="hidden-xs"></span>--%>
                         <span itemId="username"></span>

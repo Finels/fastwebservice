@@ -73,12 +73,14 @@ public class HomeController {
     @ResponseBody
     public ResponseEntity<ResultBody> login(@RequestBody ActionBody actionBody, HttpServletRequest request, HttpServletResponse response) {
         Map resultMap = new HashMap<>();
-        Map data = actionBody.getDataBody();
-        String userToken = userService.doLogin(data, request);
+        Map params = actionBody.getDataBody();
+        Map data = userService.doLogin(params, request);
         //将token写入客户端浏览器的cookie中
-        Cookie cookie = new Cookie("signature", userToken);
+        Cookie cookie = new Cookie("signature", data.get("token").toString());
         cookie.setPath("/");
         response.addCookie(cookie);
+        //将用户名返回便于前台缓存
+        resultMap.put("username", ((FastUser) data.get("user")).getNickname());
         String redirctUrl = "/bizmodules/jsp/mainframe_light.jsp";
         return new ResponseEntity<ResultBody>(new ResultBody("login", "success", resultMap, redirctUrl), HttpStatus.OK);
     }

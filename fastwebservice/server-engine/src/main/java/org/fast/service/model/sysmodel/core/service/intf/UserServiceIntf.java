@@ -16,5 +16,5 @@ public interface UserServiceIntf {
 
     public String getUserByUsername(String username);
 
-    public String doLogin(Map inMap, HttpServletRequest request);
+    public Map doLogin(Map inMap, HttpServletRequest request);
 }

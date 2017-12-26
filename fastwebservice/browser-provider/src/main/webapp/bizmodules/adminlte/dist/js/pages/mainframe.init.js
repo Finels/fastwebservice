@@ -55,7 +55,7 @@ function init() {
         });
     }
     //初始化用户名
-    $('[itemId=username]').text(Scdp.CacheUtil.get(Scdp.Const.USER_NAME));
+    $('[itemId=username]').text(window.sessionStorage.username);
     //初始化系统时间
     setInterval(function () {
         var date = new Date();
@@ -244,12 +244,13 @@ function tab_pro() {
 
     //登出事件
     $("[itemId=logout]").on("click", function () {
-        Scdp.Msg.confirm("提示", Scdp.I18N.QUIT_SYSTEM_CONFIRM, function (a) {
-            a && Scdp.doAction("sys-user-logout", {}, function () {
-                Scdp.CacheUtil.removeAllTemp();
+        Scdp.Msg.confirm("提示", "确认退出系统？", function (a) {
+            if (a) {
+                BR.clearAllCookie();
                 window.sessionStorage.clear();
-                window.location.replace(Scdp.getSysConfig("base_path"))
-            }, false, false)
+                Scdp.CacheUtil.removeAllTemp();
+                window.location.replace("/")
+            }
         })
     })
 }

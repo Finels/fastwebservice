@@ -16,7 +16,7 @@
     <meta charset="utf-8" contentType="text/html;charset=UTF-8" pageEncoding="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>川高系统高速公路收费综合管理平台 | 首页</title>
+    <title>APSID 2018 后台管理系统 | 首页</title>
 
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
@@ -99,180 +99,181 @@
         <%--导航内容--%>
         <div class="tab-content">
             <div class="tab-pane active" id="content_home">
-                <div class="maincont k-content">
-                    <section style="padding:10px 15px 0 15px;">
+                <img src="/bizmodules/images/timg.png" style="width: 100%;height: 100%"/>
+                <%--<div class="maincont k-content">--%>
+                <%--<section style="padding:10px 15px 0 15px;">--%>
 
-                        <div class="row" style="padding: 5px 15px;">
-                            <div class="col-md-3 showStatisticalData">
-                                <div class="StatisticalDataPart1" style="padding: 20px;">
-                                    <div class="col-md-6 col-sm-6 ">
-                                    <span>
-                                        <strong>201687478</strong>
-                                        <font>本年MTC收入</font>
-                                    </span>
-                                    </div>
-                                    <div class="col-md-6 col-sm-6">
-                                        <img src="<%=bizpath%>/dist/img/nsr.png" style="height:33px;"/> <br>
-                                        <font class="fta" style="color: white;">同比增长0.03%</font>
-                                    </div>
-                                </div>
-                            </div>
+                <%--<div class="row" style="padding: 5px 15px;">--%>
+                <%--<div class="col-md-3 showStatisticalData">--%>
+                <%--<div class="StatisticalDataPart1" style="padding: 20px;">--%>
+                <%--<div class="col-md-6 col-sm-6 ">--%>
+                <%--<span>--%>
+                <%--<strong>201687478</strong>--%>
+                <%--<font>本年MTC收入</font>--%>
+                <%--</span>--%>
+                <%--</div>--%>
+                <%--<div class="col-md-6 col-sm-6">--%>
+                <%--<img src="<%=bizpath%>/dist/img/nsr.png" style="height:33px;"/> <br>--%>
+                <%--<font class="fta" style="color: white;">同比增长0.03%</font>--%>
+                <%--</div>--%>
+                <%--</div>--%>
+                <%--</div>--%>
 
-                            <div class="col-md-3 showStatisticalData">
-                                <div class="StatisticalDataPart2">
-                                    <div class="col-md-6  col-sm-6">
-                                    <span>
-                                        <strong>102923263.70</strong>
-                                        <font>本年ETC收入</font>
-                                    </span>
-                                    </div>
-                                    <div class="col-md-6  col-sm-6">
-                                        <img src="<%=bizpath%>/dist/img/etcIncome.png" style="height:33px;"/> <br>
-                                        <font class="fta" style="color: white;">同比增长135.72%</font>
-                                    </div>
-                                </div>
-                            </div>
+                <%--<div class="col-md-3 showStatisticalData">--%>
+                <%--<div class="StatisticalDataPart2">--%>
+                <%--<div class="col-md-6  col-sm-6">--%>
+                <%--<span>--%>
+                <%--<strong>102923263.70</strong>--%>
+                <%--<font>本年ETC收入</font>--%>
+                <%--</span>--%>
+                <%--</div>--%>
+                <%--<div class="col-md-6  col-sm-6">--%>
+                <%--<img src="<%=bizpath%>/dist/img/etcIncome.png" style="height:33px;"/> <br>--%>
+                <%--<font class="fta" style="color: white;">同比增长135.72%</font>--%>
+                <%--</div>--%>
+                <%--</div>--%>
+                <%--</div>--%>
 
-                            <div class="col-md-3 showStatisticalData">
-                                <div class="StatisticalDataPart3">
-                                    <div class="col-md-6  col-sm-6">
-                                    <span>
-                                        <strong>2351999</strong>
-                                        <font>本年MTC出口站口流量</font>
-                                    </span>
-                                    </div>
-                                    <div class="col-md-6  col-sm-6">
-                                        <img src="<%=bizpath%>/dist/img/yhcll.png" style="height:33px;"/> <br>
-                                        <font class="fta" style="color: white;">同比增长18.24%</font>
-                                    </div>
-                                </div>
-                            </div>
+                <%--<div class="col-md-3 showStatisticalData">--%>
+                <%--<div class="StatisticalDataPart3">--%>
+                <%--<div class="col-md-6  col-sm-6">--%>
+                <%--<span>--%>
+                <%--<strong>2351999</strong>--%>
+                <%--<font>本年MTC出口站口流量</font>--%>
+                <%--</span>--%>
+                <%--</div>--%>
+                <%--<div class="col-md-6  col-sm-6">--%>
+                <%--<img src="<%=bizpath%>/dist/img/yhcll.png" style="height:33px;"/> <br>--%>
+                <%--<font class="fta" style="color: white;">同比增长18.24%</font>--%>
+                <%--</div>--%>
+                <%--</div>--%>
+                <%--</div>--%>
 
-                            <div class="col-md-3 showStatisticalData">
-                                <div class="StatisticalDataPart4">
-                                    <div class="col-md-6  col-sm-6">
-                                    <span>
-                                        <strong>1253546</strong>
-                                        <font>本年ETC出口站口流量</font>
-                                    </span>
-                                    </div>
-                                    <div class="col-md-6  col-sm-6">
-                                        <img src="<%=bizpath%>/dist/img/yhcll.png" style="height:33px;"/> <br>
-                                        <font class="fta" style="color: white;">同比增长21.72%</font>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+                <%--<div class="col-md-3 showStatisticalData">--%>
+                <%--<div class="StatisticalDataPart4">--%>
+                <%--<div class="col-md-6  col-sm-6">--%>
+                <%--<span>--%>
+                <%--<strong>1253546</strong>--%>
+                <%--<font>本年ETC出口站口流量</font>--%>
+                <%--</span>--%>
+                <%--</div>--%>
+                <%--<div class="col-md-6  col-sm-6">--%>
+                <%--<img src="<%=bizpath%>/dist/img/yhcll.png" style="height:33px;"/> <br>--%>
+                <%--<font class="fta" style="color: white;">同比增长21.72%</font>--%>
+                <%--</div>--%>
+                <%--</div>--%>
+                <%--</div>--%>
+                <%--</div>--%>
+                <%--</section>--%>
 
-                    <section class="content" style="padding:0 15px;">
+                <%--<section class="content" style="padding:0 15px;">--%>
 
-                        <div class="row" style="padding:15px 20px 15px 15px;">
+                <%--<div class="row" style="padding:15px 20px 15px 15px;">--%>
 
-                            <%--<div class="col-md-7" style="padding: 0 0 0 5px;">--%>
-                            <%--<div id="echartsMap" style="height:545px;"></div>--%>
-                            <%--</div>--%>
-                            <div class="col-md-7" style="padding:0 0 0 5px;">
-                                <div id="echartsBar_line" style="height:545px;"></div>
-                            </div>
-                            <div class="col-md-5 " style="padding: 0;">
-                                <div class="statisticalGraph" style="padding-left: 15px;">
-                                    <div class="col-md-12 col-sm-12 col-xs-12" style="padding:0;">
-                                        <div class="col-md-6 col-xs-6" style="height: 215px;margin:0 0 15px 0"
-                                             id="page11"></div>
-                                        <div class="col-md-6 col-xs-6" style="height: 215px;" id="page12"></div>
-                                        <span style="position: absolute;bottom: 22%;right: 23%;font-size: 14px;color: red;">超前</span>
-                                    </div>
-                                    <div class="col-md-12 col-sm-12 col-xs-12" id="homePage_echarts1"></div>
-                                </div>
-                            </div>
+                <%--&lt;%&ndash;<div class="col-md-7" style="padding: 0 0 0 5px;">&ndash;%&gt;--%>
+                <%--&lt;%&ndash;<div id="echartsMap" style="height:545px;"></div>&ndash;%&gt;--%>
+                <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
+                <%--<div class="col-md-7" style="padding:0 0 0 5px;">--%>
+                <%--<div id="echartsBar_line" style="height:545px;"></div>--%>
+                <%--</div>--%>
+                <%--<div class="col-md-5 " style="padding: 0;">--%>
+                <%--<div class="statisticalGraph" style="padding-left: 15px;">--%>
+                <%--<div class="col-md-12 col-sm-12 col-xs-12" style="padding:0;">--%>
+                <%--<div class="col-md-6 col-xs-6" style="height: 215px;margin:0 0 15px 0"--%>
+                <%--id="page11"></div>--%>
+                <%--<div class="col-md-6 col-xs-6" style="height: 215px;" id="page12"></div>--%>
+                <%--<span style="position: absolute;bottom: 22%;right: 23%;font-size: 14px;color: red;">超前</span>--%>
+                <%--</div>--%>
+                <%--<div class="col-md-12 col-sm-12 col-xs-12" id="homePage_echarts1"></div>--%>
+                <%--</div>--%>
+                <%--</div>--%>
 
 
-                        </div>
+                <%--</div>--%>
 
-                        <div class="row" style="padding:0 15px">
-                            <div class="col-md-6" style="padding: 0 5px">
-                                <div class="statisticalGraph" id="homePage_echarts2"></div>
-                            </div>
-                            <div class="col-md-6" style="padding:0 5px;">
-                                <div style="padding:15px;background-color: #fff">
-                                    <table class="main-tb-right">
-                                        <tr class="main-tr2">
-                                            <td style="text-align: left"><span style="margin-left: 10px"><img
-                                                    src="<%=bizpath%>/dist/img/main-tongji.png">&nbsp;相关统计
-                                    </span></td>
-                                            <td></td>
-                                        </tr>
-                                        <tr class="tr-2">
-                                            <td class="mtb-border1">
-                                                <img style="margin-left: 25px;margin-top: 5px"
-                                                     src="<%=bizpath%>/dist/img/main-shoufei.png">
+                <%--<div class="row" style="padding:0 15px">--%>
+                <%--<div class="col-md-6" style="padding: 0 5px">--%>
+                <%--<div class="statisticalGraph" id="homePage_echarts2"></div>--%>
+                <%--</div>--%>
+                <%--<div class="col-md-6" style="padding:0 5px;">--%>
+                <%--<div style="padding:15px;background-color: #fff">--%>
+                <%--<table class="main-tb-right">--%>
+                <%--<tr class="main-tr2">--%>
+                <%--<td style="text-align: left"><span style="margin-left: 10px"><img--%>
+                <%--src="<%=bizpath%>/dist/img/main-tongji.png">&nbsp;相关统计--%>
+                <%--</span></td>--%>
+                <%--<td></td>--%>
+                <%--</tr>--%>
+                <%--<tr class="tr-2">--%>
+                <%--<td class="mtb-border1">--%>
+                <%--<img style="margin-left: 25px;margin-top: 5px"--%>
+                <%--src="<%=bizpath%>/dist/img/main-shoufei.png">--%>
 
-                                                <div style="float: right;margin-right: 35px;">
-                                                    <font class="main-ft">15个 <br></font>
-                                                    <font style="font-size: 10px">收费站</font>
-                                                </div>
-                                            </td>
-                                            <td class="mtb-border2">
-                                                <img style="margin-left: 20px;margin-top: 5px"
-                                                     src="<%=bizpath%>/dist/img/main-guanli.png">
+                <%--<div style="float: right;margin-right: 35px;">--%>
+                <%--<font class="main-ft">15个 <br></font>--%>
+                <%--<font style="font-size: 10px">收费站</font>--%>
+                <%--</div>--%>
+                <%--</td>--%>
+                <%--<td class="mtb-border2">--%>
+                <%--<img style="margin-left: 20px;margin-top: 5px"--%>
+                <%--src="<%=bizpath%>/dist/img/main-guanli.png">--%>
 
-                                                <div style="float: right;margin-right: 35px;">
-                                                    <font class="main-ft">135.68公里 <br></font>
-                                                    <font style="font-size: 10px">管理里程</font>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="tr-2">
-                                            <td class="mtb-border1">
-                                                <img style="margin-left: 20px;margin-top: 5px"
-                                                     src="<%=bizpath%>/dist/img/main-ETC.png">
+                <%--<div style="float: right;margin-right: 35px;">--%>
+                <%--<font class="main-ft">135.68公里 <br></font>--%>
+                <%--<font style="font-size: 10px">管理里程</font>--%>
+                <%--</div>--%>
+                <%--</td>--%>
+                <%--</tr>--%>
+                <%--<tr class="tr-2">--%>
+                <%--<td class="mtb-border1">--%>
+                <%--<img style="margin-left: 20px;margin-top: 5px"--%>
+                <%--src="<%=bizpath%>/dist/img/main-ETC.png">--%>
 
-                                                <div style="float: right;margin-right: 35px;">
-                                                    <font class="main-ft">32个 <br></font>
-                                                    <font style="font-size: 10px">ETC车道</font>
-                                                </div>
-                                            </td>
-                                            <td class="mtb-border2">
-                                                <img style="margin-left: 20px;margin-top: 5px"
-                                                     src="<%=bizpath%>/dist/img/main-chedao.png">
+                <%--<div style="float: right;margin-right: 35px;">--%>
+                <%--<font class="main-ft">32个 <br></font>--%>
+                <%--<font style="font-size: 10px">ETC车道</font>--%>
+                <%--</div>--%>
+                <%--</td>--%>
+                <%--<td class="mtb-border2">--%>
+                <%--<img style="margin-left: 20px;margin-top: 5px"--%>
+                <%--src="<%=bizpath%>/dist/img/main-chedao.png">--%>
 
-                                                <div style="float: right;margin-right: 35px;">
-                                                    <font class="main-ft">74个 <br></font>
-                                                    <font style="font-size: 10px">MTC车道</font>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="tr-2">
-                                            <td class="mtb-border3">
-                                                <img style="margin-left: 20px;margin-top: 5px"
-                                                     src="/bizmodules/images/main_stationAdmin.png">
+                <%--<div style="float: right;margin-right: 35px;">--%>
+                <%--<font class="main-ft">74个 <br></font>--%>
+                <%--<font style="font-size: 10px">MTC车道</font>--%>
+                <%--</div>--%>
+                <%--</td>--%>
+                <%--</tr>--%>
+                <%--<tr class="tr-2">--%>
+                <%--<td class="mtb-border3">--%>
+                <%--<img style="margin-left: 20px;margin-top: 5px"--%>
+                <%--src="/bizmodules/images/main_stationAdmin.png">--%>
 
-                                                <div style="float: right;margin-right: 35px;">
-                                                    <font class="main-ft">42人 <br></font>
-                                                    <font style="font-size: 10px">管理人员</font>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <%--<img style="margin-left: 20px;margin-top: 5px"--%>
-                                                <%--src="<%=bizpath%>/dist/img/main-chedao.png">--%>
-                                                <i class="fa fa-fw fa-users"
-                                                   style="font-size: 29px;margin-left: 20px;margin-top: 5px;color: #78dad8;"></i>
+                <%--<div style="float: right;margin-right: 35px;">--%>
+                <%--<font class="main-ft">42人 <br></font>--%>
+                <%--<font style="font-size: 10px">管理人员</font>--%>
+                <%--</div>--%>
+                <%--</td>--%>
+                <%--<td>--%>
+                <%--&lt;%&ndash;<img style="margin-left: 20px;margin-top: 5px"&ndash;%&gt;--%>
+                <%--&lt;%&ndash;src="<%=bizpath%>/dist/img/main-chedao.png">&ndash;%&gt;--%>
+                <%--<i class="fa fa-fw fa-users"--%>
+                <%--style="font-size: 29px;margin-left: 20px;margin-top: 5px;color: #78dad8;"></i>--%>
 
-                                                <div style="float: right;margin-right: 35px;">
-                                                    <font class="main-ft">405人 <br></font>
-                                                    <font style="font-size: 10px">收费人员</font>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>
+                <%--<div style="float: right;margin-right: 35px;">--%>
+                <%--<font class="main-ft">405人 <br></font>--%>
+                <%--<font style="font-size: 10px">收费人员</font>--%>
+                <%--</div>--%>
+                <%--</td>--%>
+                <%--</tr>--%>
+                <%--</table>--%>
+                <%--</div>--%>
+                <%--</div>--%>
 
-                        </div>
+                <%--</div>--%>
 
-                    </section>
-                </div>
+                <%--</section>--%>
+                <%--</div>--%>
 
             </div>
         </div>

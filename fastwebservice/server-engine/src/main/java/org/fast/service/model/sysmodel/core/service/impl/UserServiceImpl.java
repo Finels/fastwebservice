@@ -17,6 +17,7 @@ import org.springframework.http.HttpStatus;
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -43,8 +44,8 @@ public class UserServiceImpl implements UserServiceIntf {
     }
 
     @Override
-    public String doLogin(Map inMap, HttpServletRequest request) {
-
+    public Map doLogin(Map inMap, HttpServletRequest request) {
+        Map out = new HashMap<>();
         FastUser loginUser = null;
         try {
             loginUser = (FastUser) BeanUtil.mapToObject(inMap, FastUser.class);
@@ -77,7 +78,9 @@ public class UserServiceImpl implements UserServiceIntf {
                     e.printStackTrace();
                     throw new SysException("login", "fail", "系统错误，请联系管理员", "AES:encrypt the token string failed,check the stackTrace prints!");
                 }
-                return Base64.encodeBase64String(a);
+                out.put("token", Base64.encodeBase64String(a));
+                out.put("user", currentUser);
+                return out;
             } else {
                 throw new BizException("login", "fail", "密码错误，请重试", HttpStatus.NON_AUTHORITATIVE_INFORMATION);
             }
