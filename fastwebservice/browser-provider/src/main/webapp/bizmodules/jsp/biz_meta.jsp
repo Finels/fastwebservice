@@ -62,4 +62,4 @@
 
 <%--<link rel="stylesheet" href="bizmodules/css/bizmodules.css">--%>
 
-<link rel="shortcut icon" href="favicon.ico">
+<%--<link rel="shortcut icon" href="favicon.ico">--%>

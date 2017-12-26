@@ -1,0 +1,83 @@
+<section class="content">
+
+    <div class="row">
+        <div class="col-md-3 queryConditionDiv">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">查询条件</h3>
+
+                    <div class="box-tools">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                class="fa fa-minus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="box-body querybox">
+                    <div class="col-md-12 cs-select-group">
+                        <label>
+                            姓名匹配
+                        </label>
+
+                        <div>
+                            <input class="easyui-combotree" itemId="planCodeInfo"/>
+                        </div>
+                    </div>
+                    <div class="col-md-12 cs-select-group">
+                        <label>
+                            注册日期
+                        </label>
+
+                        <div>
+                            <input class="easyui-datebox" data-options="require:'true' ,showSeconds:'true'"
+                                   itemId="planStartTime"/>
+                        </div>
+                    </div>
+                    <div class="col-md-12 cs-select-group">
+                        <label>
+                            至
+                        </label>
+
+                        <div>
+                            <input class="easyui-datebox" data-options="require:'true' ,showSeconds:'true'"
+                                   itemId="planEndTime"/>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-12 cs-select-group">
+                        <a class="btn btn-info btn-block margin-bottom" itemId="plantselect_searchbtn"><i
+                                class="fa fa-fw fa-search"></i>查询</a>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /数据展示 -->
+        <div id="select_div">
+            <div class="col-md-9 queryResultDiv">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">
+                            <span class="toggleConditionSpan" itemId="toggleQueryCondition" title="显示隐藏查询条件"></span>
+                            用户信息展示
+                        </h3>
+                        <!--<div class="pull-right">-->
+                        <!--<a class="btn btn-success btn-xs" id="excel_btn"><i-->
+                        <!--class="fa  fa-file-excel-o"></i> 导出</a>-->
+                        <!--</div>-->
+                    </div>
+                    <div class="box-body">
+                        <div class="col-md-12">
+                            <table class="easyui-datagrid" itemId="plan_query_grid">
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+</section>

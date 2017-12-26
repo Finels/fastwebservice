@@ -1,0 +1,164 @@
+/*.indexlb{*/
+    /*margin-top: 50px;*/
+/*}*/
+
+/*.cont-tit{color: #ced3db;padding: 15px 0;margin-top: 30px;}*/
+/*img{max-width: 100%;}*/
+/*!*实时数据展示css*!*/
+/*.sssjtj ul li{padding:1px;text-align: center;height: auto;overflow: hidden;}*/
+/*.sssjtj ul li div{background-color: rgba(0,0,0,0.23);padding: 20px 0;}*/
+/*.sssjtj ul li img{height: 36px;display: inline-block;vertical-align: top;margin-top: 5px;}*/
+/*.sssjtj ul li span{display: inline-block;margin-left: 10px;color: #d0d4da;text-align: left;font-size: 12px;}*/
+/*.sssjtj ul li span strong{display: block;color: #00b4ff;font-size: 16px;}*/
+
+/*@media screen and (min-width: 1200px) {*/
+    /*.sssjtj ul li{width: 14.28% !important;}*/
+    /*.tjsjzs ul li{width: 24% }*/
+    /*.maincont{padding: 0 0px;}*/
+/*}*/
+
+/*!*统计数据展示css*!*/
+/*.tjsjzs ul li{padding:2px;text-align: center;height: auto;overflow: hidden;}*/
+/*.tjsjzs ul li div{padding: 20px 0;}*/
+/*.tjsjzs ul li:nth-child(1) div{background-color: rgba(0,170,171,1);}*/
+/*.tjsjzs ul li:nth-child(2) div{background-color: rgba(52,142,225,1);}*/
+/*.tjsjzs ul li:nth-child(3) div{background-color: rgba(113,123,181,1);}*/
+/*.tjsjzs ul li:nth-child(4) div{background-color: rgba(218,161,72,1);}*/
+/*!*.tjsjzs ul li:nth-child(5) div{background-color: rgba(255,255,255,0.34);}*!*/
+/*.tjsjzs ul li img{height: 38px;display: inline-block;vertical-align: top;margin-top: 5px;}*/
+/*.tjsjzs ul li span{display: inline-block;margin-left: 10px;color: #d0d4da;text-align: left;font-size: 12px;}*/
+/*.tjsjzs ul li span strong{display: block;color: #FFFFFF;font-size: 16px;}*/
+/*@media screen and (max-width: 767px) {*/
+    /*.tjsjzs ul li{text-align: center;}*/
+    /*.tjsjzs ul li span{display: block !important;margin-left: 0;text-align: center;margin-top: -30px;}*/
+/*}*/
+
+/*!*统计图形css*!*/
+/*.tjtx{margin-bottom: 30px;}*/
+/*.tjtx div{padding: 2px 10px 10px 10px;}*/
+/*.tjtx img{border: 1px solid #165c84;}*/
+
+/*.tjsjzs ul li img {*/
+    /*margin-top: -10px;*/
+    /*!*margin-left: 10px;*!*/
+/*}*/
+
+
+span strong {
+    display: block;
+    color: #FFFFFF;
+    font-size: 14px;
+}
+span font {
+    display: block;
+    color: #FFFFFF;
+    font-size: 13px;
+}
+
+.main-tb-left tr:nth-of-type(3) {background-color: rgba(52, 142, 225, 0.3) !important;}
+.main-tb-left tr:nth-of-type(5) {background-color: rgba(52, 142, 225, 0.3) !important;}
+.fta{
+    position: absolute;
+    left: 0px;
+    color: #d0d4da;
+    text-align: left;
+    font-size: 12px;
+}
+.main-tb-left,.main-tb-right{
+    background-color: white;
+    width: 100%;
+}
+.main-tb-left td{
+    width: 205px;
+    height: 40px;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 14px;
+    background-color: rgba(52, 142, 225, 0.5);
+}
+.main-tr td{
+    width: 205px;
+    height: 40px;
+    text-align: center;
+    font-size: 14px;
+    color: white;
+    background-color: #0B4F94;
+}
+.main-tr2 td{
+    width: 210px;
+    height: 40px;
+    text-align: center;
+    font-size: 14px;
+    color: white;
+    background-color: #0B4F94;
+}
+.tr-2 td{
+    background-color: rgba(52, 142, 225, 0.5);
+    width: 210px;
+    height: 80px;
+}
+.tr-2{
+    background-color: white;
+}
+.main-ft{
+    font-weight: bold;
+    font-size: 15px;
+}
+.mtb-border1{
+    border-bottom: solid 1px gainsboro;
+    border-right: solid 1px gainsboro;
+}
+.mtb-border2{
+    border-bottom: solid 1px gainsboro;
+}
+.mtb-border3{
+    border-right: solid 1px gainsboro;
+}
+.showStatisticalData.col-md-3{
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+}
+.StatisticalDataPart1{
+    height:80px;
+    padding: 10px;
+    background-color: rgba(0,170,171,1);
+}
+.StatisticalDataPart2{
+    height: 80px;
+    padding: 20px;
+    background-color: rgba(52,142,225,1);
+}
+.StatisticalDataPart3{
+    height: 80px;
+    padding: 20px;
+    background-color: rgba(113,123,181,1);
+}
+.StatisticalDataPart4{
+    height: 80px;
+    padding: 20px;
+    background-color: rgba(218,161,72,1);
+}
+.statisticalGraph{
+    height: 310px;
+    /*border: 1px solid #165C84;*/
+    margin-bottom: 15px;
+}
+#homePage_echarts1{
+    /*height: 300px;*/
+    height: 315px;
+}
+.dataTit span strong{
+    color:#777;
+    margin-top: 30px;
+    font-weight: normal;
+}
+.flipster ul li img{
+    height:355px;
+    width:500px;
+}
+/*esayui 定义*/
+.grid_title{
+    font-weight: bold;
+    font-family: 'Microsoft YaHei';
+    font-size: 11pt;
+}

@@ -78,7 +78,7 @@ public class HomeController {
         //将token写入客户端浏览器的cookie中
         Cookie cookie = new Cookie("signature", userToken);
         cookie.setPath("/");
-//        response.addCookie(cookie);
+        response.addCookie(cookie);
         String redirctUrl = "/bizmodules/jsp/mainframe_light.jsp";
         return new ResponseEntity<ResultBody>(new ResultBody("login", "success", resultMap, redirctUrl), HttpStatus.OK);
     }

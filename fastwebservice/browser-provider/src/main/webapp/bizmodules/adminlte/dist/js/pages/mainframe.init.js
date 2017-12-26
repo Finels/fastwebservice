@@ -9,21 +9,21 @@ function manager() {
     // window.open('localhost:8888/framework/jsp/mainframe.jsp');
 }
 
-var index_url = Scdp.getSysConfig("BASE_PATH") + "index.jsp";
+var index_url = "/index.jsp";
 
 //页面初始化加载事件
 $(document).ready(function () {
     loadModule();
-    InitBaseUser();
+    //InitBaseUser();
     //导航处理
     tab_pro();
     //初始化标签
     init();
     //检测登录是否过期
-    checkIsLogin();
+    //checkIsLogin();
     ///注册菜单查询事件和回车事件
-    $("#search-btn_mainsidebar").click(doMenuSearch);
-    //Scdp.openTab("Index.controller.indexController", "桌面", "indexmenu", Scdp.Const.MENU_TYPE_CTL, {}, false);
+    //$("#search-btn_mainsidebar").click(doMenuSearch);
+    ////Scdp.openTab("Index.controller.indexController", "桌面", "indexmenu", Scdp.Const.MENU_TYPE_CTL, {}, false);
     $("#loadingMainframe").remove();
 });
 
@@ -49,11 +49,10 @@ function init() {
         return "ADMIN" == a ? Scdp.I18N.USER_ADMIN : a
     };
 
-    if (Scdp.CacheUtil.get(Scdp.Const.USER_NAME) == null) {
+    if (BR.getCookie("signature") == null) {
         Scdp.Msg.warn("用户登陆信息过期，请重新登陆", function () {
             window.location.replace(index_url);
         });
-
     }
     //初始化用户名
     $('[itemId=username]').text(Scdp.CacheUtil.get(Scdp.Const.USER_NAME));
@@ -115,7 +114,7 @@ function init() {
     });
 
     //加载未读消息
-    loadUnReadReceive();
+    //loadUnReadReceive();
 }
 
 /**
@@ -185,11 +184,21 @@ function loadUnReadReceive() {
 }
 
 /**
+ * 点击加载tab页
+ */
+function append(e) {
+
+}
+/**
  * kendo tab 操作
  * 作用：导航处理
  */
 function tab_pro() {
-    var append = function (e) {
+
+
+    var tabStrip = Scdp.ModuleManager.getObject("scdpNavTab");
+    //单击左边栏时添加新的tab页
+    $("#main_sidebar_menu_div").on("click", ".taglink", function (e) {
         if (e.type != "keypress" || 13 == e.keyCode) {
             var title = $(this).attr("title") == "" ? $(this).text() : $(this).attr("title");
             var linkhref = $(this).attr("taglinkref");
@@ -203,14 +212,8 @@ function tab_pro() {
             Scdp.openTab(linkhref, title, itemid, menutype, actionparams, false);
             $('li.navbar-right.closeAllTabs').show();
             $('.treeview-menu').removeClass('closeMenu');
-
         }
-    };
-
-
-    var tabStrip = Scdp.ModuleManager.getObject("scdpNavTab");
-    //单击左边栏时添加新的tab页
-    $(".taglink").click(append);
+    });
     //绑定关闭事件
     $("#navtabstrip").on("click", ".fa-times-circle", function () {
         tabStrip.closeTab(this);
@@ -255,7 +258,7 @@ function tab_pro() {
 //使用递归算法遍历菜单
 function analysisModule(module) {
     var html = "";
-    var moduleData = module.items;
+    var moduleData = module;
     for (var i = 0; i < moduleData.length; i++) {
         if (null != moduleData[i].menu) { //是含有为子节点
             html += '<li class="treeview fullWidth" style="cursor:pointer;">' +
@@ -302,30 +305,38 @@ function analysisModule(module) {
 function loadModule() {
     var params = {}
     var data = JSON.stringify(params)
-    var sys_menu = Scdp.CacheUtil.getTemp(Scdp.Const.CACHE_TYPE_SYS_MENU, data, !0, !0);
-    if (Scdp.ObjUtil.isEmpty(sys_menu) || Scdp.ObjUtil.isEmpty(sys_menu.treeData) || Scdp.ObjUtil.isEmpty(sys_menu.treeData.menu) || Scdp.ObjUtil.isEmpty(sys_menu.treeData.menu.items)) {
-        Scdp.doAction("sys-user-mainframeinit", params, function (a) {
-            if (a.success) {
-                sys_menu = a;
-                Scdp.CacheUtil.setTemp(Scdp.Const.CACHE_TYPE_SYS_MENU, data, sys_menu, true, true);
-            }
-        }, null, false, false)
-    } else {
-        //Scdp.doAction("common-null", params, null, null, false, true);
-    }
-    //加载菜单
-    if (Scdp.ObjUtil.isNotEmpty(sys_menu.treeData.menu)) {
-        var moduleData = sys_menu.treeData.menu.items, menu = {items: []};
-        //判断根节点是否为绿通项目节点，如果不是，则不加载
-        for (var i = 0; i < moduleData.length; i++) {
-            if (moduleData[i].menuCode != 'MNU_LTMANAGEMENT') {
-                menu.items.push(moduleData[i]);
-            }
-        }
+    //var sys_menu = Scdp.CacheUtil.getTemp(Scdp.Const.CACHE_TYPE_SYS_MENU, data, !0, !0);
+    //if (Scdp.ObjUtil.isEmpty(sys_menu) || Scdp.ObjUtil.isEmpty(sys_menu.treeData) || Scdp.ObjUtil.isEmpty(sys_menu.treeData.menu) || Scdp.ObjUtil.isEmpty(sys_menu.treeData.menu.items)) {
+    //    Scdp.doAction("sys-user-mainframeinit", params, function (a) {
+    //        if (a.success) {
+    //            sys_menu = a;
+    //            Scdp.CacheUtil.setTemp(Scdp.Const.CACHE_TYPE_SYS_MENU, data, sys_menu, true, true);
+    //        }
+    //    }, null, false, false)
+    //} else {
+    //    //Scdp.doAction("common-null", params, null, null, false, true);
+    //}
+    BR.doAjax("/menu/load.action", {}, true,
+        function (ret) {
+            var menu = ret.resultBody.data;
+            $("#menubar").append(analysisModule(menu));
+        },
+        function () {
 
-        $("#menubar").append(analysisModule(menu));
-       // $("#menubar").append(analysisModule(sys_menu.treeData.menu));
-    }
+        });
+    ////加载菜单
+    //if (Scdp.ObjUtil.isNotEmpty(sys_menu.treeData.menu)) {
+    //    var moduleData = sys_menu.treeData.menu.items, menu = {items: []};
+    //    //判断根节点是否为绿通项目节点，如果不是，则不加载
+    //    for (var i = 0; i < moduleData.length; i++) {
+    //        if (moduleData[i].menuCode != 'MNU_LTMANAGEMENT') {
+    //            menu.items.push(moduleData[i]);
+    //        }
+    //    }
+    //
+    //
+    //    // $("#menubar").append(analysisModule(sys_menu.treeData.menu));
+    //}
 }
 /**
  * 判断用户是否登录

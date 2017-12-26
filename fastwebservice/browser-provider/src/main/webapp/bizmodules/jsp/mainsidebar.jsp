@@ -12,7 +12,7 @@
             </div>
             <div class="pull-left info">
                 <p itemId="username"></p>
-                <a ><i class="fa fa-circle text-success"></i><spring:message code="online_status"/></a>
+                <a ><i class="fa fa-circle text-success"></i>管理员</a>
             </div>
         </div>
         <!-- search form -->

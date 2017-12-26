@@ -79,7 +79,7 @@ function getKey() {
                 //sessionStorage.setItem('pulickKey', publicKey);
                 window.sessionStorage.publicKey = publicKey;
             }
-        }, null,
+        },
         function (ret) {
             MP.Msg.warn("密钥请求失败，请刷新页面重试");
         });
@@ -153,7 +153,7 @@ function doLogin(username, password) {
         //}
     }, function () {
         dismissLoginDiv();
-    }, true, true);
+    });
 
 }
 function dismissLoginDiv() {

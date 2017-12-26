@@ -18,12 +18,13 @@ Namespace.register("BR.Const");
 Namespace.register("BR.Utils");
 Namespace.register("BR.DateUtils");
 
-BR.doAjax = function (url, param, maskid, success, complete, error) {
+BR.doAjax = function (url, param, maskid, success, error, dataType) {
     //param = JSON.stringify(param);
     //var params = {
     //    actionUrl: url,
     //    postData:
     //};
+    dataType = dataType || "json";
     var a = {};
     a.dataBody = param;
     a.signature = window.sessionStorage.signature;
@@ -39,7 +40,7 @@ BR.doAjax = function (url, param, maskid, success, complete, error) {
         //提交的数据
         data: JSON.stringify(a),
         //返回数据的格式
-        dataType: "json",//"xml", "html", "script", "json", "jsonp", "text".
+        dataType: dataType,//"xml", "html", "script", "json", "jsonp", "text".
         //jsonp:"callback",
         //jsonpCallback:"",
         contentType: "application/json",
@@ -53,7 +54,7 @@ BR.doAjax = function (url, param, maskid, success, complete, error) {
         complete: function (ret) {
             Scdp.ObjUtil.isNotEmpty(maskid) && Scdp.unmask();
             if (ret.status == 500) {
-                MP.Msg.error(ret.status + "错误：" + (ret.responseJSON == null || ret.responseJSON.errorDescription == null ? "未知错误" : ret.responseJSON.errorDescription) + "<br>原因：" + (ret.responseJSON.errorStack == null || ret.responseJSON.errorStack == '' ? "未知原因" : ret.responseJSON.errorStack));
+                MP.Msg.error(ret.status + "错误：" + (ret.responseJSON == null || ret.responseJSON.errorDescription == null ? "未知错误" : ret.responseJSON.errorDescription) + "<br>原因：" + (ret.responseJSON == null || ret.responseJSON.errorStack == null || ret.responseJSON.errorStack == '' ? "未知原因" : ret.responseJSON.errorStack));
             } else if (ret.status != 200) {
                 MP.Msg.warn(ret.status + "错误：" + (ret.responseJSON == null || ret.responseJSON.errorDescription == null ? "未知错误" : ret.responseJSON.errorDescription));
             }
@@ -61,4 +62,11 @@ BR.doAjax = function (url, param, maskid, success, complete, error) {
         //调用出错执行的函数
         error: error
     });
+}
+BR.getCookie = function (name) {
+    var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+    if (arr = document.cookie.match(reg))
+        return decodeURI(arr[2]);
+    else
+        return null;
 }
