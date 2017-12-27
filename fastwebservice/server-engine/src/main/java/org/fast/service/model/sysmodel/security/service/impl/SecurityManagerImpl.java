@@ -44,7 +44,7 @@ public class SecurityManagerImpl implements SecurityManager {
             privateKey = RSAUtil.getPrivateKey(keyMap);
         } catch (Exception e) {
             e.printStackTrace();
-            throw new SysException("密钥生成失败");
+            throw new SysException("generateKey", "fail", "密钥生成失败，请刷新重试", "generate the Rsa key failed.Actually,refresh the page or click the F5 button may make it works.");
         }
         //保存到session中
         request.getSession().setAttribute("privateKey", privateKey);

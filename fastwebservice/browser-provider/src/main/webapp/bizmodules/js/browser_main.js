@@ -57,7 +57,9 @@ BR.doAjax = function (url, param, maskid, success, error, dataType) {
                 MP.Msg.error(ret.status + "错误：" + (ret.responseJSON == null || ret.responseJSON.errorDescription == null ? "未知错误" : ret.responseJSON.errorDescription) + "<br>原因：" + (ret.responseJSON == null || ret.responseJSON.errorStack == null || ret.responseJSON.errorStack == '' ? "未知原因" : ret.responseJSON.errorStack));
             } else if (ret.status != 200) {
                 MP.Msg.warn(ret.status + "错误：" + (ret.responseJSON == null || ret.responseJSON.errorDescription == null ? "未知错误" : ret.responseJSON.errorDescription));
+
             }
+
         },//XMLHttpRequest, textStatus
         //调用出错执行的函数
         error: error

@@ -24,7 +24,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
  */
 @Configuration
 @EnableWebMvc
-@ComponentScan("org.fast.service.model")
+@ComponentScan(basePackages = {"org.fast.service.model", "org.fast.service.interceptor"})
 public class WebConfig extends WebMvcConfigurerAdapter {
     @Bean
     public ViewResolver viewResolver() {
@@ -52,7 +52,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new UserTokenInterceptor()).addPathPatterns("/bizmodules/**");
+        registry.addInterceptor(new UserTokenInterceptor()).addPathPatterns("/**").excludePathPatterns(new String[]{"/security/**", "/home/**"});
     }
 
     /**
