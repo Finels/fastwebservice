@@ -147,7 +147,6 @@ function doLogin(username, password) {
             loginName.unshift(username);
 
         }
-
         localStorage.setItem('loginName', loginName);
         // localStorage.setItem('loginPassword', loginPassword);
         //}
@@ -277,9 +276,11 @@ function login() {
  * 登录成功后函数
  * */
 function afterLoginSuccess(b) {
-    window.sessionStorage.setItem("username", b.resultBody.username);
-    var c = b.redirectUrl;
-    window.location.replace(c);
+    if (b.resultBody) {
+        window.sessionStorage.setItem("username", b.resultBody.username);
+        var c = b.redirectUrl;
+        window.location.replace(c);
+    }
 }
 
 function afterLogin() {

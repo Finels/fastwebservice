@@ -66,7 +66,7 @@ public class UserServiceImpl implements UserServiceIntf {
         if (StringUtil.isNotEmpty(password)) {
             FastUser currentUser = userRepository.findByUsername(username);
             if (currentUser == null) {
-                throw new BizException("login", "fail", "账号不存在", HttpStatus.NON_AUTHORITATIVE_INFORMATION);
+                throw new BizException("login", "fail", "账号不存在", HttpStatus.UNAUTHORIZED);
             }
             if (currentUser.getPassword().equals(password)) {
                 //密码匹配，登录成功，返回验证签名，之后的每次请求都需要验证该签名
@@ -82,7 +82,7 @@ public class UserServiceImpl implements UserServiceIntf {
                 out.put("user", currentUser);
                 return out;
             } else {
-                throw new BizException("login", "fail", "密码错误，请重试", HttpStatus.NON_AUTHORITATIVE_INFORMATION);
+                throw new BizException("login", "fail", "密码错误，请重试", HttpStatus.UNAUTHORIZED);
             }
         } else {
             throw new SysException("login", "fail", "解密错误，请刷新页面重试", "RSA:decrypted the password string is null,check the stackTrace prints or contact client to report");

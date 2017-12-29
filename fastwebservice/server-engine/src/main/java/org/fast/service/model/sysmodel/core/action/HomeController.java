@@ -86,45 +86,6 @@ public class HomeController {
     }
 
 
-    @RequestMapping(value = "loginExample.action")
-    @ResponseBody
-    public ResponseEntity<ResultBody> loginExample(@RequestBody FastUser loginUser, HttpServletRequest request, HttpServletResponse response) {
-        request = (MultipartHttpServletRequest) request;
-        MultiValueMap fileMap = ((MultipartHttpServletRequest) request).getMultiFileMap();
-        SqlSession session = sessionFactory.openSession();
-
-        String currentUser = userService.getUserByUsername(loginUser.getUsername());
-//        FastUserDao sessionDao = session.getMapper(FastUserDao.class);
-//        FastUser currentUser1 = sessionDao.getUser(loginUser.getUsername());
-        List files = (List) fileMap.get("file");
-        MultipartFile file = (MultipartFile) files.get(0);
-        File realFile = new File(request.getSession().getServletContext().getRealPath("/") + File.separator + file.getOriginalFilename());
-        try {
-            file.transferTo(realFile);
-        } catch (IOException e) {
-            e.printStackTrace();
-            throw new BizException("文件写入失败");
-        }
-        Map resultMap = new HashMap<>();
-        resultMap.put("signature", "test123");
-        return new ResponseEntity<ResultBody>(new ResultBody("logined", "success", resultMap, request.getContextPath()), HttpStatus.OK);
-
-    }
-
-    @RequestMapping("save.action")
-    public void doSave(@RequestBody FastUser user, HttpServletRequest request, HttpServletResponse response) {
-        user.setUuid("123123");
-//        repository.save(user);
-        try {
-            response.sendRedirect("/index.jsp");
-            return;
-        } catch (IOException e) {
-            e.printStackTrace();
-            throw new BizException("未知错误");
-        }
-    }
-
-
     @ExceptionHandler({BizException.class})
     public ResponseEntity exception(BizException e, HttpServletRequest request) {
         return new ResponseEntity<Warn>(new Warn(e.getApiName(), e.getErrorCode(), e.getExceptionMsg(), request.getContextPath()), e.getHttpStatus());

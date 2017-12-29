@@ -30,7 +30,7 @@ import java.io.IOException;
 @EnableTransactionManagement //启用事务注解扫描器
 @EnableAspectJAutoProxy
 @ComponentScan(basePackages = "org.fast.service")
-@PropertySource({"WEB-INF/classes/database.properties", "WEB-INF/classes/mongo.properties"})
+@PropertySource({"WEB-INF/classes/database.properties", "WEB-INF/classes/mongo.properties", "WEB-INF/classes/system-config.properties"})
 public class ApplicationContextConfig {
 
 
