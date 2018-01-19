@@ -1,7 +1,9 @@
 package org.fast.service.model.sysmodel.core.service.impl;
 
 import org.apache.tomcat.util.codec.binary.Base64;
+import org.fast.service.dao.ApsidUserRepository;
 import org.fast.service.dao.FastUserRepository;
+import org.fast.service.domain.ApsidUser;
 import org.fast.service.domain.FastUser;
 import org.fast.service.model.sysmodel.core.service.intf.UserServiceIntf;
 import org.fast.service.sys.exception.BizException;
@@ -14,10 +16,14 @@ import org.springframework.cache.annotation.Cacheable;
 import org.fast.service.model.sysmodel.security.service.intf.SecurityManager;
 import org.springframework.http.HttpStatus;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -35,7 +41,13 @@ public class UserServiceImpl implements UserServiceIntf {
     private FastUserRepository userRepository;
 
     @Autowired
+    private ApsidUserRepository apsidUserRepository;
+
+    @Autowired
     private SecurityManager encryptManager;
+
+    @Autowired
+    private EntityManagerFactory emf;
 
     @Cacheable(value = "redisCache", key = "#method+'_'+#username")
     public String getUserByUsername(String username) {
@@ -88,5 +100,35 @@ public class UserServiceImpl implements UserServiceIntf {
             throw new SysException("login", "fail", "解密错误，请刷新页面重试", "RSA:decrypted the password string is null,check the stackTrace prints or contact client to report");
         }
 
+    }
+
+    @Override
+    public List doQuery(Integer start, Integer end) {
+        List<ApsidUser> dataList = apsidUserRepository.findAllWithLimit(start, end);
+        return dataList;
+    }
+
+    @Override
+    public List doQuery(String starttime, String endtime, Integer start, Integer end) {
+        List<ApsidUser> dataList = apsidUserRepository.findAllByCreattimeWithLimit(starttime, endtime, start, end);
+        return dataList;
+    }
+
+    @Override
+    public Integer doQueryCount() {
+        EntityManager em = emf.createEntityManager();
+        Query query = em.createNativeQuery("select count(uuid) from apsid_user");
+        Object i = query.getSingleResult();
+        return i == null ? 0 : Integer.parseInt(i.toString());
+    }
+
+    @Override
+    public Integer doQueryCount(String starttime, String endtime) {
+        EntityManager em = emf.createEntityManager();
+        Query query = em.createNativeQuery("select count(uuid) from apsid_user where creattime between ?1 and ?2");
+        query.setParameter(1, starttime);
+        query.setParameter(2, endtime);
+        Object i = query.getSingleResult();
+        return i == null ? 0 : Integer.parseInt(i.toString());
     }
 }

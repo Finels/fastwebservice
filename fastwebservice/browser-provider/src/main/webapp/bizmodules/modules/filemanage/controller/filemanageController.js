@@ -36,7 +36,7 @@ Scdp.define("filemanage.controller.filemanageController", {
             return;
         }
         if (!viewdata.content) {
-            MP.Msg.warm('请填写问题描述！');
+            MP.Msg.warm('请填文件描述！');
             return;
         }
         BR.doAction("scdp-user-feedback-add", {viewdata: viewdata}, function () {

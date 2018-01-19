@@ -25,24 +25,6 @@ import java.util.List;
  */
 public interface FastUserRepository extends JpaRepository<FastUser, String> {
 
-
     public FastUser findByUsername(String username);
-
-    FastUser findByPhone(String Phone);
-
-    List<FastUser> findByNickname(String nickname);
-
-    List<FastUser> findByNicknameNotNull();
-
-    List<FastUser> findByNicknameLike(String nickname);//传入的nickname需要加上%才能做like比较
-
-    List<FastUser> findByNicknameOrUsername(String nickname, String username);
-
-//    List<FswUser> findByNicknameOrUsernameIgnoresCase(String nickname, String username);//只忽略了username的大小写
-
-//    List<FswUser> findByNicknameOrUsernameAllIgnoresCaseOrderBySeqDesc(String nickname, String username);
-
-    @Query(value = "select * from fast_user", nativeQuery = true)
-    List<FastUser> findFswUserByNativeSql();
 
 }

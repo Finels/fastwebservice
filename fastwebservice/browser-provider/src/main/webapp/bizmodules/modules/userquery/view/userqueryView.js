@@ -19,57 +19,81 @@ Scdp.define("userQuery.view.userqueryView", {
             singleSelect: true,
             striped: true,
             columns: [[
-                {field: "ck", checkbox: true},
+                //{field: "ck", checkbox: true},
                 {
-                    field: "infoTypeDesc",
+                    field: "firstname",
                     width: 120,
-                    title: "姓名",
+                    title: "First Name",
                     sortable: "true"
                 }
                 , {
-                    field: "userName",
+                    field: "middlename",
+                    width: 120,
+                    title: "Middle Name",
+                    sortable: "true"
+                }
+                , {
+                    field: "lastname",
+                    width: 120,
+                    title: "Last Name",
+                    sortable: "true"
+                }
+                , {
+                    field: "position",
                     width: 180,
-                    title: "单位",
+                    title: "Position",
+                    sortable: "true"
+                }, {
+                    field: "institution",
+                    width: 180,
+                    title: "Institution",
                     sortable: "true"
                 }
                 , {
-                    field: "companyCodeDesc",
+                    field: "city",
                     width: 120,
-                    title: "专业"
+                    title: "City",
+                    sortable: "true"
+                }, {
+                    field: "country",
+                    width: 120,
+                    title: "Country",
+                    sortable: "true"
                 }
                 , {
-                    field: "createTime",
+                    field: "address",
                     width: 120,
-                    title: "注册时间",
+                    title: "Address"
+                }
+                , {
+                    field: "email",
+                    width: 180,
+                    title: "E-mail",
                     sortable: "true",
                     formatter: MP.TranslateTime
                 }, {
-                    field: "isHandle",
+                    field: "creattime",
                     width: 160,
-                    title: "手机号",
+                    title: "Register Time",
                     sortable: "true"
                 },
                 {
-                    field: "isPublish",
-                    width: 160,
-                    title: "Email",
+                    field: "code",
+                    width: 120,
+                    title: "Register Code",
                     sortable: "true"
-                },
-                {
-                    field: "摘要题目",
-                    width: 200,
-                    title: "回复时间",
-                    formatter: MP.TranslateTime
                 }
             ]],
             onLoadSuccess: function (data) {
                 grid.datagrid("columnMoving");     //设置列拖动
             },
-            loader: function (params, success, fail) {
-                params.limit = params.rows;
-                params.start = params.page;
-                MP.doAction("scdp-user-feedback-query", params, success, fail, true, true);
-            }
+            //loader: function (params, success, fail) {
+            //    params.limit = params.rows;
+            //    params.start = params.page;
+            //    BR.doAjax("/user/query.action", params, true, function (ret) {
+            //        success(ret.resultBody)
+            //    }, fail);
+            //}
         });
     },
 
