@@ -1,5 +1,5 @@
-var mergeFile_split=null;
-var abstractMvc = function($) {
+var mergeFile_split = null;
+var abstractMvc = function ($) {
     /*  AbstractController
      **  AbstractView
      **  AbstractModel
@@ -10,35 +10,35 @@ var abstractMvc = function($) {
         modelClass: 'Scdp.bootstrap.mvc.AbstractModel',
         view: null,
         actionparams: null,
-        UDID:null,
-        orgCtrUDID:null,
+        UDID: null,
+        orgCtrUDID: null,
         menuCode: null,
-        useBootstrapExportXls:false,
-        init: function(ele,actionparams, menuCode, menuText) {
+        useBootstrapExportXls: false,
+        init: function (ele, actionparams, menuCode, menuText) {
             var contr = this;
             contr.UDID = Scdp.StrUtil.getUUID();
             contr.menuCode = menuCode;
             contr.menuText = menuText;
             var tempEle = ele;
             this.actionparams = actionparams;
-            if(actionparams && typeof actionparams == "object" && actionparams.orgCtrUDID) {
+            if (actionparams && typeof actionparams == "object" && actionparams.orgCtrUDID) {
                 contr.orgCtrUDID = actionparams.orgCtrUDID;
             }
             Scdp.loadComponent(this.viewClass)
-                .done(function(viewObj){
+                .done(function (viewObj) {
                     contr.view = viewObj;
                     contr.view.controller = contr;
                     contr.view.ele = tempEle;
                     contr.view.menuCode = contr.menuCode;
                     contr.view.menuText = contr.menuText;
-                    if(contr.view.init) {
+                    if (contr.view.init) {
                         try {
                             contr.view.init();
                         } catch (error) {
                             Scdp.DebugUtil.logErr("view init error occur! " + error.stack)
                         }
 
-                        if(contr.initCtr) {
+                        if (contr.initCtr) {
                             try {
                                 contr.initCtr();
                             } catch (error) {
@@ -48,32 +48,32 @@ var abstractMvc = function($) {
                         contr.view._afterInit();
                     }
                     contr.registerEvents();
-                    if(contr.view.viewType==2){
+                    if (contr.view.viewType == 2) {
                         contr.loadTreeMenu();
                     }
-                    if(contr.tabChange) {
+                    if (contr.tabChange) {
                         contr.tabChange(contr);
                     }
                     contr._workFlowLoad();
 
-                    if(contr.afterInit) {
+                    if (contr.afterInit) {
                         contr.afterInit();
                     }
                 })
-                .fail(function(){
+                .fail(function () {
                     throw new Error("can not load module view!");
                 });
-            if(this.modelClass) {
+            if (this.modelClass) {
                 Scdp.loadComponent(this.viewClass)
-                    .done(function(){
+                    .done(function () {
 
                     })
-                    .fail(function(){
+                    .fail(function () {
                         throw new Error("can not load module model!");
                     });
             }
         },
-        _workFlowLoad: function(){
+        _workFlowLoad: function () {
             var me = this;
             if (me.view && Scdp.ObjUtil.isNotEmpty(me.actionparams) && Scdp.ObjUtil.isNotEmpty(me.actionparams.wf_businessKey)) {
                 var businessKey = me.actionparams.wf_businessKey;
@@ -82,7 +82,7 @@ var abstractMvc = function($) {
                 }
             }
         },
-        loadTreeMenu:function(){
+        loadTreeMenu: function () {
             var me = this;
             var treeName = me.view.getCmp("treeMenu");
             //Scdp.doAction(me.queryAction,{}, function(e){
@@ -116,31 +116,31 @@ var abstractMvc = function($) {
                     var comp = me.view.getCmp(itemId);
                     if (Scdp.ObjUtil.isNotEmpty(comp) && Scdp.ObjUtil.isNotEmpty(fn)) {
                         var xtype = comp.attr("xtype");
-                        if(xtype) {
+                        if (xtype) {
                             var compObj = comp.data(xtype);
-                            if(compObj.bind && $.isFunction(compObj.bind) && "on" == name.substring(0,2)) {
+                            if (compObj.bind && $.isFunction(compObj.bind) && "on" == name.substring(0, 2)) {
                                 compObj.bind(name, fn.bind(me));
                                 return true;
                             }
                         }
-                        if(name == 'click') {
+                        if (name == 'click') {
                             var fun = function () {
-                                if(comp.attr("disclick") == 'disclick') {
+                                if (comp.attr("disclick") == 'disclick') {
                                     // console.log("ttt");
                                     return null;
                                 }
                                 // console.log("click");
-                                comp.attr("disclick","disclick");
+                                comp.attr("disclick", "disclick");
                                 var args = [];
-                                if(arguments.length>=1) {
-                                    for(var i=0;i<arguments.length; i ++) {
+                                if (arguments.length >= 1) {
+                                    for (var i = 0; i < arguments.length; i++) {
                                         args.push(arguments[i]);
                                     }
                                 }
-                                var ret = fn.apply(me,args);
+                                var ret = fn.apply(me, args);
                                 setTimeout(function () {
                                     comp.removeAttr("disclick");
-                                },500);
+                                }, 500);
                                 return ret;
                             }
                             comp.on(name, fun.bind(me));
@@ -148,35 +148,35 @@ var abstractMvc = function($) {
                             comp.on(name, fn.bind(me));
                         }
 
-                    } else if(Scdp.ObjUtil.isNotEmpty(fn)) {
+                    } else if (Scdp.ObjUtil.isNotEmpty(fn)) {
                         var itemIds = itemId.split("->");
                         var itemIdSelector = "";
                         for (var i = 0; i < itemIds.length; i++) {
-                            itemIdSelector += "[itemId='"+ itemIds[i]+ "']" + " ";
+                            itemIdSelector += "[itemId='" + itemIds[i] + "']" + " ";
                         }
-                        if(name == 'click') {
+                        if (name == 'click') {
                             var fun = function () {
-                                if($(this).attr("disclick") == 'disclick') {
+                                if ($(this).attr("disclick") == 'disclick') {
                                     // console.log("ttt");
                                     return null;
                                 }
                                 // console.log("click");
-                                $(this).attr("disclick","disclick");
+                                $(this).attr("disclick", "disclick");
                                 var args = [];
-                                if(arguments.length>=1) {
-                                    for(var i=0;i<arguments.length; i ++) {
+                                if (arguments.length >= 1) {
+                                    for (var i = 0; i < arguments.length; i++) {
                                         args.push(arguments[i]);
                                     }
                                 }
                                 var ret = fn.apply(me, args);
                                 setTimeout(function () {
                                     $(this).removeAttr("disclick");
-                                },500);
+                                }, 500);
                                 return ret;
                             }
-                            me.view.ele.off(name, itemIdSelector).on(name,itemIdSelector, fun);
+                            me.view.ele.off(name, itemIdSelector).on(name, itemIdSelector, fun);
                         } else {
-                            me.view.ele.off(name, itemIdSelector).on(name,itemIdSelector, fn.bind(me));
+                            me.view.ele.off(name, itemIdSelector).on(name, itemIdSelector, fn.bind(me));
                         }
                     }
                 } catch (error) {
@@ -187,34 +187,34 @@ var abstractMvc = function($) {
         _getSuperExtraEvents: function () {
             var _super = this._super;
             var events = [];
-            while(_super) {
-                if(_super.extraEvents) {
+            while (_super) {
+                if (_super.extraEvents) {
                     events = $.merge(events, _super.extraEvents);
                 }
                 _super = _super._super;
             }
             return events;
         },
-        getCaller: function() {
+        getCaller: function () {
             var caller = null;
-            if(this.orgCtrUDID && window.opener) {
+            if (this.orgCtrUDID && window.opener) {
                 var orgWinCurrentCtr = window.opener.Scdp.ModuleManager.getObject("currentCtr");
-                if(orgWinCurrentCtr) {
+                if (orgWinCurrentCtr) {
                     caller = window.opener.Scdp.ModuleManager.getObject(this.orgCtrUDID);
-                    if(caller && caller._compName === orgWinCurrentCtr._compName) {
+                    if (caller && caller._compName === orgWinCurrentCtr._compName) {
                         return orgWinCurrentCtr;
                     }
                 }
             }
             return null;
         },
-        gotCaller: function() {
+        gotCaller: function () {
             var caller = null;
-            if(this.orgCtrUDID) {
+            if (this.orgCtrUDID) {
                 caller = Scdp.ModuleManager.getObject(this.orgCtrUDID);
-                if(caller && caller.view && caller.view.ele) {
+                if (caller && caller.view && caller.view.ele) {
                     var id = caller.view.ele.attr("id");
-                    if($("#"+id).length>0) {
+                    if ($("#" + id).length > 0) {
                         return caller;
                     }
                 }
@@ -225,29 +225,29 @@ var abstractMvc = function($) {
 
     Scdp.define("Scdp.bootstrap.mvc.AbstractView", {
         canEdit: true,
-        ele:null,
-        editflag:"",
-        uistatus:"",
-        controller:null,
+        ele: null,
+        editflag: "",
+        uistatus: "",
+        controller: null,
         createBy: null,
         createTime: null,
         updateBy: null,
         updateTime: null,
-        viewType:1,
-        menuText:null,
-        uuidMapping:'uuid',
+        viewType: 1,
+        menuText: null,
+        uuidMapping: 'uuid',
 
-        init: function() {
-            if(this.initView) {
+        init: function () {
+            if (this.initView) {
                 this.initView();
             }
             this.uistatus = Scdp.Const.UI_INFO_STATUS_NULL;
-            if(this.afterInitView) {
+            if (this.afterInitView) {
                 this.afterInitView();
             }
         },
-        _afterInit: function() {
-            if(this.afterInit) {
+        _afterInit: function () {
+            if (this.afterInit) {
                 this.afterInit();
             }
 
@@ -257,14 +257,14 @@ var abstractMvc = function($) {
             // }
 
             var tables = $("table[xtype='bTable']", this.ele);
-            if(tables && tables.length > 0) {
-                $.each(tables, function(i, table) {
+            if (tables && tables.length > 0) {
+                $.each(tables, function (i, table) {
                     $(table).bTable("_initTableInView");
                 })
             }
         },
-        getCmp: function(itemId) {
-            if(this.ele) {
+        getCmp: function (itemId) {
+            if (this.ele) {
                 return this.ele.getCmp(itemId);
             }
             return null;
@@ -272,7 +272,7 @@ var abstractMvc = function($) {
         gotValue: function () {
             var dirtyOnly = false;
             var me = this, cmpData = {}, bindings = me.bindings;
-            if(me.editflag == "+") {
+            if (me.editflag == "+") {
                 dirtyOnly = false;
             }
             if (bindings) {
@@ -293,10 +293,10 @@ var abstractMvc = function($) {
                                 }
                             }
 
-                            if("bForm" === xtype || "bPanel" === xtype) {
+                            if ("bForm" === xtype || "bPanel" === xtype) {
                                 dataItem.editflag = me.editflag;
                                 var toList = itemObj.attr("toList");
-                                if("true" == toList) {
+                                if ("true" == toList) {
                                     cmpData[itemArr[0]] = [dataItem];
                                 } else {
                                     cmpData[itemArr[0]] = dataItem;
@@ -320,7 +320,7 @@ var abstractMvc = function($) {
                                         }
                                     }
                                     var toList = itemObj.attr("toList");
-                                    if("true" == toList) {
+                                    if ("true" == toList) {
                                         cmpData[itemArr[0]][itemArr[1]] = [dataItem];
                                     } else {
                                         cmpData[itemArr[0]][itemArr[1]] = dataItem;
@@ -354,15 +354,15 @@ var abstractMvc = function($) {
                     if (Scdp.ObjUtil.isNotEmpty(itemObj)) {
                         var itemArr = item.split(".");
                         if (itemArr.length == 1) {
-                            if(Scdp.ObjUtil.isEmpty(cmpData)) {
+                            if (Scdp.ObjUtil.isEmpty(cmpData)) {
                                 itemObj.sotValue(null);
-                            } else{
+                            } else {
                                 itemObj.sotValue(cmpData[itemArr[0]], true);
                             }
                             for (var i = 0; i < 5; i++) {
                                 var itemObjAppend1 = me.getCmp(lastSplitItem + ".append" + ((i == 0) ? "" : i));
                                 if (Scdp.ObjUtil.isNotEmpty(itemObjAppend1)) {
-                                    if(Scdp.ObjUtil.isEmpty(cmpData)) {
+                                    if (Scdp.ObjUtil.isEmpty(cmpData)) {
                                         itemObjAppend1.sotValue(null);
                                     } else {
                                         itemObjAppend1.sotValue(cmpData[itemArr[0]], true);
@@ -375,9 +375,9 @@ var abstractMvc = function($) {
                             if (cmpData && Scdp.ObjUtil.isNotEmpty(cmpData[itemArr[0]])) {
                                 var dataList = cmpData[itemArr[0]][itemArr[1]] ? cmpData[itemArr[0]][itemArr[1]] : [];
                                 var xtype = itemObj.attr("xtype");
-                                if ("bPanel"  == xtype || "bForm" == xtype) {
+                                if ("bPanel" == xtype || "bForm" == xtype) {
                                     var dataObj = null;
-                                    if($.isArray(dataList)) {
+                                    if ($.isArray(dataList)) {
                                         dataObj = dataList[0];
                                     } else {
                                         dataObj = dataList;
@@ -404,38 +404,36 @@ var abstractMvc = function($) {
         },
         sotDisable: function () {
             var contex = this.ele;
-            $.each(Scdp.comps, function(index, type){
+            $.each(Scdp.comps, function (index, type) {
                 var components = $("[xtype='" + type + "']", contex);
-                if(components.length > 0) {
-                    components.each(function(i,comp) {
+                if (components.length > 0) {
+                    components.each(function (i, comp) {
                         $(comp).sotDisable();
                     });
                 }
             });
         },
-        sotEnable: function() {
+        sotEnable: function () {
             var contex = this.ele;
-            $.each(Scdp.comps, function(index, type){
+            $.each(Scdp.comps, function (index, type) {
                 var components = $("[xtype='" + type + "']", contex);
-                if(components.length > 0) {
-                    components.each(function(i,comp) {
+                if (components.length > 0) {
+                    components.each(function (i, comp) {
                         $(comp).sotEnable();
                     });
                 }
             });
         },
-        validate: function() {
+        validate: function () {
             return true;
         }
     });
 
-    Scdp.define("Scdp.bootstrap.mvc.AbstractModel", {
-
-    });
+    Scdp.define("Scdp.bootstrap.mvc.AbstractModel", {});
 
     Scdp.define("Scdp.bootstrap.mvc.AbstractCrudController", {
-        extend:'Scdp.bootstrap.mvc.AbstractController',
-        events:[
+        extend: 'Scdp.bootstrap.mvc.AbstractController',
+        events: [
             {itemId: 'queryPanel->queryBtn', name: 'click', fn: 'doQuery'},
             //{itemId: 'queryPanel->quickQueryBtn', name: 'click', fn: 'doQuickQuery'},
             {itemId: 'queryPanel->resetBtn', name: 'click', fn: 'doReset'},
@@ -458,24 +456,24 @@ var abstractMvc = function($) {
             {itemId: 'treeMenu', name: 'onSelect', fn: '_registTreeClick'},
 
 
-           /**
-           * author:王令 修改开始
-          * time: 2017-9-22
-          * describe:为了不影响原来的按钮，功能，新加明细案例，编辑案例，新版本复制新增按钮，修改按钮
-         */
+            /**
+             * author:王令 修改开始
+             * time: 2017-9-22
+             * describe:为了不影响原来的按钮，功能，新加明细案例，编辑案例，新版本复制新增按钮，修改按钮
+             */
             {itemId: 'queryPanel->editBtn', name: 'click', fn: 'doEdit'},
             {itemId: 'queryPanel->detailBtn', name: 'click', fn: 'doLoadDetail'},
             {itemId: 'editPanel->editBtn', name: 'click', fn: 'doEditFun'},
             {itemId: 'editPanel->copyBtn', name: 'click', fn: 'doCopyFun'},
-          /*修改完成*/
+            /*修改完成*/
 
         ],
-        workFlowFormData:[],
-        addOrUpdate : Scdp.Const.ACTION_TYPE.NULL, /* 0 for udpate, 1 for add new, 2 for copyAdd */
+        workFlowFormData: [],
+        addOrUpdate: Scdp.Const.ACTION_TYPE.NULL, /* 0 for udpate, 1 for add new, 2 for copyAdd */
         doQuery: function () {
             var me = this;
             var queryBtn = me.view.getCmp("queryPanel->queryBtn");
-            if(queryBtn) {
+            if (queryBtn) {
                 queryBtn.sotDisable();
             }
             //var quickQueryCmp = me.view.getCmp("queryPanel->quickQueryTxt");
@@ -497,7 +495,7 @@ var abstractMvc = function($) {
             //var conditionPanel = me.view.getConditionPanel();
             var conditionForm = me.view.getConditionForm();
             if (!conditionForm.bForm("validate")) {
-                if(queryBtn) {
+                if (queryBtn) {
                     queryBtn.sotEnable();
                 }
                 Scdp.Msg.warn(Scdp.I18N.QUERY_VALIDATE_ERROR);
@@ -533,30 +531,30 @@ var abstractMvc = function($) {
 
             me._resultTableLoadData(param, me.queryAction);
 
-            if(queryBtn){
+            if (queryBtn) {
                 queryBtn.sotEnable();
             }
-            if(!Scdp.getSysConfig("pure_bootstrap")) {
+            if (!Scdp.getSysConfig("pure_bootstrap")) {
                 setTimeout(function () {
                     $(".overflow-mCustomScrollbar").doLayout();
-                },0);
+                }, 0);
             }
 
             //if (me.clearEditPanelAfterQuery) {
             //    me.view.setUIStatus(Scdp.Const.UI_INFO_STATUS_NULL);
             //}
         },
-        _resultTableLoadData: function(param, action) {
+        _resultTableLoadData: function (param, action) {
             var me = this;
             var resultPanel = this.view.getResultPanel();
-            if($("[xtype='bTable']", resultPanel).length >0) {
+            if ($("[xtype='bTable']", resultPanel).length > 0) {
                 param.xtype = "bTable";
                 $("[xtype='bTable']", resultPanel).bTable('loadDataPage', param, action);
-            } else if($("[xtype='e_datagrid']", resultPanel).length >0) {
+            } else if ($("[xtype='e_datagrid']", resultPanel).length > 0) {
                 //$("[xtype='datagrid']", resultPanel).datagrid('loadDataPage', param, action);
                 var grid = $("[xtype='e_datagrid']", resultPanel);
                 grid.e_datagrid('loadDataPage', param, action);
-            } else if($("[xtype='bt_table']", resultPanel).length >0) {
+            } else if ($("[xtype='bt_table']", resultPanel).length > 0) {
                 var grid = $("[xtype='bt_table']", resultPanel);
                 grid.bt_table('loadDataPage', param, action);
             }
@@ -601,7 +599,7 @@ var abstractMvc = function($) {
             var conditionForm = me.view.getConditionForm();
             conditionForm.bForm("reset");
         },
-        doModify: function() {
+        doModify: function () {
             var me = this;
             if (me.beforeModify) {
                 var ret = me.beforeModify();
@@ -622,7 +620,7 @@ var abstractMvc = function($) {
             //    }
             //}
         },
-        doAdd: function(obj, event, successFn) {
+        doAdd: function (obj, event, successFn) {
             var me = this;
             if (me.beforeAdd) {
                 var ret = me.beforeAdd();
@@ -632,7 +630,7 @@ var abstractMvc = function($) {
             }
             me.addOrUpdate = Scdp.Const.ACTION_TYPE.ADD;
             var editPanel = me.view.getEditPanel();
-            if(editPanel){
+            if (editPanel) {
                 editPanel.sotValue(null);
             }
             me.view.editflag = '+';
@@ -674,7 +672,7 @@ var abstractMvc = function($) {
             } else {
                 actionUrl = me.voidAction;
             }
-            Scdp.Msg.confirm('确认',Scdp.I18N.DELETE_CONFIRM, function (btn) {
+            Scdp.Msg.confirm('确认', Scdp.I18N.DELETE_CONFIRM, function (btn) {
                 if (true == btn) {
                     var uuids = me.getSelectionsUuids();
                     if (Scdp.ObjUtil.isNotEmpty(uuids)) {
@@ -682,7 +680,7 @@ var abstractMvc = function($) {
                             if (retData.success) {
                                 me.view.setUIStatus(Scdp.Const.UI_INFO_STATUS_NULL);
                                 Scdp.Msg.info(Scdp.I18N.DELETE_SUCCESS, function () {
-                                    if(me.view.viewType ==2) {
+                                    if (me.view.viewType == 2) {
                                     } else {
                                         me.doQuery();
                                     }
@@ -746,7 +744,7 @@ var abstractMvc = function($) {
                 } else {
                     actionUrl = me.voidAction;
                 }
-                Scdp.Msg.confirm('确认',Scdp.I18N.DELETE_CONFIRM, function (btn) {
+                Scdp.Msg.confirm('确认', Scdp.I18N.DELETE_CONFIRM, function (btn) {
                     if (true == btn) {
                         if (Scdp.ObjUtil.isNotEmpty(uuids)) {
                             Scdp.deleteDataByUnids(uuids, actionUrl, me.dtoClass, isVoid, function (retData) {
@@ -772,8 +770,8 @@ var abstractMvc = function($) {
             var uuids = [];
             if (isBatch) {
                 var selection = me.getQueryTableSelections();
-                if(selection) {
-                    $.each(selection,function(index,item){
+                if (selection) {
+                    $.each(selection, function (index, item) {
                         uuids.push(item.uuid);
                     })
                 }
@@ -783,19 +781,19 @@ var abstractMvc = function($) {
             }
             return uuids;
         },
-        doCancel: function() {
+        doCancel: function () {
             var me = this;
             me.view.editflag = '';
-            if(me.view.viewType==1){
+            if (me.view.viewType == 1) {
                 me.view.sotValue(null);
             }
             me.refreshWorkFlowStatus();
-            if(me.afterCancel) {
+            if (me.afterCancel) {
                 me.afterCancel();
             }
             me.view.setUIStatus(Scdp.Const.UI_INFO_STATUS_NULL);
         },
-        loadItem: function(uuid, opt, callbackFn) {
+        loadItem: function (uuid, opt, callbackFn) {
             var me = this;
 
             if (opt !== 'modify' && me.beforeLoadItem && !me.beforeLoadItem(uuid)) {
@@ -805,9 +803,9 @@ var abstractMvc = function($) {
                 var postdata = {};
                 postdata.uuid = uuid;
                 postdata.dtoClass = me.dtoClass;
-                Scdp.doAction(me.loadAction, postdata, function(data) {
+                Scdp.doAction(me.loadAction, postdata, function (data) {
                     //me.view.setUIStatus(Scdp.Const.UI_INFO_STATUS_VIEW);
-                    if(data.success){
+                    if (data.success) {
                         switch (opt) {
                             case 'add':
                                 me.view.setUIStatus(Scdp.Const.UI_INFO_STATUS_NEW);
@@ -860,14 +858,14 @@ var abstractMvc = function($) {
 
                         if (opt !== 'modify') {
                             me.refreshWorkFlowStatus();
-                            if(me.afterLoadItem){
+                            if (me.afterLoadItem) {
                                 me.afterLoadItem(data);
                             }
                         }
                     }
-                }, function(e) {
+                }, function (e) {
                     Scdp.DebugUtil.logErr(e);
-                },true,true);
+                }, true, true);
             }
 
         },
@@ -897,7 +895,7 @@ var abstractMvc = function($) {
 
             if (me.view.allowNullConditions || _hasConditions(param)) {
                 var filename = null;
-                if(Scdp.getSysConfig("pure_bootstrap")) {
+                if (Scdp.getSysConfig("pure_bootstrap")) {
                     filename = $('legend').text();
                 } else {
                     filename = me.view.menuText;
@@ -914,27 +912,30 @@ var abstractMvc = function($) {
                     var columnNames = [];
                     var queryResultColumnWidths = [];
                     param.queryAction = me.queryAction;
-                    param.queryResultColumnNames= columns;/*数据*/
-                    param.queryResultColumnFriendlyNames= columnNames;/*列名 head*/
+                    param.queryResultColumnNames = columns;
+                    /*数据*/
+                    param.queryResultColumnFriendlyNames = columnNames;
+                    /*列名 head*/
                     param.start = 0;
                     param.queryResultColumnWidths = queryResultColumnWidths;//列宽
-                    if(Scdp.getSysConfig("pure_bootstrap")) {
+                    if (Scdp.getSysConfig("pure_bootstrap")) {
                         param.xtype = "bTable";
-                        if($("[xtype='bTable']", resultPanel).length >0) {
+                        if ($("[xtype='bTable']", resultPanel).length > 0) {
                             var bTable = null;
-                            $("[xtype='bTable']", resultPanel).each(function(i, table){
-                                if($(table).data("bTable")) {
+                            $("[xtype='bTable']", resultPanel).each(function (i, table) {
+                                if ($(table).data("bTable")) {
                                     bTable = $(table).data("bTable");
-                                };
+                                }
+                                ;
                             });
-                            if(bTable && bTable.table) {
+                            if (bTable && bTable.table) {
                                 var tempColumns = bTable.table.context[0].aoColumns;
                                 param.draw = bTable.table.context[0].iDraw;
-                                $.each(tempColumns, function(i, col) {
-                                    if(col.bVisible && col.data) {
+                                $.each(tempColumns, function (i, col) {
+                                    if (col.bVisible && col.data) {
                                         columns.push(col.data);
                                         columnNames.push(col.sTitle);
-                                        if(col.width) {
+                                        if (col.width) {
                                             queryResultColumnWidths.push(col.width);
                                         } else {
                                             queryResultColumnWidths.push($(col.nTh).width());
@@ -946,28 +947,28 @@ var abstractMvc = function($) {
                         }
 
                     } else {
-                        if($("[xtype='e_datagrid']", resultPanel).length >0) {
+                        if ($("[xtype='e_datagrid']", resultPanel).length > 0) {
                             param.xtype = "e_datagrid";
                             param.page = 1;
                             var e_datagrid = null;
-                            $("[xtype='e_datagrid']", resultPanel).each(function(i, grid){
+                            $("[xtype='e_datagrid']", resultPanel).each(function (i, grid) {
                                 e_datagrid = $(grid).data("e_datagrid");
-                                if(e_datagrid) {
+                                if (e_datagrid) {
                                     return false;
                                 }
                             });
-                            if(e_datagrid) {
+                            if (e_datagrid) {
                                 var datagrid = $.data(e_datagrid.ele[0], "datagrid");
                                 var fields = $(e_datagrid.ele).datagrid('getColumnFields');
-                                $.each(fields, function(i, field) {
+                                $.each(fields, function (i, field) {
                                     var colOpt = $(e_datagrid.ele).datagrid('getColumnOption', field);
-                                    if(Scdp.ObjUtil.isNotEmpty(field) && !colOpt.hidden) {
+                                    if (Scdp.ObjUtil.isNotEmpty(field) && !colOpt.hidden) {
                                         columns.push(field);
                                         columnNames.push(colOpt.title);
-                                        if(colOpt.width) {
+                                        if (colOpt.width) {
                                             queryResultColumnWidths.push(colOpt.width);
                                         } else {
-                                            queryResultColumnWidths.push($("." +colOpt.cellClass).width());
+                                            queryResultColumnWidths.push($("." + colOpt.cellClass).width());
                                         }
                                     }
                                 });
@@ -975,8 +976,8 @@ var abstractMvc = function($) {
                         }
                     }
                     var postData = {
-                        viewdata : param,
-                        exportFileName : filename
+                        viewdata: param,
+                        exportFileName: filename
                     };
                     Scdp.fileExport(me.exportXlsAction, postData);
                     if (me.afterExport) {
@@ -993,9 +994,9 @@ var abstractMvc = function($) {
                 //})
             }
         },
-        doExportSpecial: function(queryActionExt, conditionPanelId, tableId, filename) {
+        doExportSpecial: function (queryActionExt, conditionPanelId, tableId, filename) {
             var me = this;
-            if(Scdp.ObjUtil.isEmpty(queryActionExt) || Scdp.ObjUtil.isEmpty(conditionPanelId) || Scdp.ObjUtil.isEmpty(tableId) || Scdp.ObjUtil.isEmpty(filename)) {
+            if (Scdp.ObjUtil.isEmpty(queryActionExt) || Scdp.ObjUtil.isEmpty(conditionPanelId) || Scdp.ObjUtil.isEmpty(tableId) || Scdp.ObjUtil.isEmpty(filename)) {
                 return false;
             }
             if (me.beforeExport) {
@@ -1027,27 +1028,30 @@ var abstractMvc = function($) {
                 var queryResultColumnWidths = [];
 
                 param.queryAction = queryActionExt;
-                param.queryResultColumnNames= columns;/*数据*/
-                param.queryResultColumnFriendlyNames= columnNames;/*列名 head*/
+                param.queryResultColumnNames = columns;
+                /*数据*/
+                param.queryResultColumnFriendlyNames = columnNames;
+                /*列名 head*/
                 param.start = 0;
                 param.queryResultColumnWidths = queryResultColumnWidths;//列宽
-                if(Scdp.getSysConfig("pure_bootstrap")) {
+                if (Scdp.getSysConfig("pure_bootstrap")) {
                     param.xtype = "bTable";
                     var tableEle = me.view.getCmp(tableId);
                     var bTable = null;
-                    $(tableEle).each(function(i, table){
-                        if($(table).data("bTable")) {
+                    $(tableEle).each(function (i, table) {
+                        if ($(table).data("bTable")) {
                             bTable = $(table).data("bTable");
-                        };
+                        }
+                        ;
                     });
-                    if(bTable && bTable.table) {
+                    if (bTable && bTable.table) {
                         var tempColumns = bTable.table.context[0].aoColumns;
                         param.draw = bTable.table.context[0].iDraw;
-                        $.each(tempColumns, function(i, col) {
-                            if(col.bVisible && col.data) {
+                        $.each(tempColumns, function (i, col) {
+                            if (col.bVisible && col.data) {
                                 columns.push(col.data);
                                 columnNames.push(col.sTitle);
-                                if(col.width) {
+                                if (col.width) {
                                     queryResultColumnWidths.push(col.width);
                                 } else {
                                     queryResultColumnWidths.push($(col.nTh).width());
@@ -1057,28 +1061,28 @@ var abstractMvc = function($) {
                     }
                 } else {
                     var tableEle = me.view.getCmp(tableId);
-                    if(tableEle.length >0) {
+                    if (tableEle.length > 0) {
                         param.xtype = "e_datagrid";
                         param.page = 1;
                         var e_datagrid = null;
-                        tableEle.each(function(i, grid){
+                        tableEle.each(function (i, grid) {
                             e_datagrid = $(grid).data("e_datagrid");
-                            if(e_datagrid) {
+                            if (e_datagrid) {
                                 return false;
                             }
                         });
-                        if(e_datagrid) {
+                        if (e_datagrid) {
                             var datagrid = $.data(e_datagrid.ele[0], "datagrid");
                             var fields = $(e_datagrid.ele).datagrid('getColumnFields');
-                            $.each(fields, function(i, field) {
+                            $.each(fields, function (i, field) {
                                 var colOpt = $(e_datagrid.ele).datagrid('getColumnOption', field);
-                                if(Scdp.ObjUtil.isNotEmpty(field) && !colOpt.hidden) {
+                                if (Scdp.ObjUtil.isNotEmpty(field) && !colOpt.hidden) {
                                     columns.push(field);
                                     columnNames.push(colOpt.title);
-                                    if(colOpt.width) {
+                                    if (colOpt.width) {
                                         queryResultColumnWidths.push(colOpt.width);
                                     } else {
-                                        queryResultColumnWidths.push($("." +colOpt.cellClass).width());
+                                        queryResultColumnWidths.push($("." + colOpt.cellClass).width());
                                     }
                                 }
                             });
@@ -1086,8 +1090,8 @@ var abstractMvc = function($) {
                     }
                 }
                 var postData = {
-                    viewdata : param,
-                    exportFileName : filename
+                    viewdata: param,
+                    exportFileName: filename
                 };
                 Scdp.fileExport("common-exportxls-bs", postData);
                 if (me.afterExport) {
@@ -1097,17 +1101,17 @@ var abstractMvc = function($) {
                 Scdp.Msg.warn(Scdp.I18N.PLEASE_INPUT_QUERY_CONDITIONS);
             }
         },
-        _registTreeClick: function(node) {
+        _registTreeClick: function (node) {
             var me = this;
-            if(!node || Scdp.ObjUtil.isEmpty(node.id) || node.id == '*') {
+            if (!node || Scdp.ObjUtil.isEmpty(node.id) || node.id == '*') {
                 return;
             }
             me.loadItem(node.id);
         },
-        _hasConditions: function(param) {
+        _hasConditions: function (param) {
             var hasConditions = false;
-            if(param && param.condition) {
-                $.each(param.condition, function(i, field) {
+            if (param && param.condition) {
+                $.each(param.condition, function (i, field) {
                     if (Scdp.ObjUtil.isNotEmpty(field.value)) {
                         hasConditions = true;
                         return false;
@@ -1116,7 +1120,7 @@ var abstractMvc = function($) {
             }
             return hasConditions;
         },
-        doSave : function() {
+        doSave: function () {
             var me = this;
             if (me.beforeSave) {
                 var ret = me.beforeSave();
@@ -1143,9 +1147,9 @@ var abstractMvc = function($) {
 
             var param = me.view.gotValue();
             var action = "";
-            if(me.view.editflag === '+') {
+            if (me.view.editflag === '+') {
                 action = me.addAction;
-            } else if(me.view.editflag === '*') {
+            } else if (me.view.editflag === '*') {
                 action = me.modifyAction;
             }
             var uistatus = this.view.uistatus;
@@ -1154,7 +1158,7 @@ var abstractMvc = function($) {
                 if (retData.success) {
                     if (uistatus == Scdp.Const.UI_INFO_STATUS_NEW) {
                         me.view.getHeader().getCmp("uuid").sotValue(retData.uuid);
-                        if(me.getAddNewSuccessMsg){
+                        if (me.getAddNewSuccessMsg) {
                             Scdp.Msg.info(me.getAddNewSuccessMsg(retData));
                         } else {
                             Scdp.Msg.info(Scdp.I18N.ADD_NEW_SUCCESS);
@@ -1164,7 +1168,7 @@ var abstractMvc = function($) {
                         //Ext.getCmp("createBy").setValue(me.view.createTime + " " + Scdp.getCurrentUserId());
                         me.view.setUIStatus(Scdp.Const.UI_INFO_STATUS_VIEW);
                     } else if (uistatus == Scdp.Const.UI_INFO_STATUS_MODIFY) {
-                        if(me.getModifySuccessMsg){
+                        if (me.getModifySuccessMsg) {
                             Scdp.Msg.info(me.getModifySuccessMsg(retData));
                         } else {
                             Scdp.Msg.info(Scdp.I18N.MODIFY_SUCCESS);
@@ -1192,9 +1196,9 @@ var abstractMvc = function($) {
                     }
                 }
 
-            }, function(e) {
+            }, function (e) {
                 Scdp.DebugUtil.logErr("Save data error!");
-            } );
+            });
         },
 
 
@@ -1203,15 +1207,12 @@ var abstractMvc = function($) {
         * 2017-10-6
         * 为了兼容现有模块，添加新的功能模块
         * */
-        getQueryBootstrapTable:function()
-        {
+        getQueryBootstrapTable: function () {
             var me = this;
-            var queryPanel= me.view.getCmp("queryPanel");
-            if(queryPanel)
-            {
-                var queryTable=  $("[xtype='bts_table']", queryPanel);
-                if(queryTable)
-                {
+            var queryPanel = me.view.getCmp("queryPanel");
+            if (queryPanel) {
+                var queryTable = $("[xtype='bts_table']", queryPanel);
+                if (queryTable) {
                     var select = queryTable.bootstrapTable('getSelections')[0];
                     if (select)
                         return true;
@@ -1219,10 +1220,10 @@ var abstractMvc = function($) {
                         return false;
                 }
             }
-                return false;
+            return false;
         },
 
-        doEdit: function(obj, event, successFn) {
+        doEdit: function (obj, event, successFn) {
             var me = this;
             if (me.beforeEdit) {
                 var ret = me.beforeEdit();
@@ -1230,8 +1231,7 @@ var abstractMvc = function($) {
                     return;
                 }
             }
-            if(me.getQueryBootstrapTable())
-            {
+            if (me.getQueryBootstrapTable()) {
                 me.addOrUpdate = Scdp.Const.ACTION_TYPE.ADD;
                 me.view.setUIStatus(Scdp.Const.UI_INFO_STATUS_NEW);
                 if (me.afterEdit) {
@@ -1240,12 +1240,11 @@ var abstractMvc = function($) {
                         return;
                     }
                 }
-            }else
-            {
+            } else {
                 Scdp.Msg.info("请选择记录！");
             }
         },
-        doEditFun: function() {
+        doEditFun: function () {
             var me = this;
             if (me.beforeEditFun) {
                 var ret = me.beforeEditFun();
@@ -1256,8 +1255,7 @@ var abstractMvc = function($) {
             me.addOrUpdate = Scdp.Const.ACTION_TYPE.MODIFY;
             me.view.editflag = '*';
             me.view.setUIStatus(Scdp.Const.UI_INFO_STATUS_MODIFY);
-            if(me.view.getCmp("editPanel->copyBtn"))
-            {
+            if (me.view.getCmp("editPanel->copyBtn")) {
                 me.view.getCmp("editPanel->copyBtn").sotDisable();
             }
             if (me.afterEditFun) {
@@ -1277,8 +1275,7 @@ var abstractMvc = function($) {
             }
             me.addOrUpdate = Scdp.Const.ACTION_TYPE.ADD_MODIFY;
             me.view.setUIStatus(Scdp.Const.UI_INFO_STATUS_MODIFY);
-            if(me.view.getCmp("editPanel->editBtn"))
-            {
+            if (me.view.getCmp("editPanel->editBtn")) {
                 me.view.getCmp("editPanel->editBtn").sotDisable();
             }
             if (me.afterCopyFun) {
@@ -1289,7 +1286,7 @@ var abstractMvc = function($) {
             }
         },
 
-        doLoadDetail: function(obj, event, successFn) {
+        doLoadDetail: function (obj, event, successFn) {
             var me = this;
             if (me.beforeLoadDetail) {
                 var ret = me.beforeLoadDetail();
@@ -1297,15 +1294,12 @@ var abstractMvc = function($) {
                     return;
                 }
             }
-            if(me.getQueryBootstrapTable())
-            {
+            if (me.getQueryBootstrapTable()) {
                 me.view.setUIStatus(Scdp.Const.UI_INFO_STATUS_VIEW);
-                if(me.view.getCmp("editPanel->editBtn"))
-                {
+                if (me.view.getCmp("editPanel->editBtn")) {
                     me.view.getCmp("editPanel->editBtn").sotEnable();
                 }
-                if(me.view.getCmp("editPanel->copyBtn"))
-                {
+                if (me.view.getCmp("editPanel->copyBtn")) {
                     me.view.getCmp("editPanel->copyBtn").sotEnable();
                 }
                 if (me.afterLoadDetail) {
@@ -1315,15 +1309,14 @@ var abstractMvc = function($) {
                     }
                 }
             }
-            else
-            {
+            else {
                 Scdp.Msg.info("请选择记录！");
             }
         },
 
-        refreshTreeMenu: function(nodeData) {
+        refreshTreeMenu: function (nodeData) {
             var me = this;
-            if(me.view.viewType == 2) {
+            if (me.view.viewType == 2) {
                 var treeMenu = me.view.getCmp("treeMenu");
                 var selectedNode = treeMenu.tree('getSelected');
                 var root = treeMenu.tree("getRoot");
@@ -1334,77 +1327,77 @@ var abstractMvc = function($) {
                     parent = selectedNode.target;
                 }
                 //me.loadTreeMenu();
-                if(me.addOrUpdate == Scdp.Const.ACTION_TYPE.ADD){
+                if (me.addOrUpdate == Scdp.Const.ACTION_TYPE.ADD) {
                     treeMenu.e_tree('addNode', {
                         parent: parent,
                         data: nodeData
                     });
-                } else if(me.addOrUpdate == Scdp.Const.ACTION_TYPE.MODIFY){
+                } else if (me.addOrUpdate == Scdp.Const.ACTION_TYPE.MODIFY) {
                     var target = parent;
-                    if(Scdp.ObjUtil.isEmpty(parent)) {
+                    if (Scdp.ObjUtil.isEmpty(parent)) {
                         target = treeMenu.e_tree("findNode", nodeData[keyField]).target;
                     }
                     treeMenu.e_tree('updateNode', {
                         target: target,
                         data: nodeData,
-                        text:nodeData[textField]
+                        text: nodeData[textField]
                     });
-                } else if(me.addOrUpdate == Scdp.Const.ACTION_TYPE.ADD_MODIFY) {
+                } else if (me.addOrUpdate == Scdp.Const.ACTION_TYPE.ADD_MODIFY) {
                     parent = treeMenu.tree("getParent", selectedNode.target);
 
                     treeMenu.e_tree('addNode', {
-                        parent: Scdp.ObjUtil.isEmpty(parent)? null: parent.target,
+                        parent: Scdp.ObjUtil.isEmpty(parent) ? null : parent.target,
                         data: nodeData
                     });
                 }
                 var domId;
-                if(Scdp.ObjUtil.isNotEmpty(nodeData.domId)){
-                    domId=$('#' + nodeData.domId);
-                }else{
-                    domId=$('#' + nodeData.domId);
+                if (Scdp.ObjUtil.isNotEmpty(nodeData.domId)) {
+                    domId = $('#' + nodeData.domId);
+                } else {
+                    domId = $('#' + nodeData.domId);
                 }
-                treeMenu.tree('select',domId);
-                treeMenu.tree('expandTo',domId);
+                treeMenu.tree('select', domId);
+                treeMenu.tree('expandTo', domId);
                 domId.click();
             }
         },
-        getTableSelections: function(itemId) {
+        getTableSelections: function (itemId) {
             var me = this;
             var table = me.view.getCmp(itemId);
-            if(table && "bTable" ==table.attr("xtype")) {
+            if (table && "bTable" == table.attr("xtype")) {
                 return table.bTable("gotSelectedRowsData");
-            } else if(table && "e_datagrid" ==table.attr("xtype")) {
+            } else if (table && "e_datagrid" == table.attr("xtype")) {
                 return table.datagrid("getSelections");
             }
         },
-        getQueryTableSelections: function() {
+        getQueryTableSelections: function () {
             var me = this;
             var table = me.view.getComQueryResultTable();
-            if(table && "bTable" ==table.attr("xtype")) {
+            if (table && "bTable" == table.attr("xtype")) {
                 return table.bTable("gotSelectedRowsData");
-            } else if(table && "e_datagrid" ==table.attr("xtype")) {
+            } else if (table && "e_datagrid" == table.attr("xtype")) {
                 return table.datagrid("getSelections");
-            } else if(table && "bt_table" == table.attr("xtype")) {
+            } else if (table && "bt_table" == table.attr("xtype")) {
                 return table.bt_table("gotSelectedRows");
             }
         },
         /*tab切换相关方法*/
         tabChange: function (me) {
             var tablist = $("ul.tab-list", me.view.ele).not("[xtype]");
-            if(tablist.length> 0) {
-                $.each(tablist, function(i, ulTablist) {
+            if (tablist.length > 0) {
+                $.each(tablist, function (i, ulTablist) {
                     var currentIndex = $("li", ulTablist).filter(".on").index();
                     var tabContents = $(ulTablist).siblings(".div-content");
                     tabContents.hide().eq(currentIndex).stop().show();
                 });
 
-                $(".tab-list li", me.view.ele).filter(function(i){
+                $(".tab-list li", me.view.ele).filter(function (i) {
                     return $(this).parent().parent().attr('xtype') != 'e_tablist';
                 }).click(function () {
                     $(this).addClass("on").siblings("li").removeClass("on");
                     $(this).parent().siblings(".div-content").hide().eq($(this).index()).stop().show(
-                        function(){
-                            if($("body").panel) {
+                        function () {
+                            if ($("body").panel) {
                                 $("body").panel("doLayout");
                             }
                         }
@@ -1413,10 +1406,10 @@ var abstractMvc = function($) {
             }
         },
 
-        gotPrimaryKey: function(){
+        gotPrimaryKey: function () {
             var me = this;
             var businessKey = me.view.getCmp("editPanel->uuid");
-            if(businessKey){
+            if (businessKey) {
                 return businessKey.gotValue();
             } else {
                 return "";
@@ -1511,7 +1504,7 @@ var abstractMvc = function($) {
             } else {
                 me.workFlowTaskId = null;
             }
-            if( me.refreshUIStatusBasedOnWorkFlow){
+            if (me.refreshUIStatusBasedOnWorkFlow) {
                 me.refreshUIStatusBasedOnWorkFlow(result);
             }
         },
@@ -1524,33 +1517,33 @@ var abstractMvc = function($) {
         },
         customizeWorkFlowToolbarText: function (me) {
             if (me.workFlowFormData.indexOf("wf_toolbar_text_customized=1") != -1) {
-                me.view.getCmp('editPanel->workFlowCommitBtn').bBtn('sotText',Scdp.I18N.WF_CUSTOMIZED_SUBMIT_TEXT);
-                me.view.getCmp('editPanel->workFlowRollBackBtn').bBtn('sotText',Scdp.I18N.WF_CUSTOMIZED_ROLLBACK_TEXT);
-                me.view.getCmp('editPanel->workFlowAssignBtn').bBtn('sotText',Scdp.I18N.WF_CUSTOMIZED_ASSIGN_TEXT);
-                me.view.getCmp('editPanel->workFlowCancelBtn').bBtn('sotText',Scdp.I18N.WF_CUSTOMIZED_CANCEL_TEXT);
-                me.view.getCmp('editPanel->workFlowViewLogBtn').bBtn('sotText',Scdp.I18N.WF_CUSTOMIZED_VIEW_LOG_TEXT);
+                me.view.getCmp('editPanel->workFlowCommitBtn').bBtn('sotText', Scdp.I18N.WF_CUSTOMIZED_SUBMIT_TEXT);
+                me.view.getCmp('editPanel->workFlowRollBackBtn').bBtn('sotText', Scdp.I18N.WF_CUSTOMIZED_ROLLBACK_TEXT);
+                me.view.getCmp('editPanel->workFlowAssignBtn').bBtn('sotText', Scdp.I18N.WF_CUSTOMIZED_ASSIGN_TEXT);
+                me.view.getCmp('editPanel->workFlowCancelBtn').bBtn('sotText', Scdp.I18N.WF_CUSTOMIZED_CANCEL_TEXT);
+                me.view.getCmp('editPanel->workFlowViewLogBtn').bBtn('sotText', Scdp.I18N.WF_CUSTOMIZED_VIEW_LOG_TEXT);
                 $.each(me.workFlowFormData, function (itemIndex, item) {
-                //Ext.Array.forEach(me.workFlowFormData, function (item) {
+                    //Ext.Array.forEach(me.workFlowFormData, function (item) {
                     if (item.indexOf("wf_toolbar_submit_text=") > -1) {
-                        me.view.getCmp('editPanel->workFlowCommitBtn').bBtn('sotText',item.replace('wf_toolbar_submit_text=', ''));
+                        me.view.getCmp('editPanel->workFlowCommitBtn').bBtn('sotText', item.replace('wf_toolbar_submit_text=', ''));
                     } else if (item.indexOf("wf_toolbar_reject_text=") > -1) {
-                        me.view.getCmp('editPanel->workFlowRollBackBtn').bBtn('sotText',item.replace('wf_toolbar_reject_text=', ''));
+                        me.view.getCmp('editPanel->workFlowRollBackBtn').bBtn('sotText', item.replace('wf_toolbar_reject_text=', ''));
                     } else if (item.indexOf("wf_toolbar_assign_text=") > -1) {
-                        me.view.getCmp('editPanel->workFlowAssignBtn').bBtn('sotText',item.replace('wf_toolbar_assign_text=', ''));
+                        me.view.getCmp('editPanel->workFlowAssignBtn').bBtn('sotText', item.replace('wf_toolbar_assign_text=', ''));
                     } else if (item.indexOf("wf_toolbar_view_text=") > -1) {
-                        me.view.getCmp('editPanel->workFlowViewLogBtn').bBtn('sotText',item.replace('wf_toolbar_view_text=', ''));
+                        me.view.getCmp('editPanel->workFlowViewLogBtn').bBtn('sotText', item.replace('wf_toolbar_view_text=', ''));
                     } else if (item.indexOf("wf_toolbar_cancel_text=") > -1) {
-                        me.view.getCmp('editPanel->workFlowCancelBtn').bBtn('sotText',item.replace('wf_toolbar_cancel_text=', ''));
+                        me.view.getCmp('editPanel->workFlowCancelBtn').bBtn('sotText', item.replace('wf_toolbar_cancel_text=', ''));
                     }
                 });
             } else if (me.workFlowFormData.indexOf("wf_goto_end=1") != -1 && !me.workFlowFormData.indexOf("wf_toolbar_text_customized=1") > -1) {
-                me.view.getCmp('editPanel->workFlowCommitBtn').bBtn('sotText',Scdp.I18N.WF_CUSTOMIZED_SUBMIT_TEXT);
+                me.view.getCmp('editPanel->workFlowCommitBtn').bBtn('sotText', Scdp.I18N.WF_CUSTOMIZED_SUBMIT_TEXT);
             } else {
-                me.view.getCmp('editPanel->workFlowCommitBtn').bBtn('sotText',Scdp.I18N.WROKFLOW_COMMIT_BTN);
-                me.view.getCmp('editPanel->workFlowRollBackBtn').bBtn('sotText',Scdp.I18N.WROKFLOW_ROLLBACK_BTN);
-                me.view.getCmp('editPanel->workFlowAssignBtn').bBtn('sotText',Scdp.I18N.WROKFLOW_ASSIGN_BTN);
-                me.view.getCmp('editPanel->workFlowViewLogBtn').bBtn('sotText',Scdp.I18N.WROKFLOW_VIEW_LOG_BTN);
-                me.view.getCmp('editPanel->workFlowCancelBtn').bBtn('sotText',Scdp.I18N.WROKFLOW_CANCEL_BTN);
+                me.view.getCmp('editPanel->workFlowCommitBtn').bBtn('sotText', Scdp.I18N.WROKFLOW_COMMIT_BTN);
+                me.view.getCmp('editPanel->workFlowRollBackBtn').bBtn('sotText', Scdp.I18N.WROKFLOW_ROLLBACK_BTN);
+                me.view.getCmp('editPanel->workFlowAssignBtn').bBtn('sotText', Scdp.I18N.WROKFLOW_ASSIGN_BTN);
+                me.view.getCmp('editPanel->workFlowViewLogBtn').bBtn('sotText', Scdp.I18N.WROKFLOW_VIEW_LOG_BTN);
+                me.view.getCmp('editPanel->workFlowCancelBtn').bBtn('sotText', Scdp.I18N.WROKFLOW_CANCEL_BTN);
             }
         },
         executeTask: function () {
@@ -1559,16 +1552,16 @@ var abstractMvc = function($) {
             param.businessKey = me.gotPrimaryKey();
             param.workFlowDefinitionKey = me.view.workFlowDefinitionKey;
             param.dto = me.dtoClass;
-            if(me.loadWorkflowMenuCode){
+            if (me.loadWorkflowMenuCode) {
                 param.menuCode = me.loadWorkflowMenuCode();
             } else {
                 param.menuCode = me.menuCode;
             }
             param.taskId = me.workFlowTaskId;
-            if(me.loadWorkFlowProcessDeptCode){
+            if (me.loadWorkFlowProcessDeptCode) {
                 param.processDeptCode = me.loadWorkFlowProcessDeptCode();
             }
-            if(me.collectMoreWorkFlowParamOnComplete){
+            if (me.collectMoreWorkFlowParamOnComplete) {
                 var moreParam = me.collectMoreWorkFlowParamOnComplete();
                 if (Scdp.ObjUtil.isNotEmpty(moreParam)) {
                     param.variable = moreParam;
@@ -1581,14 +1574,14 @@ var abstractMvc = function($) {
                 param.priority = priority;
                 Scdp.doAction("workflow-complete-action", param, function (result) {
                     me.refreshWorkFlowBarStatus(result, me);
-                    if( me.afterCompelteTask){
+                    if (me.afterCompelteTask) {
                         me.afterCompelteTask(result);
                     }
                     if (result.success) {
                         Scdp.Msg.info(Scdp.I18N.MSG_WORKFLOW_COMPLETE_SUCCESS);
                     }
                 }, function () {
-                },  'body', true);
+                }, 'body', true);
             };
             if (me.workFlowFormData.indexOf("wf_skip_popup_dialog=1") != -1) {
                 callback(null, Scdp.I18N.MSG_WORKFLOW_COMPLETE_COMMENT, null);
@@ -1608,11 +1601,11 @@ var abstractMvc = function($) {
             param.dto = me.dtoClass;
             param.workFlowDefinitionKey = me.view.workFlowDefinitionKey;
             param.taskId = me.workFlowTaskId;
-            if(me.loadWorkFlowProcessDeptCode){
+            if (me.loadWorkFlowProcessDeptCode) {
                 param.processDeptCode = me.loadWorkFlowProcessDeptCode();
             }
             var moreParam = null;
-            if(me.collectMoreWorkFlowParamOnReject){
+            if (me.collectMoreWorkFlowParamOnReject) {
                 moreParam = me.collectMoreWorkFlowParamOnReject();
                 if (Scdp.ObjUtil.isNotEmpty(moreParam)) {
                     param.variable = moreParam;
@@ -1637,7 +1630,7 @@ var abstractMvc = function($) {
                         param.rollbackTaskId = rollbackTaskId;
                         Scdp.doAction("workflow-reject-action", param, function (result) {
                             me.refreshWorkFlowBarStatus(result);
-                            if(me.afterRejectTask){
+                            if (me.afterRejectTask) {
                                 me.afterRejectTask(result);
                             }
                             if (result.success) {
@@ -1650,10 +1643,10 @@ var abstractMvc = function($) {
                 var postdata = {};
                 postdata.businessKey = me.gotPrimaryKey();
                 postdata.workFlowDefinitionKey = me.view.workFlowDefinitionKey;
-                if( "true" == Scdp.getSysConfig("wf_enable_default_comment")) {
+                if ("true" == Scdp.getSysConfig("wf_enable_default_comment")) {
                     postdata.defaultComment = Scdp.I18N.MSG_WORKFLOW_REJECT_COMMENT;
                 }
-                Scdp.popWindow("WorkFlow.controller.WorkFlowChooseRejectNodeController", Scdp.I18N.WROKFLOW_COMMENT_ASSIGNEE_TITLE,"rejectnodechoose", postdata,'700px', true, callback);
+                Scdp.popWindow("WorkFlow.controller.WorkFlowChooseRejectNodeController", Scdp.I18N.WROKFLOW_COMMENT_ASSIGNEE_TITLE, "rejectnodechoose", postdata, '700px', true, callback);
                 //var subController = Ext.create("");
                 //subController.postdata = postdata;
                 //var win = Scdp.openNewWinByController(subController, callback, 'temp_icon_16', Scdp.I18N.WROKFLOW_ROLLBACK_BTN, Scdp.I18N.OK_BTN);
@@ -1669,14 +1662,14 @@ var abstractMvc = function($) {
                     param.menuCode = me.menuCode;
                     Scdp.doAction("workflow-reject-action", param, function (result) {
                         me.refreshWorkFlowBarStatus(result);
-                        if(me.afterRejectTask){
+                        if (me.afterRejectTask) {
                             me.afterRejectTask(result);
                         }
                         if (result.success) {
                             Scdp.Msg.info(Scdp.I18N.MSG_WORKFLOW_REJECT_SUCCESS);
                         }
                     }, function () {
-                    },  'body', true);
+                    }, 'body', true);
                 };
                 me.chooseAssignee(callback, false, false, true, me, Scdp.I18N.MSG_WORKFLOW_REJECT_COMMENT);
             }
@@ -1698,10 +1691,10 @@ var abstractMvc = function($) {
             param.workFlowDefinitionKey = me.view.workFlowDefinitionKey;
             param.taskId = me.workFlowTaskId;
             param.menuCode = me.menuCode;
-            if(me.loadWorkFlowProcessDeptCode){
+            if (me.loadWorkFlowProcessDeptCode) {
                 param.processDeptCode = me.loadWorkFlowProcessDeptCode();
             }
-            if(me.collectMoreWorkFlowParamOnReject){
+            if (me.collectMoreWorkFlowParamOnReject) {
                 var moreParam = me.collectMoreWorkFlowParamOnReject();
                 if (Scdp.ObjUtil.isNotEmpty(moreParam)) {
                     param.variable = moreParam;
@@ -1709,14 +1702,14 @@ var abstractMvc = function($) {
             }
             Scdp.doAction("workflow-cancel-action", param, function (result) {
                 me.refreshWorkFlowBarStatus(result);
-                if(me.afterCancelTask){
+                if (me.afterCancelTask) {
                     me.afterCancelTask(result);
                 }
                 if (result.success) {
                     Scdp.Msg.info(Scdp.I18N.MSG_WORKFLOW_CANCEL_SUCCESS);
                 }
             }, function () {
-            },  'body', true);
+            }, 'body', true);
         },
 
         assignTask: function () {
@@ -1729,11 +1722,11 @@ var abstractMvc = function($) {
             param.dto = me.dtoClass;
             param.workFlowDefinitionKey = me.view.workFlowDefinitionKey;
             param.taskId = me.workFlowTaskId;
-            if ( me.loadWorkFlowProcessDeptCode) {
-                param. processDeptCode = me.loadWorkFlowProcessDeptCode();
+            if (me.loadWorkFlowProcessDeptCode) {
+                param.processDeptCode = me.loadWorkFlowProcessDeptCode();
             }
-            var moreParam ={};
-            if(me.collectMoreWorkFlowParamOnAssign){
+            var moreParam = {};
+            if (me.collectMoreWorkFlowParamOnAssign) {
                 moreParam = me.collectMoreWorkFlowParamOnAssign();
             }
             if (Scdp.ObjUtil.isNotEmpty(moreParam)) {
@@ -1752,7 +1745,7 @@ var abstractMvc = function($) {
                         Scdp.Msg.info(Scdp.I18N.MSG_WORKFLOW_ASSIGN_SUCCESS);
                     }
                 }, function () {
-                },  'body', true);
+                }, 'body', true);
             };
             me.chooseAssignee(callback, true, true, false, me, Scdp.I18N.MSG_WORKFLOW_ASSIGN_COMMENT);
         },
@@ -1766,7 +1759,7 @@ var abstractMvc = function($) {
                 processDeptCode = caller.loadWorkFlowProcessDeptCode();
             }
             var cutomizedParam = {};
-            if(caller.collectMoreWorkFlowParamOnLoadAssignee){
+            if (caller.collectMoreWorkFlowParamOnLoadAssignee) {
                 var tempCutomizedParam = caller.collectMoreWorkFlowParamOnLoadAssignee();
                 if (!tempCutomizedParam) {
                     cutomizedParam = tempCutomizedParam;
@@ -1776,13 +1769,13 @@ var abstractMvc = function($) {
                 cutomizedParam.assignProcess = assignProcess;
             }
             var preparedData = me.prepareAssigneeChooseData(processDeptCode, formdata, assignProcess, cutomizedParam, businessKey, workFlowDefinitionKey);
-            if( "true" == Scdp.getSysConfig("wf_enable_default_comment")) {
+            if ("true" == Scdp.getSysConfig("wf_enable_default_comment")) {
                 preparedData.defaultComment = defaultComment;
             }
             preparedData.assigneeVisible = assigneeVisible;
             var afterProcess = function (retData) {
                 //alert("aaa")
-                if(retData.wfcomment){
+                if (retData.wfcomment) {
                     retData = retData.wfcomment;
                 }
                 callback(retData.assignToCode, retData.comment, retData.userFilter, retData.priority, retData.assignTo);
@@ -1796,8 +1789,8 @@ var abstractMvc = function($) {
         },
         preLoadAssignee: function (assigneeVisible, assignProcess, formdata, rejectProcess, preparedData, cutomizedParam, businessKey, workFlowDefinitionKey, processDeptCode, callback) {
             var preQueryAssignee = true;
-            var defaultValue={};
-            if(preparedData && preparedData.defaultComment){
+            var defaultValue = {};
+            if (preparedData && preparedData.defaultComment) {
                 defaultValue.defaultComment = preparedData.defaultComment;
             }
             //如果是完结的时候(wf_goto_end=1),或者是多个人的时候(wf_disable_assignee_choose=1)，要把选人的按钮disable掉
@@ -1840,13 +1833,13 @@ var abstractMvc = function($) {
                         }
                         defaultValue.root = queryRet;
                     }
-                    preparedData.defaultValue=defaultValue;
-                    Scdp.popWindow("WorkFlow.controller.WorkFlowCommentController", Scdp.I18N.WROKFLOW_COMMENT_ASSIGNEE_TITLE,"comment", preparedData,'700px', true, callback);
+                    preparedData.defaultValue = defaultValue;
+                    Scdp.popWindow("WorkFlow.controller.WorkFlowCommentController", Scdp.I18N.WROKFLOW_COMMENT_ASSIGNEE_TITLE, "comment", preparedData, '700px', true, callback);
                 }, function () {
                 }, true, false);
             } else {
-                preparedData.defaultValue=defaultValue;
-                Scdp.popWindow("WorkFlow.controller.WorkFlowCommentController", Scdp.I18N.WROKFLOW_COMMENT_ASSIGNEE_TITLE,"comment", preparedData,'700px', true, callback);
+                preparedData.defaultValue = defaultValue;
+                Scdp.popWindow("WorkFlow.controller.WorkFlowCommentController", Scdp.I18N.WROKFLOW_COMMENT_ASSIGNEE_TITLE, "comment", preparedData, '700px', true, callback);
             }
         },
         prepareAssigneeChooseData: function (processDeptCode, formdata, assignProcess, cutomizedParam, businessKey, workFlowDefinitionKey) {
@@ -1859,7 +1852,7 @@ var abstractMvc = function($) {
             result.processDeptCode = processDeptCode;
             if (Scdp.ObjUtil.isNotEmpty(formdata)) {
                 var customizedLoadUser = false;
-                $.each(formdata, function(i,item){
+                $.each(formdata, function (i, item) {
                     if (!assignProcess) {
                         if (item.indexOf("userFilter=") > -1) {
                             result.userFilter = item.replace('userFilter=', '');
@@ -1921,14 +1914,14 @@ var abstractMvc = function($) {
             postdata.businessKey = businessKey;
             postdata.workFlowDefinitionKey = workFlowDefinitionKey;
             postdata.editable = false;
-            if(Scdp.CacheUtil.get("VIEW_WF_LOG_NEW") && Scdp.CacheUtil.get("VIEW_WF_LOG_NEW") == "TRUE"){
+            if (Scdp.CacheUtil.get("VIEW_WF_LOG_NEW") && Scdp.CacheUtil.get("VIEW_WF_LOG_NEW") == "TRUE") {
                 Scdp.popWindow("FlowPainter.controller.FlowPainterController", "工作流", "workflowPainter", postdata, document.documentElement.clientWidth - 200 + 'px', true);
             } else {
-                Scdp.popWindow("WorkFlow.controller.WorkFlowViewLogController", "工作流日志","", postdata,'800px', true, me.callback);
+                Scdp.popWindow("WorkFlow.controller.WorkFlowViewLogController", "工作流日志", "", postdata, '800px', true, me.callback);
             }
             //me.popupWorkFlowImgDialog(businessKey, workFlowDefinitionKey);
         },
-        disableWorkFlowBar: function() {
+        disableWorkFlowBar: function () {
             var me = this;
             me.view.getCmp('editPanel->workFlowCommitBtn').sotDisable();
             me.view.getCmp('editPanel->workFlowAssignBtn').sotDisable();
@@ -1939,26 +1932,23 @@ var abstractMvc = function($) {
         doMoreCondition: function () {
             var me = this;
             var condPanel = me.view.getConditionPanel();
-            if(condPanel && !Scdp.getSysConfig("pure_bootstrap")) {
+            if (condPanel && !Scdp.getSysConfig("pure_bootstrap")) {
                 Scdp.eaysUiQueryPanelCollapse(me.view.ele);
             }
         }
     });
 
     Scdp.define("Scdp.bootstrap.mvc.AbstractCrudView", {
-        extend:'Scdp.bootstrap.mvc.AbstractView',
+        extend: 'Scdp.bootstrap.mvc.AbstractView',
         workFlowDefinitionKey: null,
         allowNullConditions: true,
-        init: function(){
+        init: function () {
             var me = this;
-            if(this.initView) {
+            if (this.initView) {
                 this.initView();
             }
             var menuCode = this.controller.menuCode;
-            var tempDefinitionKey = Scdp.loadWorkflowDefinitionKey(menuCode);
-            if(Scdp.ObjUtil.isNotEmpty(tempDefinitionKey)) {
-                this.workFlowDefinitionKey = tempDefinitionKey;
-            }
+            var tempDefinitionKey = null;
             this.setUIStatus(Scdp.Const.UI_INFO_STATUS_NULL);
             //this.uistatus = Scdp.Const.UI_INFO_STATUS_NULL;
             //var editPanel = this.getEditPanel();
@@ -1967,14 +1957,14 @@ var abstractMvc = function($) {
             //}
 
             var conditionPanel = this.getConditionPanel();
-            if(conditionPanel) {
-                conditionPanel.keydown(function(e){
+            if (conditionPanel) {
+                conditionPanel.keydown(function (e) {
                     if (e && e.keyCode === 13) {
                         me.controller.doQuery();
                     }
                 })
             }
-            if(this.viewType == 2 && this.getCmp("treeMenu") != null) {
+            if (this.viewType == 2 && this.getCmp("treeMenu") != null) {
                 // Scdp.calculateHeight(me, {
                 //     slimscrollDomItemId: "treeMenu",
                 //     needCalculateDomItemId: "queryPanel->box-body",
@@ -1985,7 +1975,7 @@ var abstractMvc = function($) {
                 Scdp.calculateLeftPanelHeight(me.ele);
             }
 
-            if(this.afterInitView) {
+            if (this.afterInitView) {
                 this.afterInitView();
             }
         },
@@ -2003,7 +1993,7 @@ var abstractMvc = function($) {
         },
         getConditionPanel: function () {
             var me = this;
-            if(me.getQueryPanel()) {
+            if (me.getQueryPanel()) {
                 return me.getQueryPanel().getCmp("conditionPanel");
             } else {
                 return null;
@@ -2015,7 +2005,7 @@ var abstractMvc = function($) {
         },
         getResultPanel: function () {
             var me = this;
-            if(me.getQueryPanel()) {
+            if (me.getQueryPanel()) {
                 return me.getQueryPanel().getCmp("resultPanel");
             } else {
                 return null;
@@ -2023,7 +2013,7 @@ var abstractMvc = function($) {
         },
         getQueryToolbar: function () {
             var me = this;
-            if(me.getQueryPanel()) {
+            if (me.getQueryPanel()) {
                 return me.getQueryPanel().getCmp("queryToolbar");
             } else {
                 return null;
@@ -2031,7 +2021,7 @@ var abstractMvc = function($) {
         },
         getIgnoreCaseValue: function () {
             var me = this;
-            if(me.getCmp('ignoreCase')) {
+            if (me.getCmp('ignoreCase')) {
                 me.getCmp('ignoreCase').gotValue()
             } else {
                 return null;
@@ -2039,7 +2029,7 @@ var abstractMvc = function($) {
         },
         getMultiSortValue: function () {
             var me = this;
-            if(me.getCmp('multiSort')) {
+            if (me.getCmp('multiSort')) {
                 return me.getCmp('multiSort').gotValue()
             } else {
                 return null;
@@ -2055,7 +2045,7 @@ var abstractMvc = function($) {
         },
         getEditToolbar: function () {
             var me = this;
-            if(me.getEditPanel()) {
+            if (me.getEditPanel()) {
                 return me.getEditPanel().getCmp("editToolbar");
             } else {
                 return null;
@@ -2064,17 +2054,17 @@ var abstractMvc = function($) {
         /*
         *  setEditToolbarVisStatus(false, ['cancel']) 表示只显示取消按钮；
          */
-        setEditToolbarVisStatus: function(showOrHide, retainBtns) {
-            $("[xtype='bBtn']", $("[itemid='editToolbar']", this.ele)).each(function(i) {
+        setEditToolbarVisStatus: function (showOrHide, retainBtns) {
+            $("[xtype='bBtn']", $("[itemid='editToolbar']", this.ele)).each(function (i) {
                 var itemId = $(this).attr("itemid");
-                if($.inArray(itemId, retainBtns) == -1) {
-                    if(showOrHide) {
+                if ($.inArray(itemId, retainBtns) == -1) {
+                    if (showOrHide) {
                         $(this).show();
                     } else {
                         $(this).hide();
                     }
                 } else {
-                    if(showOrHide) {
+                    if (showOrHide) {
                         $(this).hide();
                     } else {
                         $(this).show();
@@ -2085,17 +2075,17 @@ var abstractMvc = function($) {
         /*
          *  setEditToolbarDisStatus(fasle, ['cancel']) 表示只启用取消按钮；
          */
-        setEditToolbarDisStatus: function(disOrEna, retainBtns) {
-            $("[xtype='bBtn']", $("[itemid='editToolbar']")).each(function(i) {
+        setEditToolbarDisStatus: function (disOrEna, retainBtns) {
+            $("[xtype='bBtn']", $("[itemid='editToolbar']")).each(function (i) {
                 var itemId = $(this).attr("itemid");
-                if($.inArray(itemId, retainBtns) == -1) {
-                    if(disOrEna) {
+                if ($.inArray(itemId, retainBtns) == -1) {
+                    if (disOrEna) {
                         $(this).sotEnable();
                     } else {
                         $(this).sotDisable();
                     }
                 } else {
-                    if(disOrEna) {
+                    if (disOrEna) {
                         $(this).sotDisable();
                     } else {
                         $(this).sotEnable();
@@ -2103,10 +2093,10 @@ var abstractMvc = function($) {
                 }
             });
         },
-        getComQueryResultTable: function() {
+        getComQueryResultTable: function () {
             var me = this;
             var resultPanel = me.getResultPanel();
-            if(resultPanel) {
+            if (resultPanel) {
                 return $("[xtype='bTable'],[xtype='e_datagrid'], [xtype='bt_table']", resultPanel);
             } else {
                 return null;
@@ -2121,104 +2111,102 @@ var abstractMvc = function($) {
             var queryPanel = this.getQueryPanel();
 
             if (Scdp.Const.UI_INFO_STATUS_NEW == uistatus) {
-                if(editPanel) {
+                if (editPanel) {
                     editPanel.sotEnable();
                 }
                 /*王令 添加按钮控制*/
-                if(this.getCmp("editPanel->editBtn"))
-                {
+                if (this.getCmp("editPanel->editBtn")) {
                     this.getCmp("editPanel->editBtn").sotDisable();
                 }
-                if(this.getCmp("editPanel->copyBtn"))
-                {
+                if (this.getCmp("editPanel->copyBtn")) {
                     this.getCmp("editPanel->copyBtn").sotDisable();
                 }
                 /*王令 添加按钮控制*****/
 
-                if(this.getCmp("editPanel->addBtn")) {
+                if (this.getCmp("editPanel->addBtn")) {
                     this.getCmp("editPanel->addBtn").sotDisable();
                 }
-                if(this.getCmp("editPanel->copyAddBtn")) {
+                if (this.getCmp("editPanel->copyAddBtn")) {
                     this.getCmp("editPanel->copyAddBtn").sotDisable();
                 }
-                if(this.getCmp("editPanel->modifyBtn")) {
+                if (this.getCmp("editPanel->modifyBtn")) {
                     this.getCmp("editPanel->modifyBtn").sotDisable();
                 }
-                if(this.getCmp("editPanel->deleteBtn")) {
+                if (this.getCmp("editPanel->deleteBtn")) {
                     this.getCmp("editPanel->deleteBtn").sotDisable();
                 }
-                if(this.getCmp("editPanel->cancelBtn")) {
+                if (this.getCmp("editPanel->cancelBtn")) {
                     this.getCmp("editPanel->cancelBtn").sotEnable();
                 }
-                if(this.getCmp("editPanel->saveBtn")) {
+                if (this.getCmp("editPanel->saveBtn")) {
                     this.getCmp("editPanel->saveBtn").sotEnable();
                 }
                 this.setWorkflowBtnDisableStatus();
             } else if (Scdp.Const.UI_INFO_STATUS_MODIFY == uistatus) {
-                if(editPanel) {
+                if (editPanel) {
                     editPanel.sotEnable();
                 }
-                if(this.getCmp("editPanel->addBtn")) {
+                if (this.getCmp("editPanel->addBtn")) {
                     this.getCmp("editPanel->addBtn").sotDisable();
                 }
-                if(this.getCmp("editPanel->copyAddBtn")) {
+                if (this.getCmp("editPanel->copyAddBtn")) {
                     this.getCmp("editPanel->copyAddBtn").sotDisable();
                 }
-                if(this.getCmp("editPanel->modifyBtn")) {
+                if (this.getCmp("editPanel->modifyBtn")) {
                     this.getCmp("editPanel->modifyBtn").sotDisable();
                 }
-                if(this.getCmp("editPanel->deleteBtn")) {
+                if (this.getCmp("editPanel->deleteBtn")) {
                     this.getCmp("editPanel->deleteBtn").sotDisable();
                 }
-                if(this.getCmp("editPanel->cancelBtn")) {
+                if (this.getCmp("editPanel->cancelBtn")) {
                     this.getCmp("editPanel->cancelBtn").sotEnable();
                 }
-                if(this.getCmp("editPanel->saveBtn")) {
+                if (this.getCmp("editPanel->saveBtn")) {
                     this.getCmp("editPanel->saveBtn").sotEnable();
                 }
                 this.setWorkflowBtnDisableStatus();
             } else if (Scdp.Const.UI_INFO_STATUS_VIEW == uistatus) {
-                if(editPanel) {
+                if (editPanel) {
                     editPanel.sotDisable();
                 }
-                if(this.getCmp("editPanel->addBtn")) {
+                if (this.getCmp("editPanel->addBtn")) {
                     this.getCmp("editPanel->addBtn").sotEnable();
                 }
-                if(this.getCmp("editPanel->copyAddBtn")) {
+                if (this.getCmp("editPanel->copyAddBtn")) {
                     this.getCmp("editPanel->copyAddBtn").sotEnable();
                 }
-                if(this.getCmp("editPanel->modifyBtn")) {
+                if (this.getCmp("editPanel->modifyBtn")) {
                     this.getCmp("editPanel->modifyBtn").sotEnable();
                 }
-                if(this.getCmp("editPanel->deleteBtn")) {
+                if (this.getCmp("editPanel->deleteBtn")) {
                     this.getCmp("editPanel->deleteBtn").sotEnable();
                 }
-                if(this.getCmp("editPanel->cancelBtn")) {
+                if (this.getCmp("editPanel->cancelBtn")) {
                     this.getCmp("editPanel->cancelBtn").sotEnable();
                 }
-                if(this.getCmp("editPanel->saveBtn")) {
+                if (this.getCmp("editPanel->saveBtn")) {
                     this.getCmp("editPanel->saveBtn").sotDisable();
                 }
             } else if (Scdp.Const.UI_INFO_STATUS_NULL == uistatus) {
-                if(editPanel) {
+                if (editPanel) {
                     editPanel.sotDisable();
                 }
-                if(this.getCmp("editPanel->addBtn")) {
+                if (this.getCmp("editPanel->addBtn")) {
                     this.getCmp("editPanel->addBtn").sotEnable();
                 }
-                if(this.getCmp("editPanel->copyAddBtn")) {
+                if (this.getCmp("editPanel->copyAddBtn")) {
                     this.getCmp("editPanel->copyAddBtn").sotDisable();
                 }
-                if(this.getCmp("editPanel->modifyBtn")) {
+                if (this.getCmp("editPanel->modifyBtn")) {
                     this.getCmp("editPanel->modifyBtn").sotDisable();
                 }
-                if(this.getCmp("editPanel->deleteBtn")) {
+                if (this.getCmp("editPanel->deleteBtn")) {
                     this.getCmp("editPanel->deleteBtn").sotDisable();
                 }
-                if(this.getCmp("editPanel->cancelBtn")) {
+                if (this.getCmp("editPanel->cancelBtn")) {
                     this.getCmp("editPanel->cancelBtn").sotDisable();
                 }
-                if(this.getCmp("editPanel->saveBtn")) {
+                if (this.getCmp("editPanel->saveBtn")) {
                     this.getCmp("editPanel->saveBtn").sotDisable();
                 }
             }
@@ -2227,22 +2215,22 @@ var abstractMvc = function($) {
             this.setPanelsVisableStatus();
             if (this.UIStatusChanged) this.UIStatusChanged(this, uistatus);
         },
-        setWorkflowBtnVisibleStatus: function(workFlowDefinitionKey){
-            var btns = ["workFlowAssignBtn","workFlowCommitBtn","workFlowRollBackBtn","workFlowCancelBtn","workFlowViewLogBtn"];
+        setWorkflowBtnVisibleStatus: function (workFlowDefinitionKey) {
+            var btns = ["workFlowAssignBtn", "workFlowCommitBtn", "workFlowRollBackBtn", "workFlowCancelBtn", "workFlowViewLogBtn"];
             if (Scdp.ObjUtil.isEmpty(workFlowDefinitionKey)) {
-                for(var i = 0; i < btns.length; i++) {
-                    if(this.getCmp("editPanel->" + btns[i])){
+                for (var i = 0; i < btns.length; i++) {
+                    if (this.getCmp("editPanel->" + btns[i])) {
                         this.getCmp("editPanel->" + btns[i]).hide();
                     }
                 }
             }
         },
-        setWorkflowBtnDisableStatus: function() {
+        setWorkflowBtnDisableStatus: function () {
             var me = this;
             if (Scdp.ObjUtil.isNotEmpty(me.workFlowDefinitionKey)) {
-                var btns = ["workFlowAssignBtn","workFlowCommitBtn","workFlowRollBackBtn","workFlowCancelBtn"];
-                for(var i = 0; i < btns.length; i++) {
-                    if(this.getCmp("editPanel->" + btns[i])) {
+                var btns = ["workFlowAssignBtn", "workFlowCommitBtn", "workFlowRollBackBtn", "workFlowCancelBtn"];
+                for (var i = 0; i < btns.length; i++) {
+                    if (this.getCmp("editPanel->" + btns[i])) {
                         this.getCmp("editPanel->" + btns[i]).sotDisable();
                         //if(me.uistatus == Scdp.Const.UI_INFO_STATUS_VIEW || me.uistatus == Scdp.Const.UI_INFO_STATUS_NULL
                         //    || me.uistatus == Scdp.Const.UI_INFO_STATUS_NULL|| me.uistatus == Scdp.Const.UI_INFO_STATUS_NULL){
@@ -2257,41 +2245,41 @@ var abstractMvc = function($) {
                 }
             }
         },
-        setPanelsVisableStatus: function() {
+        setPanelsVisableStatus: function () {
             var me = this;
             var uistatus = me.getUIStatus();
             var editPanel = me.getEditPanel();
             var queryPanel = me.getQueryPanel();
             if (Scdp.Const.UI_INFO_STATUS_NEW == uistatus) {
-                if(editPanel) {
-                    editPanel.css('display','block');
+                if (editPanel) {
+                    editPanel.css('display', 'block');
                 }
-                if(queryPanel && me.viewType == 1) {
-                    queryPanel.css('display','none');
+                if (queryPanel && me.viewType == 1) {
+                    queryPanel.css('display', 'none');
                 }
             } else if (Scdp.Const.UI_INFO_STATUS_MODIFY == uistatus) {
-                if(editPanel) {
-                    editPanel.css('display','block');
+                if (editPanel) {
+                    editPanel.css('display', 'block');
                 }
-                if(queryPanel && me.viewType == 1) {
-                    queryPanel.css('display','none');
+                if (queryPanel && me.viewType == 1) {
+                    queryPanel.css('display', 'none');
                 }
             } else if (Scdp.Const.UI_INFO_STATUS_VIEW == uistatus) {
-                if(editPanel) {
-                    editPanel.css('display','block');
+                if (editPanel) {
+                    editPanel.css('display', 'block');
                 }
-                if(queryPanel && me.viewType == 1) {
-                    queryPanel.css('display','none');
+                if (queryPanel && me.viewType == 1) {
+                    queryPanel.css('display', 'none');
                 }
             } else if (Scdp.Const.UI_INFO_STATUS_NULL == uistatus) {
-                if(editPanel && me.viewType == 1) {
-                    editPanel.css('display','none');
+                if (editPanel && me.viewType == 1) {
+                    editPanel.css('display', 'none');
                 }
-                if(queryPanel) {
-                    queryPanel.css('display','block');
+                if (queryPanel) {
+                    queryPanel.css('display', 'block');
                 }
             }
-            if($("body").panel) {
+            if ($("body").panel) {
                 //if(!Scdp.getSysConfig("pure_bootstrap")) {
                 //    $(".overflow-mCustomScrollbar").mCustomScrollbar({autoHideScrollbar:true,callbacks:{
                 //        onOverflowY:function(){
@@ -2299,10 +2287,10 @@ var abstractMvc = function($) {
                 //        }
                 //    }})
                 //}
-                 $("body").doLayout();
+                $("body").doLayout();
             }
         },
-        validate: function() {
+        validate: function () {
             var isValid = true;
             var me = this;
             var bindings = me.bindings;
@@ -2336,8 +2324,8 @@ var abstractMvc = function($) {
                 })
             }
             if (!isValid) {
-                if(invalidBoxLabel) {
-                    Scdp.Msg.warn(Scdp.I18N.INPUT_ITEM + invalidBoxLabel + "<br>" +Scdp.I18N.COMMIT_VALIDATE_ERROR);
+                if (invalidBoxLabel) {
+                    Scdp.Msg.warn(Scdp.I18N.INPUT_ITEM + invalidBoxLabel + "<br>" + Scdp.I18N.COMMIT_VALIDATE_ERROR);
                 } else {
                     Scdp.Msg.warn(Scdp.I18N.COMMIT_VALIDATE_ERROR);
                 }

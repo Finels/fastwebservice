@@ -4,7 +4,7 @@
 Scdp.define("filemanage.view.filemanageView", {
     extend: 'Scdp.bootstrap.mvc.AbstractCrudView',
     initView: function () {
-
+        this.initCondition();
         this.loadGrid();
     },
     initCondition: function () {
@@ -38,7 +38,7 @@ Scdp.define("filemanage.view.filemanageView", {
                 {field: "ck", checkbox: true},
                 {
                     field: "opt",
-                    width: 120,
+                    width: 80,
                     title: "操作",
                     formatter: function () {
                         var html = "<a class='easyui-linkbutton l-btn l-btn-small l-btn-plain' href='javascript:void(0)'> " +
@@ -48,22 +48,33 @@ Scdp.define("filemanage.view.filemanageView", {
                 },
                 {
                     field: "filename",
-                    width: 120,
+                    width: 160,
                     title: "论文名",
                 }
                 , {
-                    field: "userName",
-                    width: 180,
+                    field: "username",
+                    width: 240,
                     title: "上传者",
                 }
                 , {
                     field: "filetype",
-                    width: 120,
-                    title: "论坛类型"
+                    width: 280,
+                    title: "论坛类型",
+                    formatter: function (value) {
+                        if (value == 1) {
+                            return "The main Symposium for PID"
+                        } else if (value == 2) {
+                            return "Rheumatology and Allergic Diseases"
+                        } else if (value == 3) {
+                            return "Respiratory and Infectious Disease"
+                        } else if (value == 4) {
+                            return "Hematology and Transplantation"
+                        }
+                    }
                 },
                 {
                     field: "createtime",
-                    width: 120,
+                    width: 160,
                     title: "上传时间",
                     sortable: "true"
                 }
@@ -77,7 +88,7 @@ Scdp.define("filemanage.view.filemanageView", {
             //     MP.doAction("scdp-user-feedback-query", params, success, fail, true, true);
             // },
             onClickCell: function (rowIndex, field, value) {
-                if (filed == 'opt') {
+                if (field == 'opt') {
                     var url = grid.datagrid("getRows")[rowIndex].filepath;
                     me.controller.doDownload(url);
                 }

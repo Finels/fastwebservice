@@ -6,6 +6,8 @@ import org.fast.service.dao.FastFileRepository;
 import org.fast.service.domain.FastFile;
 import org.fast.service.model.sysmodel.fileupload.service.intf.FileUploadManager;
 import org.fast.service.util.StringUtil;
+import org.hibernate.SQLQuery;
+import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
@@ -43,12 +45,27 @@ public class FileUploadManagerImpl implements FileUploadManager {
 
     @Override
     public List doQuery(Integer start, Integer end) {
-        return fileDao.findAllByUuidIsNotNull(start, end);
+        EntityManager em = emf.createEntityManager();
+        Query query = em.createNativeQuery("select A.*,concat(B.firstname,' ',B.middlename,' ',B.lastname) as username from apsid_file A left join apsid_user B on B.uuid = A.userid order by A.createtime desc limit ?1,?2");
+        query.setParameter(1, start);
+        query.setParameter(2, end);
+        query.unwrap(SQLQuery.class).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);
+        List<Map> dataList = query.getResultList();
+//        return fileDao.findAllByUuidIsNotNull(start, end);
+        return dataList;
     }
 
     @Override
     public List doQuery(String fileType, Integer start, Integer end) {
-        return fileDao.findByFiletype(fileType, start, end);
+        EntityManager em = emf.createEntityManager();
+        Query query = em.createNativeQuery("select A.*,concat(B.firstname,' ',B.middlename,' ',B.lastname) as username from apsid_file A left join apsid_user B on B.uuid = A.userid where A.filetype = ?1 order by A.createtime desc limit ?2,?3");
+        query.setParameter(1, fileType);
+        query.setParameter(2, start);
+        query.setParameter(3, end);
+        query.unwrap(SQLQuery.class).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);
+        List<Map> dataList = query.getResultList();
+//        return fileDao.findByFiletype(fileType, start, end);
+        return dataList;
     }
 
     @Override

@@ -35,6 +35,6 @@ Scdp.define("filemanage.controller.filemanageController", {
     },
     doDownload: function (url) {
         var me = this;
-        alert(url);
+        window.location.href = url;
     }
 });

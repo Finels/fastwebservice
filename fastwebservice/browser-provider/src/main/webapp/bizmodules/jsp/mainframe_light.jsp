@@ -99,7 +99,7 @@
         <%--导航内容--%>
         <div class="tab-content">
             <div class="tab-pane active" id="content_home">
-                <img src="/bizmodules/images/timg.png" style="width: 100%;height: 100%"/>
+                <h2 style="font-family: 'Microsoft YaHei';text-align: center">欢迎使用APSID-2018网站后台管理系统</h2>
                 <%--<div class="maincont k-content">--%>
                 <%--<section style="padding:10px 15px 0 15px;">--%>
 

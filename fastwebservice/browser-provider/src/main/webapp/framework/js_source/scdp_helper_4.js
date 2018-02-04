@@ -19,15 +19,15 @@
  */
 Scdp.doAction = function (url, params, success, failure, maskid, async, fileid) {
     success = success || function () {
-        };
+    };
     failure = failure || function () {
-        };
+    };
     params = params || {};
     "sys-user-login" !== url && (params.userId = Scdp.CacheUtil.get(Scdp.Const.USER_ID));
     params.userLocaleId = Scdp.getSysConfig("locale_id");
     params.timestamp = Date.now();
     params.network = window.NETWORK_DELAY;
-    Scdp.ObjUtil.isEmpty(params.menuCode) && (params.menuCode = Scdp.getActiveModule() ? Scdp.getActiveModule() : null );
+    Scdp.ObjUtil.isEmpty(params.menuCode) && (params.menuCode = Scdp.getActiveModule() ? Scdp.getActiveModule() : null);
     params.signature = Scdp.getSign(url, params);
     if (Scdp.ObjUtil.isNotEmpty(fileid)) {
         params = Scdp.JSON.encode(params);
@@ -129,9 +129,9 @@ Scdp.commonDeleteAction = function (url, param, successFn, failureFn, async) {
 
 Scdp.loadFreeMarkerPage = function (action, params, success, failure) {
     success = success || function () {
-        };
+    };
     failure = failure || function () {
-        };
+    };
     BR.doAjax("/menu/loadpage.action", {pagePath: params.pagePath}, true, function (retdata) {
         success(retdata);
     }, failure, "html");
@@ -355,7 +355,7 @@ Scdp.getComboStoreDate = function (comboType, codeType, menuCode, filterMap, nee
     var cacheObjWithMenuCode = Scdp.CacheUtil.getPage(Scdp.Const.CACHE_TYPE_COMBO_STORE, cacheKeyWithMenuCode);
 
     if ((needCache === false) || (!Scdp.CacheUtil.pageContainsKey(Scdp.Const.CACHE_TYPE_COMBO_STORE, cacheKeyWithMenuCode)
-        && !Scdp.CacheUtil.pageContainsKey(Scdp.Const.CACHE_TYPE_COMBO_STORE, cacheKey))) {
+            && !Scdp.CacheUtil.pageContainsKey(Scdp.Const.CACHE_TYPE_COMBO_STORE, cacheKey))) {
         postdata.cacheKey = cacheKey;
         postdata.cacheKeyWithMenuCode = cacheKeyWithMenuCode;
 
@@ -829,7 +829,7 @@ Scdp.updateRoute = function (itemid) {
             }
         });
     } else {
-        if (itemid == "home" || itemid == "indexmenu")itemid = "桌面";
+        if (itemid == "home" || itemid == "indexmenu") itemid = "桌面";
         routeHtml = '<li><i class="fa fa-dashboard"></i> ' + itemid + '</li>'
     }
     $(".route .breadcrumb-footer").html(routeHtml);
@@ -888,9 +888,9 @@ Scdp.mask = function (id) {
     //});
 
     var mask = '<div id="loading" class="loading-mask-action" > ' +
-            //'<h4>加载中....</h4>' +
+        //'<h4>加载中....</h4>' +
         '<div class="loader" style="position: absolute; left: calc(50% - 20px); top: calc(50% - 20px);"><div class="loader-inner line-scale"><div></div><div></div><div></div><div></div><div></div></div></div>' +
-            //'<div class="fl spinner3" style="position: absolute; left: calc(50% - 20px); top: calc(50% - 20px);"><div class="dot1"></div><div class="dot2"></div></div>' +
+        //'<div class="fl spinner3" style="position: absolute; left: calc(50% - 20px); top: calc(50% - 20px);"><div class="dot1"></div><div class="dot2"></div></div>' +
         '</div>';
     $(mask).appendTo(id);
 }
@@ -987,8 +987,8 @@ Scdp.getMenuButtonsPrivilege = function (menucode) {
  */
 Scdp.getFavoriteMenus = function () {
     var menus = Scdp.CacheUtil.getTemp(Scdp.Const.CACHE_TYPE_SYS_MENU, {}, !0, !0);
-    var favorites = menus.userFavorites;
-    return favorites;
+    // var favorites = menus.userFavorites;
+    return [];
 }
 
 
@@ -1348,6 +1348,7 @@ Scdp.popWindow = function (linkhref, title, itemid, actionparams, width, showbtn
             callback(postdata);
         }
     });
+
     function showButton(showbtn) {
         if (showbtn && showbtn == true) {
             return ' <div class="modal-footer">' +
