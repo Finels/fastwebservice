@@ -71,6 +71,6 @@ public class UserQueryController {
         }
         resultMap.put("rows", dataList);
         resultMap.put("total", count);
-        return new ResponseEntity<ResultBody>(new ResultBody("login", "success", resultMap, ""), HttpStatus.OK);
+        return new ResponseEntity<ResultBody>(new ResultBody("user query", "success", resultMap, ""), HttpStatus.OK);
     }
 }

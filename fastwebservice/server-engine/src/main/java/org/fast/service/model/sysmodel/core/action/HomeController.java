@@ -57,8 +57,6 @@ public class HomeController {
 
     private Logger logeger = LoggerFactory.getLogger(this.getClass());
 
-    @Autowired
-    private SqlSessionFactory sessionFactory;
 
 
     /**

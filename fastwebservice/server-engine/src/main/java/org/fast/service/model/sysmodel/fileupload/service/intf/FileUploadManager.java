@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -18,16 +19,21 @@ import java.util.Map;
 public interface FileUploadManager {
 
     /**
-     * 文件上传
+     * 查询文件列表，所有文件，带分页参数
      */
-    public void upload(InputStream inputStream);
-
-    public void upload(File file);
-
-    public void upload(HttpServletRequest request, Map paramsMap) throws IOException;
+    public List doQuery(Integer start, Integer end);
 
     /**
-     * 读取文件表中的所有文件，并获取所有文件的下载链接
+     * 查询文件列表，带文件类型查询参数和分页参数
      */
-    public Map downloadByAll();
+    public List doQuery(String fileType, Integer start, Integer end);
+
+    /**
+     * 查询记录条数
+     *
+     * @return
+     */
+    public Integer doQueryCount();
+
+    public Integer doQueryCount(String fileType);
 }

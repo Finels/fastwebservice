@@ -4,7 +4,23 @@
 Scdp.define("filemanage.view.filemanageView", {
     extend: 'Scdp.bootstrap.mvc.AbstractCrudView',
     initView: function () {
+
         this.loadGrid();
+    },
+    initCondition: function () {
+        var me = this;
+        me.getCmp("selectFileType").combobox({
+            valueField: 'id',
+            textField: 'text',
+
+            data: [
+                {id: 0, text: '全部'},
+                {id: 1, text: 'The main Symposium for PID'},
+                {id: 2, text: 'Rheumatology and Allergic Diseases'},
+                {id: 3, text: 'Respiratory and Infectious Disease'},
+                {id: 4, text: 'Hematology and Transplantation'},
+            ]
+        });
     },
     loadGrid: function () {
         var me = this;
@@ -21,30 +37,50 @@ Scdp.define("filemanage.view.filemanageView", {
             columns: [[
                 {field: "ck", checkbox: true},
                 {
-                    field: "infoTypeDesc",
+                    field: "opt",
                     width: 120,
-                    title: "文件名",
-                    sortable: "true"
+                    title: "操作",
+                    formatter: function () {
+                        var html = "<a class='easyui-linkbutton l-btn l-btn-small l-btn-plain' href='javascript:void(0)'> " +
+                            "<button type='button' class='btn btn-danger btn-xs'><i class='fa fa-fw fa-bitbucket'></i>下载</button></a>"
+                        return html;
+                    }
+                },
+                {
+                    field: "filename",
+                    width: 120,
+                    title: "论文名",
                 }
                 , {
                     field: "userName",
                     width: 180,
-                    title: "文件路径",
-                    sortable: "true"
+                    title: "上传者",
                 }
                 , {
-                    field: "companyCodeDesc",
+                    field: "filetype",
                     width: 120,
-                    title: "上传时间"
+                    title: "论坛类型"
+                },
+                {
+                    field: "createtime",
+                    width: 120,
+                    title: "上传时间",
+                    sortable: "true"
                 }
             ]],
             onLoadSuccess: function (data) {
                 grid.datagrid("columnMoving");     //设置列拖动
             },
-            loader: function (params, success, fail) {
-                params.limit = params.rows;
-                params.start = params.page;
-                MP.doAction("scdp-user-feedback-query", params, success, fail, true, true);
+            // loader: function (params, success, fail) {
+            //     params.limit = params.rows;
+            //     params.start = params.page;
+            //     MP.doAction("scdp-user-feedback-query", params, success, fail, true, true);
+            // },
+            onClickCell: function (rowIndex, field, value) {
+                if (filed == 'opt') {
+                    var url = grid.datagrid("getRows")[rowIndex].filepath;
+                    me.controller.doDownload(url);
+                }
             }
         });
     },
