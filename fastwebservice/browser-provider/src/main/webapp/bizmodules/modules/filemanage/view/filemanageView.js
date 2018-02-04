@@ -42,7 +42,7 @@ Scdp.define("filemanage.view.filemanageView", {
                     title: "操作",
                     formatter: function () {
                         var html = "<a class='easyui-linkbutton l-btn l-btn-small l-btn-plain' href='javascript:void(0)'> " +
-                            "<button type='button' class='btn btn-danger btn-xs'><i class='fa fa-fw fa-bitbucket'></i>下载</button></a>"
+                            "<button type='button' class='btn btn-danger btn-xs'><i class='fa fa-fw fa-sign-in'></i>下载</button></a>"
                         return html;
                     }
                 },
