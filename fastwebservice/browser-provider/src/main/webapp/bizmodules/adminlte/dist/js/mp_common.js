@@ -36,77 +36,7 @@ MP.Const.dataGridHeight = 800;
 MP.Const.dataGridPageSize = 15;
 MP.Const.dataGridPageList = [10, 15, 20, 30, 40, 50];
 
-MP.Const.CODE_ASSET_TYPE = "asset_type";      //资产类型
-MP.Const.CODE_CLOTHES_CLASSIFICATION = "clothes_classification";   //服装类别
-MP.Const.CODE_CLOTHES_TYPE = "clothes_type";    //服装类型
-MP.Const.CODE_COMPTURE_RANK = "compture_rank";   //计算机等级
-MP.Const.CODE_EDUCATIONAL = "educational";        //学历
-MP.Const.CODE_EVALUATE_TYPE = "evaluate_type";    //综合考核类型
-MP.Const.CODE_EXAM_RANK = "exam_rank";             //业务考试等级
-MP.Const.CODE_EXAM_TYPE = "exam_type";               //考勤种类
-MP.Const.CODE_FILE_TYPE = "file_type";               //文件类型
-MP.Const.CODE_LIST_CLASSES = "list_classes";          //班次
-MP.Const.CODE_LIST_GROUP = "list_group";              //班组
-MP.Const.CODE_MANDARIN_RANK = "mandarin_rank";         //普通话等级
-MP.Const.CODE_OPERATE_TYPE = "operate_type";            //批文类型
-MP.Const.CODE_POLITICS = "politics";                     //政治面貌
-MP.Const.CODE_STATION_CLASSIFICATION = "station_ classification";  //收费站类别
-MP.Const.CODE_STATION_PROPERTY = "station_ property";       //收费站性质
-MP.Const.CODE_STATION_DUTIES = "station_duties";            //收费站职务
-MP.Const.CODE_STATION_POST = "station_post";               //收费员岗位
-MP.Const.CODE_STATION_STAR = "station_star";               //收费站星级
-MP.Const.CODE_STATION_TYPE = "station_type";               //收费站类型
-MP.Const.CODE_TRAIN_METHOD = "train_method";              //培训方式
-MP.Const.CODE_TRAIN_TYPE = "train_type";                  //培训类型
-MP.Const.CODE_BILLCARDINOUT_TICKET_TYPE = "pm-billcardinout-tickettype"; //调拨票券类型
-MP.Const.CODE_BILLCARDINOUT_TICKET_SUB_TYPE = "pm-billcardinout-tickettype-subtype"; //调拨票券子类型
-MP.Const.CODE_BASICCARD_TYPE = "basiccard_type";   //基础卡类型
-MP.Const.CODE_BASICCARD_STATE = "basiccard_state";   //基础卡状态
-var management_getImagesUrl = "orginfo-base-management-loadimgs";   //管理处读取图片url
-
-//====================消息类型===================
-MP.Const.MSG_TYPE_WF_MSG = "WF_MSG"; //待办事项
-MP.Const.MSG_TYPE_NOTICE_MSG = "NOTICE_MSG"; //个人消息
-MP.Const.MSG_TYPE_EXCEPTION_MSG = "EXCEPTION_MSG"; //异常消息
-MP.Const.MSG_TYPE_SYS_MSG = "SYS_MSG"; //系统消息
-
-
-//自定义川高排班模式 后台对应：com.csnt.scdp.bizmodules.attributes.CommonAttribute.MAIN_SHIFT_TYPE_1;
-MP.Const.MAIN_SHIFT_TYPE_1 = "1";
-MP.Const.MAIN_SHIFT_TYPE_2 = "2";
-MP.Const.MAIN_SHIFT_TYPE_3 = "3";
-MP.Const.MAIN_SHIFT_TYPE_4 = "4";
-MP.Const.MAIN_SHIFT_TYPE_5 = "5";
-
-
-//考勤类型 部分;
-MP.Const.EXAM_TYPE_1 = 1;//上班
-MP.Const.EXAM_TYPE_2 = 2;//替班
-MP.Const.EXAM_TYPE_3 = 3;//加班
-MP.Const.EXAM_TYPE_4 = 4;//休息
-MP.Const.EXAM_TYPE_5 = 5;//请假
-MP.Const.EXAM_TYPE_6 = 6;//还班
-MP.Const.EXAM_TYPE_7 = 7;//旷工
-MP.Const.EXAM_TYPE_8 = 8;//早退
-MP.Const.EXAM_TYPE_9 = 9;//迟到
-
-//请假类型 部分;
-MP.Const.leave_type_1 = 1;//
-MP.Const.leave_type_2 = 2;//
-MP.Const.leave_type_3 = 3;//
-MP.Const.leave_type_4 = 4;//
-MP.Const.leave_type_5 = 5;//
-MP.Const.leave_type_6 = 6;//
-MP.Const.leave_type_7 = 7;//
-
-//绿通审核页面全局变量
-MP.Const.imgArray = [];
-MP.Const.imgArrayIndex = 0;
-
-//日常巡查详情页面的全局变量
-MP.Const.dailyInspectArray = [];
-MP.Const.dailyInspectArrayIndex = 0;
-
+MP.Const.globalParams1 = null;
 
 /**
  * 通过id获取组件
@@ -193,7 +123,7 @@ MP.commonParamsFactory = function (actionName, viewdata) {
     b.userLocaleId = Scdp.getSysConfig("locale_id");
     b.timestamp = Date.now();
     b.network = window.NETWORK_DELAY;
-    Scdp.ObjUtil.isEmpty(b.menuCode) && (b.menuCode = Scdp.getActiveModule() ? Scdp.getActiveModule().menuCode : null );
+    Scdp.ObjUtil.isEmpty(b.menuCode) && (b.menuCode = Scdp.getActiveModule() ? Scdp.getActiveModule().menuCode : null);
     b.viewdata = viewdata;
     b.signature = Scdp.getSign(actionName, b);
     return b;
@@ -531,9 +461,9 @@ MP.unmask = function () {
 MP.Utils.ajax = function (data) {
     var retdata = {},
         success = data.successFn || function () {
-            },
+        },
         failure = data.failureFn || function () {
-            },
+        },
         param = {
             actionName: data.action,
             limit: data.postdata.limit,
@@ -610,9 +540,9 @@ MP.Utils.ajax = function (data) {
  */
 MP.doAction = function (url, params, success, failure, maskid, async, fileid) {
     success = success || function () {
-        };
+    };
     failure = failure || function () {
-        };
+    };
     params = params || {};
     "sys-user-login" !== url && (params.userId = Scdp.CacheUtil.get(Scdp.Const.USER_ID));
     params.userLocaleId = Scdp.getSysConfig("locale_id");
@@ -926,7 +856,7 @@ MP.formatterDateNoSecond = function (value) {
         var date = new Date(MP.TranslateTime(value));
         var day = date.getDate() > 9 ? date.getDate() : "0" + date.getDate();
         var month = (date.getMonth() + 1) > 9 ? (date.getMonth() + 1) : "0"
-        + (date.getMonth() + 1);
+            + (date.getMonth() + 1);
         return date.getFullYear() + '-' + month + '-' + day;
     }
     return "";
@@ -1253,7 +1183,7 @@ MP.tabChange = function (context) {
 MP.formatterDate = function (date) {
     var day = date.getDate() > 9 ? date.getDate() : "0" + date.getDate();
     var month = (date.getMonth() + 1) > 9 ? (date.getMonth() + 1) : "0"
-    + (date.getMonth() + 1);
+        + (date.getMonth() + 1);
     return date.getFullYear() + '-' + month + '-' + day;
 };
 /**
@@ -1272,7 +1202,7 @@ MP.getMonthLastDate = function (date) {
     var day = MP.getCountDays(date);
     day = day > 9 ? day : "0" + day;
     var month = (date.getMonth() + 1) > 9 ? (date.getMonth() + 1) : "0"
-    + (date.getMonth() + 1);
+        + (date.getMonth() + 1);
     return date.getFullYear() + '-' + month + '-' + day;
 };
 /**
@@ -1377,7 +1307,7 @@ MP.AnimationEacharts = function (echartData, echartId, echartOption) {
  */
 MP.DateUtils.getCurrentMonth = function () {
     var nowDate = new Date();
-    var nowYearMonth = nowDate.getFullYear() + "-" + ( parseInt(new Date().getMonth()) < 9 ? "0" + (parseInt(new Date().getMonth()) + 1) : parseInt(new Date().getMonth()) + 1);
+    var nowYearMonth = nowDate.getFullYear() + "-" + (parseInt(new Date().getMonth()) < 9 ? "0" + (parseInt(new Date().getMonth()) + 1) : parseInt(new Date().getMonth()) + 1);
     return nowYearMonth;
 }
 /**
@@ -1624,43 +1554,5 @@ MP.bindSubSequence = function (formId, context) {
         });
     }
 }
-/**
- * 日常巡查详情item项点击事件：打开模态框
- */
-MP.dailyInspectDetailClick = function (uuid) {
-    $("#opeInspectionDetailModal").modal('show');
-    MP.Const.dailyInspectArrayIndex = 0;
-    MP.doAction("inspect-result-get-single-items", {uuid: uuid}, function (ret) {
-        //问题描述框和处理情况框赋值
-        $("#dailyInspectDetailQuestion").text(ret.qandA.problemDescription == null ? "暂无" : ret.qandA.problemDescription);
-        $("#dailyInspectDetailAnswer").text(ret.qandA.problemSolution == null ? "暂无" : ret.qandA.problemSolution);
-        MP.Const.dailyInspectArray = ret.img;
-        //绑定上一张图片按钮的事件
-        $("#dailyInspectImgPrior").unbind('click');
-        $("#dailyInspectImgPrior").click(function () {
-            if (MP.Const.dailyInspectArrayIndex != 0) {
-                MP.Const.dailyInspectArrayIndex -= 1;
-            }
-            MP.dailyInspectDetailShowImg();
-        });
-        //绑定下一张图片按钮的事件
-        $("#dailyInspectImgNext").unbind('click');
-        $("#dailyInspectImgNext").click(function () {
-            if (MP.Const.dailyInspectArrayIndex != MP.Const.dailyInspectArray.length - 1) {
-                MP.Const.dailyInspectArrayIndex += 1;
-            }
-            MP.dailyInspectDetailShowImg();
-        });
 
-        MP.dailyInspectDetailShowImg();
-    }, null, true, true);
-
-}
-/**
- * 加载日常巡查详情Item所属的图片信息
- */
-MP.dailyInspectDetailShowImg = function () {
-    var me = this;
-    $("#dailyInspectDetailImgDiv").attr('src', MP.Const.dailyInspectArray[MP.Const.dailyInspectArrayIndex]);
-};
 

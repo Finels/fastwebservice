@@ -14,10 +14,10 @@ Namespace.register = function (path) {
 
 Namespace.register("BR");
 Namespace.register("BR.Msg");
-Namespace.register("BR.Const");
+Namespace.register("BR.Static");
 Namespace.register("BR.Utils");
 Namespace.register("BR.DateUtils");
-
+BR.Static.globalParams1 = null;
 BR.doAjax = function (url, param, maskid, success, error, dataType) {
     //param = JSON.stringify(param);
     //var params = {
