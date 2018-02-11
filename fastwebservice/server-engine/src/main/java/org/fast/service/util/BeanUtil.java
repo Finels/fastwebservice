@@ -1,7 +1,8 @@
 package org.fast.service.util;
 
+import org.apache.commons.beanutils.BeanUtils;
+
 import java.util.Map;
-import org.apache.commons.*;
 
 /**
  * Description:  Map和对象互转
@@ -19,8 +20,7 @@ public class BeanUtil {
 
         Object obj = beanClass.newInstance();
 
-        org.apache.commons.beanutils.BeanUtils.populate(obj, map);
-
+        BeanUtils.populate(obj, map);
         return obj;
     }
 

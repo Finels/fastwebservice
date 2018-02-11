@@ -160,6 +160,7 @@ function dismissLoginDiv() {
     $("[itemId=password]").attr("disabled", false);
     $("[itemId=loginOkBtn]").attr("disabled", false);
     $("[itemId=loginOkBtn]").html("登录");
+    $("#foo").hide();
 }
 
 function doLogin_bak(username, password) {
@@ -223,6 +224,7 @@ function doLogin_bak(username, password) {
             $("[itemId=password]").attr("disabled", false);
             $("[itemId=loginOkBtn]").attr("disabled", false);
             $("[itemId=loginOkBtn]").html("登录");
+            $("#foo").show();
         }, true, true);
     })
 }
