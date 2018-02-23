@@ -1,5 +1,7 @@
 package org.fast.service.model.sysmodel.core.service.intf;
 
+import org.springframework.data.domain.Page;
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
@@ -19,9 +21,9 @@ public interface UserServiceIntf {
 
     public Map doLogin(Map inMap, HttpServletRequest request);
 
-    public List doQuery(Integer start, Integer end);
+    public List doQuery(Integer page, Integer size);
 
-    public List doQuery(String starttime, String endtime, Integer start, Integer end);
+    public List doQuery(String starttime, String endtime, Integer page, Integer size);
 
     public Integer doQueryCount();
 

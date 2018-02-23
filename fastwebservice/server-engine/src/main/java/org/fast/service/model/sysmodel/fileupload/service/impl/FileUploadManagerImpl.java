@@ -51,6 +51,7 @@ public class FileUploadManagerImpl implements FileUploadManager {
         query.setParameter(2, end);
         query.unwrap(SQLQuery.class).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);
         List<Map> dataList = query.getResultList();
+        em.close();
 //        return fileDao.findAllByUuidIsNotNull(start, end);
         return dataList;
     }
@@ -64,6 +65,7 @@ public class FileUploadManagerImpl implements FileUploadManager {
         query.setParameter(3, end);
         query.unwrap(SQLQuery.class).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);
         List<Map> dataList = query.getResultList();
+        em.close();
 //        return fileDao.findByFiletype(fileType, start, end);
         return dataList;
     }
@@ -73,6 +75,7 @@ public class FileUploadManagerImpl implements FileUploadManager {
         EntityManager em = emf.createEntityManager();
         Query query = em.createNativeQuery("select count(uuid) from apsid_file");
         Object i = query.getSingleResult();
+        em.close();
         return i == null ? 0 : Integer.parseInt(i.toString());
     }
 
@@ -82,6 +85,7 @@ public class FileUploadManagerImpl implements FileUploadManager {
         Query query = em.createNativeQuery("select count(uuid) from apsid_file where filetype = ?1 ");
         query.setParameter(1, fileType);
         Object i = query.getSingleResult();
+        em.close();
         return i == null ? 0 : Integer.parseInt(i.toString());
     }
 }

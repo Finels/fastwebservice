@@ -6,6 +6,7 @@ import org.fast.service.domain.ResultBody;
 import org.fast.service.model.sysmodel.core.service.intf.UserServiceIntf;
 import org.fast.service.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -50,7 +51,6 @@ public class UserQueryController {
     @ResponseBody
     public ResponseEntity<ResultBody> query(@RequestBody ActionBody actionBody, HttpServletRequest request, HttpServletResponse response) {
         Map resultMap = new HashMap<>();
-        List dataList;
         Integer count;
         Map params = actionBody.getDataBody();
         Integer start = Integer.parseInt(params.get("start").toString());
@@ -63,13 +63,15 @@ public class UserQueryController {
         Object starttime = params.get("starttime");
         Object endtime = params.get("endtime");
         if (StringUtil.isNotEmpty(starttime) && StringUtil.isNotEmpty(endtime)) {
-            dataList = userService.doQuery(starttime.toString(), endtime.toString(), start, start + limit);
+            List dataList = userService.doQuery(starttime.toString(), endtime.toString(), start, start + limit);
             count = userService.doQueryCount(starttime.toString(), endtime.toString());
+            resultMap.put("rows", dataList);
         } else {
-            dataList = userService.doQuery(start, start + limit);
+            List dataList = userService.doQuery(start, start + limit);
             count = userService.doQueryCount();
+            resultMap.put("rows", dataList);
         }
-        resultMap.put("rows", dataList);
+
         resultMap.put("total", count);
         return new ResponseEntity<ResultBody>(new ResultBody("user query", "success", resultMap, ""), HttpStatus.OK);
     }

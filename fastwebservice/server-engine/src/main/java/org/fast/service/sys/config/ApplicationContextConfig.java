@@ -15,6 +15,7 @@ import org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcesso
 import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.transaction.jta.JtaTransactionManager;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
@@ -34,7 +35,9 @@ import java.util.Properties;
 @Configuration
 @EnableTransactionManagement //启用事务注解扫描器
 @EnableAspectJAutoProxy
-@ComponentScan(basePackages = "org.fast.service")
+//spring的注解扫描去掉Controller注解，避免与springMVC冲突
+@ComponentScan(basePackages = "org.fast.service", excludeFilters = {@ComponentScan.Filter(type = FilterType.ANNOTATION, value = org.springframework.stereotype.Controller.class)})
+
 @PropertySource({"WEB-INF/classes/dbcp.properties", "WEB-INF/classes/mongo.properties", "WEB-INF/classes/system-config.properties", "WEB-INF/classes/redis.properties"})
 public class ApplicationContextConfig {
 
@@ -58,7 +61,7 @@ public class ApplicationContextConfig {
      * @param env
      * @return
      */
-    @Bean
+    @Bean(destroyMethod = "close")
     public DataSource dataSource(Environment env, SpringContextUtil contextUtil) throws Exception {
         Properties database = new Properties();
         database.load(contextUtil.getApplicationContext().getResource("WEB-INF/classes/dbcp.properties").getInputStream());
@@ -107,12 +110,36 @@ public class ApplicationContextConfig {
      * @return
      */
     @Bean
-    public JpaTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
+    public JpaTransactionManager transactionManager(DataSource dataSource, EntityManagerFactory entityManagerFactory) {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(entityManagerFactory);
+        transactionManager.setDataSource(dataSource);
         return transactionManager;
     }
 
+
+//    /**
+//     * 配置事务管理，
+//     * 当前使用的是jta事务管理器，支持多数据源即分布式事务管理
+//     *
+//     * @return
+//     */
+//    @Bean(name = "transactionManager")
+//    public JtaTransactionManager transactionManager(BitronixTransactionManager btm) {
+//        JtaTransactionManager transactionManager = new JtaTransactionManager();
+//        transactionManager.setTransactionManager(btm);
+//        transactionManager.setUserTransaction(btm);
+//        return transactionManager;
+//    }
+//
+//    /**
+//     * 配置关系型数据源的事务管理器，采用bitronix
+//     */
+//    @Bean(destroyMethod = "shutdown")
+//    public BitronixTransactionManager setBitronixTransactionManager() {
+//        BitronixTransactionManager btm = TransactionManagerServices.getTransactionManager();
+//        return btm;
+//    }
 
 //    /**
 //     * 配置事务管理，

@@ -3,6 +3,7 @@ package org.fast.service.dao;
 import org.fast.service.domain.ApsidUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.List;
 import java.util.Map;
@@ -18,10 +19,10 @@ import java.util.Map;
  */
 public interface ApsidUserRepository extends JpaRepository<ApsidUser, String> {
 
-    @Query(value = "select * from apsid_user order by creattime desc limit ?1,?2", nativeQuery = true)
-    public List<ApsidUser> findAllWithLimit(Integer start, Integer end);
+    //    @Query(value = "select a from ApsidUser a order by a.creattime desc")
+    public List<ApsidUser> findByUuidIsNotNull();
 
-    @Query(value = "select * from apsid_user where creattime between ?1 and ?2 order by creattime desc limit ?3,?4", nativeQuery = true)
-    public List<ApsidUser> findAllByCreattimeWithLimit(String starttime, String endtime, Integer start, Integer end);
+    //    @Query(value = "select * from apsid_user where creattime between ?1 and ?2 order by creattime desc limit ?3,?4",nativeQuery = true)
+    public List<ApsidUser> findByCreattimeBetween(String starttime, String endtime);
 
 }

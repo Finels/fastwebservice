@@ -26,7 +26,7 @@ public class MenuManagerImpl implements MenuManager {
     @Override
     public Map loadMenus() {
         Map out = new HashMap<>();
-        List dataList = repository.findByUuidNotNull();
+        List dataList = repository.findAll();
         out.put("data", dataList);
         return out;
     }

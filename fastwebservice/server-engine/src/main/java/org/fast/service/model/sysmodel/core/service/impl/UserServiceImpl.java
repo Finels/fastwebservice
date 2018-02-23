@@ -11,15 +11,22 @@ import org.fast.service.sys.exception.SysException;
 import org.fast.service.util.BeanUtil;
 import org.fast.service.util.CryptUtil;
 import org.fast.service.util.StringUtil;
+import org.hibernate.SQLQuery;
+import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.fast.service.model.sysmodel.security.service.intf.SecurityManager;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.servlet.http.HttpServletRequest;
+import javax.transaction.Transactional;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.HashMap;
@@ -35,6 +42,7 @@ import java.util.Map;
  * @version 1.0
  * @timestamp 2017/11/28
  */
+@Transactional
 public class UserServiceImpl implements UserServiceIntf {
 
     @Autowired
@@ -104,13 +112,31 @@ public class UserServiceImpl implements UserServiceIntf {
 
     @Override
     public List doQuery(Integer start, Integer end) {
-        List<ApsidUser> dataList = apsidUserRepository.findAllWithLimit(start, end);
+        EntityManager em = emf.createEntityManager();
+        Query query = em.createNativeQuery("select * from apsid_user order by creattime desc limit ?1,?2");
+        query.setParameter(1, start);
+        query.setParameter(2, end);
+//        List<ApsidUser> dataList = apsidUserRepository.findAllByCreattimeWithLimit(starttime, endtime, start, end);
+        query.unwrap(SQLQuery.class).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);
+        List<Map> dataList = query.getResultList();
+        query.getResultList();
+        em.close();
         return dataList;
     }
 
     @Override
     public List doQuery(String starttime, String endtime, Integer start, Integer end) {
-        List<ApsidUser> dataList = apsidUserRepository.findAllByCreattimeWithLimit(starttime, endtime, start, end);
+        EntityManager em = emf.createEntityManager();
+        Query query = em.createNativeQuery("select * from apsid_user where creattime between ?1 and ?2 order by creattime desc limit ?3,?4");
+        query.setParameter(1, starttime);
+        query.setParameter(2, endtime);
+        query.setParameter(3, start);
+        query.setParameter(4, end);
+//        List<ApsidUser> dataList = apsidUserRepository.findAllByCreattimeWithLimit(starttime, endtime, start, end);
+        query.unwrap(SQLQuery.class).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);
+        List<Map> dataList = query.getResultList();
+        query.getResultList();
+        em.close();
         return dataList;
     }
 
@@ -119,6 +145,7 @@ public class UserServiceImpl implements UserServiceIntf {
         EntityManager em = emf.createEntityManager();
         Query query = em.createNativeQuery("select count(uuid) from apsid_user");
         Object i = query.getSingleResult();
+        em.close();
         return i == null ? 0 : Integer.parseInt(i.toString());
     }
 
@@ -129,6 +156,7 @@ public class UserServiceImpl implements UserServiceIntf {
         query.setParameter(1, starttime);
         query.setParameter(2, endtime);
         Object i = query.getSingleResult();
+        em.close();
         return i == null ? 0 : Integer.parseInt(i.toString());
     }
 }
