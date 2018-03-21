@@ -1,5 +1,6 @@
 package org.fast.service.model.sysmodel.fileupload.action;
 
+import org.apache.commons.lang3.time.DateUtils;
 import org.fast.service.dao.ApsidFileDao;
 import org.fast.service.domain.ActionBody;
 import org.fast.service.domain.ApsidFile;
@@ -16,10 +17,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 /**
  * Description:  文件上传下载action
@@ -33,6 +40,7 @@ import java.util.Map;
 @Controller
 @RequestMapping("/file/")
 public class FileController {
+    private final String serverUrl = "/web/apache-tomcat-8.0.47/webapps/files/";
     @Autowired
     private FileUploadManager fileUploadManager;
 
@@ -60,5 +68,34 @@ public class FileController {
         resultMap.put("rows", dataList);
         resultMap.put("total", count);
         return new ResponseEntity<ResultBody>(new ResultBody("file query", "success", resultMap, ""), HttpStatus.OK);
+    }
+
+    /**
+     * 打包下载所有文件
+     *
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping("download.action")
+    public ResponseEntity downloadAll(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        ZipOutputStream zipOutputStream = new ZipOutputStream(response.getOutputStream());
+        List<Map> dataList = fileUploadManager.doQuery(0, 99999);
+        for (Map data : dataList) {
+            File srcFile = new File(serverUrl + data.get("filepath"));
+            String rnCode = data.get("rncode").toString();
+            zipOutputStream.putNextEntry(new ZipEntry(rnCode + "--" + srcFile.getName()));
+            InputStream in = new FileInputStream(srcFile);
+            int len = 0;
+            byte[] buffer = new byte[1024];
+            while ((len = in.read(buffer)) > 0) {
+                zipOutputStream.write(buffer, 0, len);
+            }
+            in.close();
+            zipOutputStream.closeEntry();
+        }
+        response.setHeader("content-disposition", "attachment;filename=" + "files.zip");
+        zipOutputStream.close();
+        return new ResponseEntity<ResultBody>(new ResultBody("file download", "success", null, ""), HttpStatus.OK);
     }
 }

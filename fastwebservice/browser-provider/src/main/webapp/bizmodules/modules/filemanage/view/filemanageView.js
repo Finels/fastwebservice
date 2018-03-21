@@ -47,6 +47,11 @@ Scdp.define("filemanage.view.filemanageView", {
                     }
                 },
                 {
+                    field: "rncode",
+                    width: 160,
+                    title: "RNCode",
+                },
+                {
                     field: "filename",
                     width: 160,
                     title: "论文名",

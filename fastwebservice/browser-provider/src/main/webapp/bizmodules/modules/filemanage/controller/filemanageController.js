@@ -43,17 +43,18 @@ Scdp.define("filemanage.controller.filemanageController", {
     },
     doDownloadAll: function () {
         var me = this;
-        var rows = MP.Const.globalParams1;
-        if (rows == null || rows.length == 0) {
-            MP.Msg.warn("查询数据为空，暂无无可下载文档");
-            return;
-        }
-        for (var index in rows) {
-            if (rows[index].filepath) {
-                var url = rows[index].filepath;
-                me.doDownload(url);
-            }
-        }
+        // var rows = MP.Const.globalParams1;
+        // if (rows == null || rows.length == 0) {
+        //     MP.Msg.warn("查询数据为空，暂无无可下载文档");
+        //     return;
+        // }
+        // for (var index in rows) {
+        //     if (rows[index].filepath) {
+        //         var url = rows[index].filepath;
+        //         me.doDownload(url);
+        //     }
+        // }
+        BR.doAjax("/file/download.action", {}, true, null, null);
     },
     doDownload: function (url) {
         setTimeout(function () {
