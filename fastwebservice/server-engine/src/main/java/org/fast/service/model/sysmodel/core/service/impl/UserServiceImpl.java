@@ -113,7 +113,7 @@ public class UserServiceImpl implements UserServiceIntf {
     @Override
     public List doQuery(Integer start, Integer end) {
         EntityManager em = emf.createEntityManager();
-        Query query = em.createNativeQuery("select * from apsid_user order by creattime desc limit ?1,?2");
+        Query query = em.createNativeQuery("select a.*,b.cacode from apsid_user a left join apsid_file b on b.userid = a.uuid order by creattime desc limit ?1,?2");
         query.setParameter(1, start);
         query.setParameter(2, end);
 //        List<ApsidUser> dataList = apsidUserRepository.findAllByCreattimeWithLimit(starttime, endtime, start, end);

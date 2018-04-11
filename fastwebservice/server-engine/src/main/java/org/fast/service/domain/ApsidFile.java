@@ -1,5 +1,6 @@
 package org.fast.service.domain;
 
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.GenericGenerator;
 

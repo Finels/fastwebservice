@@ -79,12 +79,14 @@ public class FileController {
      */
     @RequestMapping("download.action")
     public ResponseEntity downloadAll(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setHeader("content-disposition", "attachment;filename=" + "files.zip");
         ZipOutputStream zipOutputStream = new ZipOutputStream(response.getOutputStream());
         List<Map> dataList = fileUploadManager.doQuery(0, 99999);
         for (Map data : dataList) {
             File srcFile = new File(serverUrl + data.get("filepath"));
             String rnCode = data.get("rncode").toString();
-            zipOutputStream.putNextEntry(new ZipEntry(rnCode + "--" + srcFile.getName()));
+            String caCode = data.get("cacode").toString();
+            zipOutputStream.putNextEntry(new ZipEntry("CA" + caCode + "-RN" + rnCode + "-" + srcFile.getName()));
             InputStream in = new FileInputStream(srcFile);
             int len = 0;
             byte[] buffer = new byte[1024];
@@ -94,7 +96,6 @@ public class FileController {
             in.close();
             zipOutputStream.closeEntry();
         }
-        response.setHeader("content-disposition", "attachment;filename=" + "files.zip");
         zipOutputStream.close();
         return new ResponseEntity<ResultBody>(new ResultBody("file download", "success", null, ""), HttpStatus.OK);
     }

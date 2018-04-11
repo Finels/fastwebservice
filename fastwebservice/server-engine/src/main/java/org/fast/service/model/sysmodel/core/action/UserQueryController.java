@@ -89,7 +89,7 @@ public class UserQueryController {
     @ResponseBody
     public String exportXLS(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        String[] titles = {"code", "firstname", "middlename", "lastname", "position", "institution", "city", "country", "address", "email"};
+        String[] titles = {"code", "cacode", "firstname", "middlename", "lastname", "position", "institution", "city", "country", "address", "email"};
         String fileName = "userInfo" + ".xls";
         String sheetName = "userInfo";
         List<Map> dataList = userService.doQuery(0, 999999);
@@ -98,7 +98,7 @@ public class UserQueryController {
             for (int j = 0; j < titles.length; j++) {
                 Map data = dataList.get(i);
                 String target = titles[j];
-                String dataStr = data.get(target).toString();
+                String dataStr = data.get(target) == null ? "" : data.get(target).toString();
                 content[i][j] = dataStr;
             }
         }

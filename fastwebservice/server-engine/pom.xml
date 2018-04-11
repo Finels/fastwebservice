@@ -199,6 +199,11 @@
             <artifactId>ehcache</artifactId>
             <version>2.10.4</version>
         </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.jaxrs</groupId>
+            <artifactId>jackson-jaxrs-json-provider</artifactId>
+            <version>2.5.4</version>
+        </dependency>
         <!--javax-->
         <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
         <dependency>
@@ -319,11 +324,11 @@
             <version>0.7</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.codehaus.jackson/jackson-mapper-asl -->
-        <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-mapper-asl</artifactId>
-            <version>1.8.8</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.codehaus.jackson</groupId>-->
+            <!--<artifactId>jackson-mapper-asl</artifactId>-->
+            <!--<version>1.8.8</version>-->
+        <!--</dependency>-->
         <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-keyvalue -->
         <dependency>
             <groupId>org.springframework.data</groupId>
